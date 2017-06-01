@@ -1,0 +1,253 @@
+Iso2|Iso3|NumericCode|Name|OficialName|Capital|Currency|PhoneCode|Longitude|Latitude|PostalCodeFormat|PostalCodeRegex||||||||||||
+AD|AND|20|Andorra|Principality of Andorra|Andorra la Vella|EUR|376|42.54057088|1.5520134|AD###|^(?:AD)*(\d{3})$||||||||||||
+AE|ARE|784|United Arab Emirates|United Arab Emirates|Abu Dhabi|AED|971|24.64324405|53.62261227||||||||||||||
+AF|AFG|4|Afghanistan|Islamic Republic of Afghanistan|Kabul|AFN|93|33.98299275|66.39159363||||||||||||||
+AG|ATG|28|Antigua and Barbuda|Antigua and Barbuda|St. John's|XCD|-267|17.48060423|-61.42014426||||||||||||||
+AI|AIA|660|Anguilla|Anguilla|The Valley|XCD|-263|18.22053521|-63.068613||||||||||||||
+AL|ALB|8|Albania|Republic of Albania|Tirana|ALL|355|41.00017358|19.87170014||||||||||||||
+AM|ARM|51|Armenia|Republic of Armenia|Yerevan|AMD|374|40.13475528|45.01072318|######|^(\d{6})$||||||||||||
+AN|ANT|530|Netherlands Antilles|Netherlands Antilles|Willemstad|ANG|599||||||||||||||||
+AO|AGO|24|Angola|Republic of Angola|Luanda|AOA|244|-12.16469683|16.70933622||||||||||||||
+AQ|ATA|10|Antarctica|Antarctica||A$|672|-45.13806295|10.48095703||||||||||||||
+AR|ARG|32|Argentina|Argentine Republic|Buenos Aires|ARS|54|-38.01529308|-64.97897469|@####@@@|^([A-Z]\d{4}[A-Z]{3})$||||||||||||
+AS|ASM|16|American Samoa|The United States Territory of American Samoa|Pago Pago|USD|-683|-14.30634641|-170.6950175||||||||||||||
+AT|AUT|40|Austria|Republic of Austria|Vienna|EUR|43|47.63125476|13.18776731|####|^(\d{4})$||||||||||||
+AU|AUS|36|Australia|Australia|Canberra|AUD|61|-26.29594646|133.5554094|####|^(\d{4})$||||||||||||
+AW|ABW|533|Aruba|Aruba of the Kingdom of the Netherlands|Oranjestad|AWG|297|12.52109661|-69.968338||||||||||||||
+AX|ALA|248|Aland Islands|Aland Islands|Mariehamn|EUR|340|60.25403213|20.3591835|#####|^(?:FI)*(\d{5})$||||||||||||
+AZ|AZE|31|Azerbaijan|Republic of Azerbaijan|Baku|AZN|994|40.35321757|47.46706372|AZ ####|^(?:AZ)*(\d{4})$||||||||||||
+BA|BIH|70|Bosnia and Herzegovina|Bosnia and Herzegovina|Sarajevo|BAM|387|44.00040856|17.8164091|#####|^(\d{5})$||||||||||||
+BB|BRB|52|Barbados|Barbados|Bridgetown|BBD|-245|13.19383077|-59.543196|BB#####|^(?:BB)*(\d{5})$||||||||||||
+BD|BGD|50|Bangladesh|People's Republic of Bangladesh|Dhaka|BDT|880|24.08273251|90.49915527|####|^(\d{4})$||||||||||||
+BE|BEL|56|Belgium|Kingdom of Belgium|Brussels|EUR|32|50.49593874|4.469936|####|^(\d{4})$||||||||||||
+BF|BFA|854|Burkina Faso|Burkina Faso|Ouagadougou|XOF|226|12.22492458|-1.561591||||||||||||||
+BG|BGR|100|Bulgaria|Republic of Bulgaria|Sofia|BGN|359|42.70160678|25.485832|####|^(\d{4})$||||||||||||
+BH|BHR|48|Bahrain|Kingdom of Bahrain|Manama|BHD|973|25.90740996|50.65932354|####|###|^(\d{3}\d?)$|||||||||||
+BI|BDI|108|Burundi|Republic of Burundi|Bujumbura|BIF|257|-3.40499707|29.88592902||||||||||||||
+BJ|BEN|204|Benin|Republic of Benin|Porto-Novo|XOF|229|9.37180859|2.29386134||||||||||||||
+BL|BLM|652|Saint Barth‚lemy|Territorial collectivity of Saint Barth‚lemy|Gustavia|EUR|590|17.90042417|-62.83376215|### ###|||||||||||||
+BM|BMU|60|Bermuda|the Bermudas|Hamilton|BMD|-440|32.31995785|-64.76182765|@@ ##|^([A-Z]{2}\d{2})$||||||||||||
+BN|BRN|96|Brunei|Brunei Darussalam|Bandar Seri Begawan|BND|673|4.54189364|114.6013282|@@####|^([A-Z]{2}\d{4})$||||||||||||
+BO|BOL|68|Bolivia|Plurinational State of Bolivia|Sucre|BOB|591|-16.74518128|-65.19265691||||||||||||||
+BQ|BES|535|"Bonaire| Saint Eustatius And Saba"|"Bonaire| Saint Eustatius and Saba"||USD|599|12.17229702|-68.2883117||||||||||||||
+BR|BRA|76|Brazil|Federative Republic of Brazil|Brasilia|BRL|55|-11.80965046|-53.331526|#####-###|^(\d{8})$||||||||||||
+BS|BHS|44|Bahamas|Commonwealth of the Bahamas|Nassau|BSD|-241|24.45991732|-77.68192453||||||||||||||
+BT|BTN|64|Bhutan|Kingdom of Bhutan|Thimphu|BTN|975|27.50752756|90.433603||||||||||||||
+BV|BVT|74|Bouvet Island|Bouvet Island||NOK|47|-54.42316906|3.413196||||||||||||||
+BW|BWA|72|Botswana|Republic of Botswana|Gaborone|BWP|267|-22.18279485|24.22344422||||||||||||||
+BY|BLR|112|Belarus|Republic of Belarus|Minsk|BYR|375|53.58628747|27.953389|######|^(\d{6})$||||||||||||
+BZ|BLZ|84|Belize|Belize|Belmopan|BZD|501|17.21153631|-88.01424956||||||||||||||
+CA|CAN|124|Canada|Canada|Ottawa|CAD|1|60.36196817|-106.6983315|@#@ #@#|^([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ]) ?(\d[ABCEGHJKLMNPRSTVWXYZ]\d)$ ||||||||||||
+CC|CCK|166|Cocos (Keeling) Islands|Territory of Cocos (Keeling) Islands|West Island|AUD|61|-12.12890685|96.84689104||||||||||||||
+CD|ZAR|180|Democratic Republic of the Congo|Democratic Republic of the Congo|Kinshasa|CDF|243|-4.05373938|23.01110741||||||||||||||
+CF|CAF|140|Central African Republic|Central African Republic|Bangui|XAF|236|6.8254183|20.64281514||||||||||||||
+CG|COG|178|Congo|Republic of the Congo|Brazzaville|XAF|242|-0.68967806|15.6903319||||||||||||||
+CH|CHE|756|Switzerland|Swiss Confederation|Berne|CHF|41|46.81010721|8.227512|####|^(\d{4})$||||||||||||
+CI|CIV|384|Ivory Coast|Ivory Coast|Yamoussoukro|XOF|225|7.59684148|-5.49214636||||||||||||||
+CK|COK|184|Cook Islands|Cook Islands|Avarua|NZD|682|-21.23673066|-159.777669||||||||||||||
+CL|CHL|152|Chile|Republic of Chile|Santiago|CLP|56|-38.0176079|-71.40014474|#######|^(\d{7})$||||||||||||
+CM|CMR|120|Cameroon|Republic of Cameroon|Yaounde|XAF|237|7.38622543|12.72825915||||||||||||||
+CN|CHN|156|China|People's Republic of China|Beijing|CNY|86|36.7145744|103.558192|######|^(\d{6})$||||||||||||
+CO|COL|170|Colombia|Republic of Colombia|Bogota|COP|57|3.6818232|-73.53927436||||||||||||||
+CR|CRI|188|Costa Rica|Republic of Costa Rica|San Jose|CRC|506|9.98427463|-84.09949534|####|^(\d{4})$||||||||||||
+CS|SCG|891|Serbia|Serbia|Belgrade|RSD|381|44.787197|20.457273|#####|^(\d{5})$||||||||||||
+CU|CUB|192|Cuba|Republic of Cuba|Havana|CUP|53|21.54513189|-79.00064743|CP #####|^(?:CP)*(\d{5})$||||||||||||
+CV|CPV|132|Cape Verde|Republic of Cape Verde|Praia|CVE|238|15.11988711|-23.6051701|####|^(\d{4})$||||||||||||
+CW|CUW|531|Curacao|Curacao| Willemstad|ANG|599|12.20710309|-69.02160369||||||||||||||
+CX|CXR|162|Christmas Island|Territory of Christmas Island|Flying Fish Cove|AUD|61|-10.49170619|105.680838|####|^(\d{4})$||||||||||||
+CY|CYP|196|Cyprus|Republic of Cyprus|Nicosia|EUR|357|35.12450768|33.429861|####|^(\d{4})$||||||||||||
+CZ|CZE|203|Czech Republic|Czech Republic|Prague|CZK|420|49.76026136|15.53888197|### ##|^(\d{5})$||||||||||||
+DE|DEU|276|Germany|Federal Republic of Germany|Berlin|EUR|49|50.82871201|10.97887975|#####|^(\d{5})$||||||||||||
+DJ|DJI|262|Djibouti|Republic of Djibouti|Djibouti|DJF|253|11.75959257|42.65344839||||||||||||||
+DK|DNK|208|Denmark|Kingdom of Denmark|Copenhagen|DKK|45|54.71794021|9.41938953|####|^(\d{4})$||||||||||||
+DM|DMA|212|Dominica|Commonwealth of Dominica|Roseau|XCD|-766|15.41473963|-61.370974||||||||||||||
+DO|DOM|214|Dominican Republic|Dominican Republic|Santo Domingo|DOP|+1-809 and 1-829|18.73076761|-70.162649|#####|^(\d{5})$||||||||||||
+DZ|DZA|12|Algeria|People's Democratic Republic of Algeria|Algiers|DZD|213|27.8986169|3.19771194|#####|^(\d{5})$||||||||||||
+EC|ECU|218|Ecuador|Republic of Ecuador|Quito|USD|593|-1.22919037|-78.55693916|@####@|^([a-zA-Z]\d{4}[a-zA-Z])$||||||||||||
+EE|EST|233|Estonia|Republic of Estonia|Tallinn|EUR|372|58.74041141|25.38165099|#####|^(\d{5})$||||||||||||
+EG|EGY|818|Egypt|Arab Republic of Egypt|Cairo|EGP|20|26.71650873|30.8025|#####|^(\d{5})$||||||||||||
+EH|ESH|732|Western Sahara|Western Sahara|El-Aaiun|MAD|212|24.79324356|-13.67683563||||||||||||||
+ER|ERI|232|Eritrea|State of Eritrea|Asmara|ERN|291|15.21227764|39.61204792||||||||||||||
+ES|ESP|724|Spain|Kingdom of Spain|Madrid|EUR|34|39.87299401|-3.67089492|#####|^(\d{5})$||||||||||||
+ET|ETH|231|Ethiopia|Federal Democratic Republic of Ethiopia|Addis Ababa|ETB|251|9.10727589|39.84148164|####|^(\d{4})$||||||||||||
+FI|FIN|246|Finland|Republic of Finland|Helsinki|EUR|358|64.69610892|26.36339137|#####|^(?:FI)*(\d{5})$||||||||||||
+FJ|FJI|242|Fiji|Republic of Fiji|Suva|FJD|679|-17.71219757|178.065036||||||||||||||
+FK|FLK|238|Falkland Islands (Malvinas)|Falkland Islands|Stanley|FKP|500|-51.78838251|-59.523611||||||||||||||
+FM|FSM|583|Micronesia|Federated States of Micronesia|Palikir|USD|691|6.88747377|158.2150717|#####|^(\d{5})$||||||||||||
+FO|FRO|234|Faroe Islands|Faroe Islands|Torshavn|DKK|298|61.88590482|-6.911804|FO-###|^(?:FO)*(\d{3})$||||||||||||
+FR|FRA|250|France|French Republic|Paris|EUR|33|46.48372145|2.60926281|#####|^(\d{5})$||||||||||||
+GA|GAB|266|Gabon|Gabonese Republic|Libreville|XAF|241|-0.43426435|11.43916591||||||||||||||
+GB|GBR|826|United Kingdom|United Kingdom of Great Britain and Northern Ireland|London|GBP|44|53.36540813|-2.72184767|@# #@@|@## #@@|@@# #@@|@@## #@@|@#@ #@@|@@#@ #@@|GIR0AA|^(([A-Z]\d{2}[A-Z]{2})|([A-Z]\d{3}[A-Z]{2})|([A-Z]{2}\d{2}[A-Z]{2})|([A-Z]{2}\d{3}[A-Z]{2})|([A-Z]\d[A-Z]\d[A-Z]{2})|([A-Z]{2}\d[A-Z]\d[A-Z]{2})|(GIR0AA))$
+GD|GRD|308|Grenada|Grenada|St. George's|XCD|-472|12.11644807|-61.678994||||||||||||||
+GE|GEO|268|Georgia|Georgia|Tbilisi|GEL|995|41.82754301|44.17329916|####|^(\d{4})$||||||||||||
+GF|GUF|254|French Guiana|French Guiana|Cayenne|EUR|594|4.01114381|-52.97746057|#####|^((97|98)3\d{2})$|||||||||||
+GG|GGY|831|Guernsey|Bailiwick of Guernsey|St Peter Port|GBP|-1437|49.46565975|-2.585272|@# #@@|@## #@@|@@# #@@|@@## #@@|@#@ #@@|@@#@ #@@|GIR0AA|^(([A-Z]\d{2}[A-Z]{2})|([A-Z]\d{3}[A-Z]{2})|([A-Z]{2}\d{2}[A-Z]{2})|([A-Z]{2}\d{3}[A-Z]{2})|([A-Z]\d[A-Z]\d[A-Z]{2})|([A-Z]{2}\d[A-Z]\d[A-Z]{2})|(GIR0AA))$
+GH|GHA|288|Ghana|Republic of Ghana|Accra|GHS|233|7.69154199|-1.29234904||||||||||||||
+GI|GIB|292|Gibraltar|Gibraltar|Gibraltar|GIP|350|36.14864641|-5.34404779||||||||||||||
+GL|GRL|304|Greenland|Greenland|Nuuk|DKK|299|71.42932629|-34.38651956|####|^(\d{4})$||||||||||||
+GM|GMB|270|The Gambia|Republic of The Gambia|Banjul|GMD|220|13.15921146|-15.35956748||||||||||||||
+GN|GIN|324|Guinea|Republic of Guinea|Conakry|GNF|224|9.94301472|-11.31711839||||||||||||||
+GP|GLP|312|Guadeloupe|Department of Guadeloupe|Basse-Terre|EUR|590|16.26472785|-61.550994|#####|^((97|98)\d{3})$|||||||||||
+GQ|GNQ|226|Equatorial Guinea|Republic of Equatorial Guinea|Malabo|XAF|240|1.65068442|10.267897||||||||||||||
+GR|GRC|300|Greece|Hellenic Republic|Athens|EUR|30|38.52254746|24.53794505|### ##|^(\d{5})$||||||||||||
+GS|SGS|239|South Georgia and the South Sandwich Islands|South Georgia and the South Sandwich Islands|Grytviken|GBP||-54.38130284|-36.67305304||||||||||||||
+GT|GTM|320|Guatemala|Republic of Guatemala|Guatemala City|GTQ|502|15.72598421|-89.96707712|#####|^(\d{5})$||||||||||||
+GU|GUM|316|Guam|Territory of Guam|Hagatna|USD|-670|13.44410137|144.8074779|969##|^(969\d{2})$||||||||||||
+GW|GNB|624|Guinea-Bissau|Republic of Guinea-Bissau|Bissau|XOF|245|11.80050682|-15.180407|####|^(\d{4})$||||||||||||
+GY|GUY|328|Guyana|Republic of Guyana|Georgetown|GYD|592|4.47957059|-58.72692293||||||||||||||
+HK|HKG|344|Hong Kong|Hong Kong Special Administrative Region of the People's Republic|Hong Kong|HKD|852|22.33728531|114.1465779||||||||||||||
+HM|HMD|334|Heard Island And McDonald Islands|Heard and McDonald Islands||AUD| |-53.08168847|73.504158||||||||||||||
+HN|HND|340|Honduras|Republic of Honduras|Tegucigalpa|HNL|504|14.64994423|-87.01643713|@@####|^([A-Z]{2}\d{4})$||||||||||||
+HR|HRV|191|Croatia|Republic of Croatia|Zagreb|HRK|385|44.81372482|16.29039507|#####|^(?:HR)*(\d{5})$||||||||||||
+HT|HTI|332|Haiti|Republic of Haiti|Port-au-Prince|HTG|509|19.07430861|-72.79607526|HT####|^(?:HT)*(\d{4})$||||||||||||
+HU|HUN|348|Hungary|Republic of Hungary|Budapest|HUF|36|46.97670384|19.35499657|####|^(\d{4})$||||||||||||
+ID|IDN|360|Indonesia|Republic of Indonesia|Jakarta|IDR|62|-2.4622968|121.1832979|#####|^(\d{5})$||||||||||||
+IE|IRL|372|Ireland|Ireland|Dublin|EUR|353|53.10101628|-8.21092302||||||||||||||
+IL|ISR|376|Israel|State of Israel|Jerusalem|ILS|972|30.85883075|34.91753797|#####|^(\d{5})$||||||||||||
+IM|IMN|833|Isle of Man|The Isle of Man|"Douglas| Isle of Man"|GBP|-1580|54.23562697|-4.548054|@# #@@|@## #@@|@@# #@@|@@## #@@|@#@ #@@|@@#@ #@@|GIR0AA|^(([A-Z]\d{2}[A-Z]{2})|([A-Z]\d{3}[A-Z]{2})|([A-Z]{2}\d{2}[A-Z]{2})|([A-Z]{2}\d{3}[A-Z]{2})|([A-Z]\d[A-Z]\d[A-Z]{2})|([A-Z]{2}\d[A-Z]\d[A-Z]{2})|(GIR0AA))$
+IN|IND|356|India|Republic of India|New Delhi|INR|91|20.46549519|78.50146222|######|^(\d{6})$||||||||||||
+IO|IOT|86|British Indian Ocean Territory|The British Indian Ocean Territory|Diego Garcia|USD|246|-7.33461519|72.4242528||||||||||||||
+IQ|IRQ|368|Iraq|Republic of Iraq|Baghdad|IQD|964|32.90170182|43.19590056|#####|^(\d{5})$||||||||||||
+IR|IRN|364|Iran|Islamic Republic of Iran|Tehran|IRR|98|31.40240324|51.28204814|##########|^(\d{10})$||||||||||||
+IS|ISL|352|Iceland|Republic of Iceland|Reykjavik|ISK|354|64.99294495|-18.57038755|###|^(\d{3})$||||||||||||
+IT|ITA|380|Italy|Republic of Italy|Rome|EUR|39|41.7781084|12.67725128|#####|^(\d{5})$||||||||||||
+JE|JEY|832|Jersey|Bailiwick of Jersey|Saint Helier|GBP|-1490|49.21440771|-2.131246|@# #@@|@## #@@|@@# #@@|@@## #@@|@#@ #@@|@@#@ #@@|GIR0AA|^(([A-Z]\d{2}[A-Z]{2})|([A-Z]\d{3}[A-Z]{2})|([A-Z]{2}\d{2}[A-Z]{2})|([A-Z]{2}\d{3}[A-Z]{2})|([A-Z]\d[A-Z]\d[A-Z]{2})|([A-Z]{2}\d[A-Z]\d[A-Z]{2})|(GIR0AA))$
+JM|JAM|388|Jamaica|Jamaica|Kingston|JMD|-875|18.10838487|-77.297506||||||||||||||
+JO|JOR|400|Jordan|Hashemite Kingdom of Jordan|Amman|JOD|962|31.31616588|36.3757551|#####|^(\d{5})$||||||||||||
+JP|JPN|392|Japan|Japan|Tokyo|JPY|81|37.51848822|137.6706606|###-####|^(\d{7})$||||||||||||
+KE|KEN|404|Kenya|Republic of Kenya|Nairobi|KES|254|0.19582452|37.97212297|#####|^(\d{5})$||||||||||||
+KG|KGZ|417|Kyrgyzstan|Kyrgyz Republic|Bishkek|KGS|996|41.11509878|74.25524574|######|^(\d{6})$||||||||||||
+KH|KHM|116|Cambodia|Kingdom of Cambodia|Phnom Penh|KHR|855|12.83288883|104.8481427|#####|^(\d{5})$||||||||||||
+KI|KIR|296|Kiribati|Republic of Kiribati|Tarawa|AUD|686|1.87085244|-157.3625931||||||||||||||
+KM|COM|174|Comoros|Union of the Comoros|Moroni|KMF|269|-11.64529989|43.333302||||||||||||||
+KN|KNA|659|Saint Kitts and Nevis|Saint Kitts and Nevis|Basseterre|XCD|-868|17.33453669|-62.76411725||||||||||||||
+KP|PRK|408|North Korea|Democratic People's Republic of Korea|Pyongyang|KPW|850|40.007855|127.4881283|###-###|^(\d{6})$||||||||||||
+KR|KOR|410|South Korea|Republic of Korea|Seoul|KRW|82|36.56344139|127.5142465|SEOUL ###-###|^(?:SEOUL)*(\d{6})$||||||||||||
+KW|KWT|414|Kuwait|State of Kuwait|Kuwait City|KWD|965|29.43253341|47.71798405|#####|^(\d{5})$||||||||||||
+KY|CYM|136|Cayman Islands|The Cayman Islands|George Town|KYD|-344|19.31322102|-81.254598||||||||||||||
+KZ|KAZ|398|Kazakhstan|Republic of Kazakhstan|Astana|KZT|7|45.38592596|68.81334444|######|^(\d{6})$||||||||||||
+LA|LAO|418|Laos|Lao People's Democratic Republic|Vientiane|LAK|856|17.76075593|103.6161135|#####|^(\d{5})$||||||||||||
+LB|LBN|422|Lebanon|Lebanese Republic|Beirut|LBP|961|34.08249284|35.66454309|#### ####|####|^(\d{4}(\d{4})?)$|||||||||||
+LC|LCA|662|Saint Lucia|Saint Lucia|Castries|XCD|-757|13.90938495|-60.978895||||||||||||||
+LI|LIE|438|Liechtenstein|Principality of Liechtenstein|Vaduz|CHF|423|47.16587383|9.555377|####|^(\d{4})$||||||||||||
+LK|LKA|144|Sri Lanka|Democratic Socialist Republic of Sri  Lanka|Colombo|LKR|94|7.61264985|80.83772497|#####|^(\d{5})$||||||||||||
+LR|LBR|430|Liberia|Republic of Liberia|Monrovia|LRD|231|6.44154681|-9.39103485|####|^(\d{4})$||||||||||||
+LS|LSO|426|Lesotho|Kingdom of Lesotho|Maseru|LSL|266|-29.60303205|28.233612|###|^(\d{3})$||||||||||||
+LT|LTU|440|Lithuania|Republic of Lithuania|Vilnius|LTL|370|55.25095948|23.80987587|LT-#####|^(?:LT)*(\d{5})$||||||||||||
+LU|LUX|442|Luxembourg|Grand Duchy of Luxembourg|Luxembourg|EUR|352|49.81327712|6.129587|L-####|^(\d{4})$||||||||||||
+LV|LVA|428|Latvia|Republic of Latvia|Riga|EUR|371|56.86697515|24.54826936|LV-####|^(?:LV)*(\d{4})$||||||||||||
+LY|LBY|434|Libya|Socialist People's Libyan Arab Jamahiriya|Tripolis|LYD|218|27.06902914|18.19513987||||||||||||||
+MA|MAR|504|Morocco|Kingdom of Morocco|Rabat|MAD|212|31.95441758|-7.26839325|#####|^(\d{5})$||||||||||||
+MC|MCO|492|Monaco|Principality of Monaco|Monaco|EUR|377|43.7046362|6.75444978|#####|^(\d{5})$||||||||||||
+MD|MDA|498|Moldova|Republic of Moldova|Chisinau|MDL|373|47.10710437|28.54018109|MD-####|^(?:MD)*(\d{4})$||||||||||||
+ME|MNE|499|Montenegro|Montenegro|Podgorica|EUR|382|42.7169959|19.09699321|#####|^(\d{5})$||||||||||||
+MF|MAF|663|Saint Martin|Saint Martin|Marigot|EUR|590|18.07637107|-63.05019106|### ###|||||||||||||
+MG|MDG|450|Madagascar|Republic of Madagascar|Antananarivo|MGA|261|-19.79858543|46.97898228|###|^(\d{3})$||||||||||||
+MH|MHL|584|Marshall Islands|Republic of the Marshall Islands|Majuro|USD|692|7.30130732|168.7551262||||||||||||||
+MK|MKD|807|Macedonia|The former Yugoslav Republic of Macedonia|Skopje|MKD|389|41.60059479|21.745279|####|^(\d{4})$||||||||||||
+ML|MLI|466|Mali|Republic of Mali|Bamako|XOF|223|17.69385811|-1.9636873||||||||||||||
+MM|MMR|104|Myanmar|Union of Myanmar|Nay Pyi Taw|MMK|95|19.2098538|96.54949272|#####|^(\d{5})$||||||||||||
+MN|MNG|496|Mongolia|Mongolia|Ulan Bator|MNT|976|46.8055627|104.3080898|######|^(\d{6})$||||||||||||
+MO|MAC|446|Macao|Macau Special Administrative Region|Macao|MOP|853|22.19872287|113.543877||||||||||||||
+MP|MNP|580|Northern Mariana Islands|Commonwealth of the Northern Mariana Islands|Saipan|USD|-669|15.09783636|145.6739||||||||||||||
+MQ|MTQ|474|Martinique|Department of Martinique|Fort-de-France|EUR|596|14.64128045|-61.024176|#####|^(\d{5})$||||||||||||
+MR|MRT|478|Mauritania|Islamic Republic of Mauritania|Nouakchott|MRO|222|20.28331239|-10.21573334||||||||||||||
+MS|MSR|500|Montserrat|Montserrat|Plymouth|XCD|-663|16.74774077|-62.187366||||||||||||||
+MT|MLT|470|Malta|Republic of Malta|Valletta|EUR|356|35.89706403|14.43687877|@@@ ###|@@@ ##|^([A-Z]{3}\d{2}\d?)$|||||||||||
+MU|MUS|480|Mauritius|Republic of Mauritius|Port Louis|MUR|230|-20.28368188|57.56588291||||||||||||||
+MV|MDV|462|Maldives|Republic of Maldives|Male|MVR|960|-0.64224221|73.13373313|#####|^(\d{5})$||||||||||||
+MW|MWI|454|Malawi|Republic of Malawi|Lilongwe|MWK|265|-12.48684092|34.14223524||||||||||||||
+MX|MEX|484|Mexico|United Mexican States|Mexico City|MXN|52|22.92036676|-102.3330534|#####|^(\d{5})$||||||||||||
+MY|MYS|458|Malaysia|Malaysia|Kuala Lumpur|MYR|60|4.97345793|106.5460905|#####|^(\d{5})$||||||||||||
+MZ|MOZ|508|Mozambique|Republic of Mozambique|Maputo|MZN|258|-19.07617816|33.81570282|####|^(\d{4})$||||||||||||
+NA|NAM|516|Namibia|Republic of Namibia|Windhoek|NAD|264|-22.7096562|16.72161918||||||||||||||
+NC|NCL|540|New Caledonia|Territory of New Caledonia and Dependencies|Noumea|XPF|687|-21.2610402|165.5878376|#####|^(\d{5})$||||||||||||
+NE|NER|562|Niger|Republic of the Niger|Niamey|XOF|227|17.23446679|8.2354786|####|^(\d{4})$||||||||||||
+NF|NFK|574|Norfolk Island|Norfolk Islands|Kingston|AUD|672|-29.02801043|167.9430302|####|^(\d{4})$||||||||||||
+NG|NGA|566|Nigeria|Federal Republic of Nigeria|Abuja|NGN|234|9.02165273|7.82933373|######|^(\d{6})$||||||||||||
+NI|NIC|558|Nicaragua|Republic of Nicaragua|Managua|NIO|505|12.91806226|-84.82270352|###-###-#|^(\d{7})$||||||||||||
+NL|NLD|528|Netherlands|Kingdom of the Netherlands|Amsterdam|EUR|31|52.33939951|4.98914998|#### @@|^(\d{4}[A-Z]{2})$||||||||||||
+NO|NOR|578|Norway|Kingdom of Norway|Oslo|NOK|47|65.04680297|13.50069228|####|^(\d{4})$||||||||||||
+NP|NPL|524|Nepal|Federal Democratic Republic of Nepal|Kathmandu|NPR|977|28.2843077|83.98119373|#####|^(\d{5})$||||||||||||
+NR|NRU|520|Nauru|Republic of Nauru|Yaren|AUD|674|-0.52586763|166.9327046||||||||||||||
+NU|NIU|570|Niue|Niue|Alofi|NZD|683|-19.04976362|-169.8658557||||||||||||||
+NZ|NZL|554|New Zealand|New Zealand|Wellington|NZD|64|-40.95025298|171.7658618|####|^(\d{4})$||||||||||||
+OM|OMN|512|Oman|Sultanate of Oman|Muscat|OMR|968|20.69906846|56.69230596|###|^(\d{3})$||||||||||||
+PA|PAN|591|Panama|Republic of Panama|Panama City|PAB|507|8.52135102|-80.04603702||||||||||||||
+PE|PER|604|Peru|Republic of Peru|Lima|PEN|51|-8.50205247|-76.15772412||||||||||||||
+PF|PYF|258|French Polynesia|Territory of French Polynesia|Papeete|XPF|689|-17.66243898|-149.406839|#####|^((97|98)7\d{2})$|||||||||||
+PG|PNG|598|Papua New Guinea|Papua New Guinea|Port Moresby|PGK|675|-6.62414046|144.4499348|###|^(\d{3})$||||||||||||
+PH|PHL|608|Philippines|Republic of the Philippines|Manila|PHP|63|12.823612|121.774017|####|^(\d{4})$||||||||||||
+PK|PAK|586|Pakistan|Islamic Republic of Pakistan|Islamabad|PKR|92|29.90335974|70.34487986|#####|^(\d{5})$||||||||||||
+PL|POL|616|Poland|Republic of Poland|Warsaw|PLN|48|52.10117636|19.33190957|##-###|^(\d{5})$||||||||||||
+PM|SPM|666|Saint Pierre and Miquelon|Saint Pierre and Miquelon|Saint-Pierre|EUR|508|46.88469499|-56.315902|#####|^(97500)$||||||||||||
+PN|PCN|612|Pitcairn Islands|Pitcairn Group of Islands|Adamstown|NZD|870|-24.37673925|-128.3242373||||||||||||||
+PR|PRI|630|Puerto Rico|Commonwealth of Puerto Rico|San Juan|USD|+1-787 and 1-939|18.21963053|-66.590151|#####-####|^(\d{9})$||||||||||||
+PS|PSE|275|"Palestinian Territory| Occupied"|the Occupied Palestinian Territory|East Jerusalem|ILS|970|32.26367103|35.21936714||||||||||||||
+PT|PRT|620|Portugal|Portuguese Republic|Lisbon|EUR|351|39.44879136|-8.03768042|####-###|^(\d{7})$||||||||||||
+PW|PLW|585|Palau|Republic of Palau|Melekeok|USD|680|7.49856307|134.572915|96940|^(96940)$||||||||||||
+PY|PRY|600|Paraguay|Republic of Paraguay|Asuncion|PYG|595|-23.38564782|-58.29551057|####|^(\d{4})$||||||||||||
+QA|QAT|634|Qatar|State of Qatar|Doha|QAR|974|25.24551555|51.2443148||||||||||||||
+RE|REU|638|Reunion|Department of Reunion|Saint-Denis|EUR|262|-21.11480084|55.536382|#####|^((97|98)(4|7|8)\d{2})$|||||||||
+RO|ROU|642|Romania|Romania|Bucharest|RON|40|45.56450023|25.21945155|######|^(\d{6})$||||||||||||
+RS|SRB|688|Serbia|Republic of Serbia|Belgrade|RSD|381|44.06736041|20.29725084|######|^(\d{6})$||||||||||||
+RU|RUS|643|Russia|Russian Federation|Moscow|RUB|7|57.96812298|102.4183714|######|^(\d{6})$||||||||||||
+RW|RWA|646|Rwanda|Republic of Rwanda|Kigali|RWF|250|-1.98589079|29.94255855||||||||||||||
+SA|SAU|682|Saudi Arabia|Kingdom of Saudi Arabia|Riyadh|SAR|966|24.16687314|42.88190638|#####|^(\d{5})$||||||||||||
+SB|SLB|90|Solomon Islands|Solomon Islands|Honiara|SBD|677|-9.6455428|160.156194||||||||||||||
+SC|SYC|690|Seychelles|Republic of Seychelles|Victoria|SCR|248|-4.68053204|55.49061371||||||||||||||
+SD|SDN|729|Sudan|Republic of the Sudan|Khartoum|SDG|249|15.96646839|30.37145459|#####|^(\d{5})$||||||||||||
+SE|SWE|752|Sweden|Kingdom of Sweden|Stockholm|SEK|46|61.42370427|16.73188991|### ##|^(?:SE)*(\d{5})$||||||||||||
+SG|SGP|702|Singapore|Republic of Singapore|Singapur|SGD|65|1.33873261|103.8332356|######|^(\d{6})$||||||||||||
+SH|SHN|654|"Saint Helena| Ascension and Tristan da Cunha"|"Saint Helena| Ascension and Tristan da Cunha"|Jamestown|SHP|290|-37.10521846|-12.2776858|STHL 1ZZ|^(STHL1ZZ)$||||||||||||
+SI|SVN|705|Slovenia|Republic of Slovenia|Ljubljana|EUR|386|46.14315048|14.995463|####|^(?:SI)*(\d{4})$||||||||||||
+SJ|SJM|744|Svalbard and Jan Mayen|Svalbard and Jan Mayen|Longyearbyen|NOK|47|77.92215764|18.99010622||||||||||||||
+SK|SVK|703|Slovakia|Slovak Republic|Bratislava|EUR|421|48.66923253|19.75396564|### ##|^(\d{5})$||||||||||||
+SL|SLE|694|Sierra Leone|Republic of Sierra Leone|Freetown|SLL|232|8.45575589|-11.93368759||||||||||||||
+SM|SMR|674|San Marino|Republic of San Marino|San Marino|EUR|378|43.94223356|12.457777|4789#|^(4789\d)$||||||||||||
+SN|SEN|686|Senegal|Republic of Senegal|Dakar|XOF|221|14.43579003|-14.68306489|#####|^(\d{5})$||||||||||||
+SO|SOM|706|Somalia|Somali Republic|Mogadishu|SOS|252|2.87224619|45.27676444|@@  #####|^([A-Z]{2}\d{5})$||||||||||||
+SR|SUR|740|Suriname|Republic of Suriname|Paramaribo|SRD|597|4.26470865|-55.93988238||||||||||||||
+SS|SSD|728|South Sudan|Republic of South Sudan|Juba|SSP|211|7.91320803|30.15342434||||||||||||||
+ST|STP|678|Sao Tome and Principe|Democratic Republic of Sao Tome and  Principe|Sao Tome|STD|239|0.2338191|6.59935809||||||||||||||
+SV|SLV|222|El Salvador|Republic of El Salvador|San Salvador|USD|503|13.79043561|-88.896528|CP ####|^(?:CP)*(\d{4})$||||||||||||
+SX|SXM|534|Sint Maarten|Sint Maarten|Philipsburg|ANG|599|18.04433885|-63.0561632||||||||||||||
+SY|SYR|760|Syria|Syrian Arab Republic|Damascus|SYP|963|34.7109743|38.66723516||||||||||||||
+SZ|SWZ|748|Swaziland|Kingdom of Swaziland|Mbabane|SZL|268|-26.5389257|31.47960891|@###|^([A-Z]\d{3})$||||||||||||
+TC|TCA|796|Turks and Caicos Islands|Turks and Caicos Islands|Cockburn Town|USD|-648|21.72816866|-71.79654471|TKCA 1ZZ|^(TKCA 1ZZ)$||||||||||||
+TD|TCD|148|Chad|Republic of Chad|N'Djamena|XAF|235|14.80342407|18.78714064||||||||||||||
+TF|ATF|260|French Southern and Antarctic Lands|Territory of the French Southern and Antarctic Lands|Port-aux-Francais|EUR||-49.27235903|69.348563||||||||||||||
+TG|TGO|768|Togo|Togolese Republic|Lome|XOF|228|8.68089206|0.86049757||||||||||||||
+TH|THA|764|Thailand|Kingdom of Thailand|Bangkok|THB|66|14.6000981|101.3880588|#####|^(\d{5})$||||||||||||
+TJ|TJK|762|Tajikistan|Republic of Tajikistan|Dushanbe|TJS|992|38.68075124|71.23215769|######|^(\d{6})$||||||||||||
+TK|TKL|772|Tokelau|Tokelau|Nukunonu|NZD|690|-9.16682644|-171.8398169||||||||||||||
+TL|TLS|626|Timor-Leste|Democratic Republic of Timor-Leste|Dili|USD|670|-8.88926365|125.996714||||||||||||||
+TM|TKM|795|Turkmenistan|Turkmenistan|Ashgabat|TMT|993|38.94915421|59.06190323|######|^(\d{6})$||||||||||||
+TN|TUN|788|Tunisia|Republic of Tunisia|Tunis|TND|216|33.8843194|9.71878341|####|^(\d{4})$||||||||||||
+TO|TON|776|Tonga|Kingdom of Tonga|Nuku'alofa|TOP|676|-21.17890075|-175.198242||||||||||||||
+TR|TUR|792|Turkey|Republic of Turkey|Ankara|TRY|90|38.27069555|36.28703317|#####|^(\d{5})$||||||||||||
+TT|TTO|780|Trinidad and Tobago|Republic of Trinidad and Tobago|Port of Spain|TTD|-867|10.43241863|-61.222503||||||||||||||
+TV|TUV|798|Tuvalu|Tuvalu|Funafuti|AUD|688|-8.45968122|179.1331094||||||||||||||
+TW|TWN|158|Taiwan|Republic of China|Taipei|TWD|886|23.71891402|121.1088404|#####|^(\d{5})$||||||||||||
+TZ|TZA|834|Tanzania|United Republic of Tanzania|Dodoma|TZS|255|-6.37551085|34.85587302||||||||||||||
+UA|UKR|804|Ukraine|Ukraine|Kiev|UAH|380|48.89358596|31.1051692|#####|^(\d{5})$||||||||||||
+UG|UGA|800|Uganda|Republic of Uganda|Kampala|UGX|256|1.5476062|32.44409759||||||||||||||
+UM|UMI|581|United States Minor Outlying Islands|United States Minor Outlying Islands||USD|1|19.46305694|177.9863109||||||||||||||
+US|USA|840|United States|United States of America|Washington|USD|1|37.66895362|-102.3925645|#####-####|^\d{5}(-\d{4})?$||||||||||||
+UY|URY|858|Uruguay|Eastern Republic of Uruguay|Montevideo|UYU|598|-32.49342987|-55.765833|#####|^(\d{5})$||||||||||||
+UZ|UZB|860|Uzbekistan|Republic of Uzbekistan|Tashkent|UZS|998|41.30829147|62.6297096|######|^(\d{6})$||||||||||||
+VA|VAT|336|Vatican City State|State of the Vatican City|Vatican City|EUR|379|41.9037781|12.45340142|#####|^(\d{5})$||||||||||||
+VC|VCT|670|Saint Vincent and the Grenadines|Saint Vincent and the Grenadines|Kingstown|XCD|-783|13.25276143|-61.197098||||||||||||||
+VE|VEN|862|Venezuela|Bolivarian Republic of Venezuela|Caracas|VEF|58|5.98477766|-65.94152264|####|^(\d{4})$||||||||||||
+VG|VGB|92|Virgin Islands|British Virgin Islands|Road Town|USD|-283|17.67004187|-64.7741101||||||||||||||
+VI|VIR|850|United States Virgin Islands|Virgin Islands of the United States|Charlotte Amalie|USD|-339|18.01000938|-64.7741141|#####-####|^\d{5}(-\d{4})?$||||||||||||
+VN|VNM|704|Viet Nam|Socialist Republic of Viet Nam|Hanoi|VND|84|17.19931699|107.140128|######|^(\d{6})$||||||||||||
+VU|VUT|548|Vanuatu|Republic of Vanuatu|Port Vila|VUV|678|-15.37256614|166.95916||||||||||||||
+WF|WLF|876|Wallis and Futuna|Territory of the Wallis and Futuna Islands|Mata Utu|XPF|681|-14.29378486|-178.116498|#####|^(986\d{2})$||||||||||||
+WS|WSM|882|Samoa|Independent State of Samoa|Apia|WST|685|-13.57998954|-172.4520736||||||||||||||
+XK|XKX|0|Kosovo|Kosovo|Pristina|EUR|383|42.433468|21.039623||||||||||||||
+YE|YEM|887|Yemen|Republic of Yemen|Sanaa|YER|967|15.60865453|47.60453676||||||||||||||
+YT|MYT|175|Mayotte|Overseas Department of Mayotte|Mamoudzou|EUR|262|-12.82744522|45.166242|#####|^(\d{5})$||||||||||||
+ZA|ZAF|710|South Africa|Republic of South Africa|Pretoria|ZAR|27|-27.17706863|24.50856092|####|^(\d{4})$||||||||||||
+ZM|ZMB|894|Zambia|Republic of Zambia|Lusaka|ZMW|260|-13.01812188|28.33274444|#####|^(\d{5})$||||||||||||
+ZW|ZWE|716|Zimbabwe|Republic of Zimbabwe|Harare|ZWL|263|-19.00784952|30.18758584||||||||||||||

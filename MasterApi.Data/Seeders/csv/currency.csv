@@ -1,0 +1,119 @@
+﻿Code|Symbol|Name|NamePlural|SymbolNative|DecimalDigits|Rounding
+USD|$|US Dollar|US dollars|$|2|0
+CAD|CA$|Canadian Dollar|Canadian dollars|$|2|0
+EUR|€|Euro|euros|€|2|0
+AED|AED|United Arab Emirates Dirham|UAE dirhams|د.إ.‏|2|0
+AFN|Af|Afghan Afghani|Afghan Afghanis|؋|0|0
+ALL|ALL|Albanian Lek|Albanian lekë|Lek|0|0
+AMD|AMD|Armenian Dram|Armenian drams|դր.|0|0
+ARS|AR$|Argentine Peso|Argentine pesos|$|2|0
+AUD|AU$|Australian Dollar|Australian dollars|$|2|0
+AZN|man.|Azerbaijani Manat|Azerbaijani manats|ман.|2|0
+BAM|KM|Bosnia-Herzegovina Convertible Mark|Bosnia-Herzegovina convertible marks|KM|2|0
+BDT|Tk|Bangladeshi Taka|Bangladeshi takas|৳|2|0
+BGN|BGN|Bulgarian Lev|Bulgarian leva|лв.|2|0
+BHD|BD|Bahraini Dinar|Bahraini dinars|د.ب.‏|3|0
+BIF|FBu|Burundian Franc|Burundian francs|FBu|0|0
+BND|BN$|Brunei Dollar|Brunei dollars|$|2|0
+BOB|Bs|Bolivian Boliviano|Bolivian bolivianos|Bs|2|0
+BRL|R$|Brazilian Real|Brazilian reals|R$|2|0
+BWP|BWP|Botswanan Pula|Botswanan pulas|P|2|0
+BYR|BYR|Belarusian Ruble|Belarusian rubles|BYR|0|0
+BZD|BZ$|Belize Dollar|Belize dollars|$|2|0
+CDF|CDF|Congolese Franc|Congolese francs|FrCD|2|0
+CHF|CHF|Swiss Franc|Swiss francs|CHF|2|0.05
+CLP|CL$|Chilean Peso|Chilean pesos|$|0|0
+CNY|CN¥|Chinese Yuan|Chinese yuan|CN¥|2|0
+COP|CO$|Colombian Peso|Colombian pesos|$|0|0
+CRC|₡|Costa Rican Colón|Costa Rican colóns|₡|0|0
+CVE|CV$|Cape Verdean Escudo|Cape Verdean escudos|CV$|2|0
+CZK|Kč|Czech Republic Koruna|Czech Republic korunas|Kč|2|0
+DJF|Fdj|Djiboutian Franc|Djiboutian francs|Fdj|0|0
+DKK|Dkr|Danish Krone|Danish kroner|kr|2|0
+DOP|RD$|Dominican Peso|Dominican pesos|RD$|2|0
+DZD|DA|Algerian Dinar|Algerian dinars|د.ج.‏|2|0
+EEK|Ekr|Estonian Kroon|Estonian kroons|kr|2|0
+EGP|EGP|Egyptian Pound|Egyptian pounds|ج.م.‏|2|0
+ERN|Nfk|Eritrean Nakfa|Eritrean nakfas|Nfk|2|0
+ETB|Br|Ethiopian Birr|Ethiopian birrs|Br|2|0
+GBP|£|British Pound Sterling|British pounds sterling|£|2|0
+GEL|GEL|Georgian Lari|Georgian laris|GEL|2|0
+GHS|GH₵|Ghanaian Cedi|Ghanaian cedis|GH₵|2|0
+GNF|FG|Guinean Franc|Guinean francs|FG|0|0
+GTQ|GTQ|Guatemalan Quetzal|Guatemalan quetzals|Q|2|0
+HKD|HK$|Hong Kong Dollar|Hong Kong dollars|$|2|0
+HNL|HNL|Honduran Lempira|Honduran lempiras|L|2|0
+HRK|kn|Croatian Kuna|Croatian kunas|kn|2|0
+HUF|Ft|Hungarian Forint|Hungarian forints|Ft|0|0
+IDR|Rp|Indonesian Rupiah|Indonesian rupiahs|Rp|0|0
+ILS|₪|Israeli New Sheqel|Israeli new sheqels|₪|2|0
+INR|Rs|Indian Rupee|Indian rupees|টকা|2|0
+IQD|IQD|Iraqi Dinar|Iraqi dinars|د.ع.‏|0|0
+IRR|IRR|Iranian Rial|Iranian rials|﷼|0|0
+ISK|Ikr|Icelandic Króna|Icelandic krónur|kr|0|0
+JMD|J$|Jamaican Dollar|Jamaican dollars|$|2|0
+JOD|JD|Jordanian Dinar|Jordanian dinars|د.أ.‏|3|0
+JPY|¥|Japanese Yen|Japanese yen|￥|0|0
+KES|Ksh|Kenyan Shilling|Kenyan shillings|Ksh|2|0
+KHR|KHR|Cambodian Riel|Cambodian riels|៛|2|0
+KMF|CF|Comorian Franc|Comorian francs|FC|0|0
+KRW|₩|South Korean Won|South Korean won|₩|0|0
+KWD|KD|Kuwaiti Dinar|Kuwaiti dinars|د.ك.‏|3|0
+KZT|KZT|Kazakhstani Tenge|Kazakhstani tenges|тңг.|2|0
+LBP|LB£|Lebanese Pound|Lebanese pounds|ل.ل.‏|0|0
+LKR|SLRs|Sri Lankan Rupee|Sri Lankan rupees|SL Re|2|0
+LTL|Lt|Lithuanian Litas|Lithuanian litai|Lt|2|0
+LVL|Ls|Latvian Lats|Latvian lati|Ls|2|0
+LYD|LD|Libyan Dinar|Libyan dinars|د.ل.‏|3|0
+MAD|MAD|Moroccan Dirham|Moroccan dirhams|د.م.‏|2|0
+MDL|MDL|Moldovan Leu|Moldovan lei|MDL|2|0
+MGA|MGA|Malagasy Ariary|Malagasy Ariaries|MGA|0|0
+MKD|MKD|Macedonian Denar|Macedonian denari|MKD|2|0
+MMK|MMK|Myanma Kyat|Myanma kyats|K|0|0
+MOP|MOP$|Macanese Pataca|Macanese patacas|MOP$|2|0
+MUR|MURs|Mauritian Rupee|Mauritian rupees|MURs|0|0
+MXN|MX$|Mexican Peso|Mexican pesos|$|2|0
+MYR|RM|Malaysian Ringgit|Malaysian ringgits|RM|2|0
+MZN|MTn|Mozambican Metical|Mozambican meticals|MTn|2|0
+NAD|N$|Namibian Dollar|Namibian dollars|N$|2|0
+NGN|₦|Nigerian Naira|Nigerian nairas|₦|2|0
+NIO|C$|Nicaraguan Córdoba|Nicaraguan córdobas|C$|2|0
+NOK|Nkr|Norwegian Krone|Norwegian kroner|kr|2|0
+NPR|NPRs|Nepalese Rupee|Nepalese rupees|नेरू|2|0
+NZD|NZ$|New Zealand Dollar|New Zealand dollars|$|2|0
+OMR|OMR|Omani Rial|Omani rials|ر.ع.‏|3|0
+PAB|B/.|Panamanian Balboa|Panamanian balboas|B/.|2|0
+PEN|S/.|Peruvian Nuevo Sol|Peruvian nuevos soles|S/.|2|0
+PHP|₱|Philippine Peso|Philippine pesos|₱|2|0
+PKR|PKRs|Pakistani Rupee|Pakistani rupees|₨|0|0
+PLN|zł|Polish Zloty|Polish zlotys|zł|2|0
+PYG|₲|Paraguayan Guarani|Paraguayan guaranis|₲|0|0
+QAR|QR|Qatari Rial|Qatari rials|ر.ق.‏|2|0
+RON|RON|Romanian Leu|Romanian lei|RON|2|0
+RSD|din.|Serbian Dinar|Serbian dinars|дин.|0|0
+RUB|RUB|Russian Ruble|Russian rubles|руб.|2|0
+RWF|RWF|Rwandan Franc|Rwandan francs|FR|0|0
+SAR|SR|Saudi Riyal|Saudi riyals|ر.س.‏|2|0
+SDG|SDG|Sudanese Pound|Sudanese pounds|SDG|2|0
+SEK|Skr|Swedish Krona|Swedish kronor|kr|2|0
+SGD|S$|Singapore Dollar|Singapore dollars|$|2|0
+SOS|Ssh|Somali Shilling|Somali shillings|Ssh|0|0
+SYP|SY£|Syrian Pound|Syrian pounds|ل.س.‏|0|0
+THB|฿|Thai Baht|Thai baht|฿|2|0
+TND|DT|Tunisian Dinar|Tunisian dinars|د.ت.‏|3|0
+TOP|T$|Tongan Paʻanga|Tongan paʻanga|T$|2|0
+TRY|TL|Turkish Lira|Turkish Lira|TL|2|0
+TTD|TT$|Trinidad and Tobago Dollar|Trinidad and Tobago dollars|$|2|0
+TWD|NT$|New Taiwan Dollar|New Taiwan dollars|NT$|2|0
+TZS|TSh|Tanzanian Shilling|Tanzanian shillings|TSh|0|0
+UAH|₴|Ukrainian Hryvnia|Ukrainian hryvnias|₴|2|0
+UGX|USh|Ugandan Shilling|Ugandan shillings|USh|0|0
+UYU|$U|Uruguayan Peso|Uruguayan pesos|$|2|0
+UZS|UZS|Uzbekistan Som|Uzbekistan som|UZS|0|0
+VEF|Bs.F.|Venezuelan Bolívar|Venezuelan bolívars|Bs.F.|2|0
+VND|₫|Vietnamese Dong|Vietnamese dong|₫|0|0
+XAF|FCFA|CFA Franc BEAC|CFA francs BEAC|FCFA|0|0
+XOF|CFA|CFA Franc BCEAO|CFA francs BCEAO|CFA|0|0
+YER|YR|Yemeni Rial|Yemeni rials|ر.ي.‏|0|0
+ZAR|R|South African Rand|South African rand|R|2|0
+ZMK|ZK|Zambian Kwacha|Zambian kwachas|ZK|0|0
