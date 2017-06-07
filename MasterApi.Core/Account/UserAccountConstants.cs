@@ -4,13 +4,6 @@ namespace MasterApi.Core.Account
 {
     public class UserAccountConstants
     {
-        public class ClaimTypes
-        {
-            public const string Tenant = "http://brockallen.com/membershipreboot/claims/tenant";
-            public const string PendingTwoFactorAuth = "http://brockallen.com/membershipreboot/claims/pending2fauth";
-            public const string PartialAuthReason = "http://brockallen.com/membershipreboot/claims/partialauthreason";
-        }
-
         public class SecuritySettingDefaults
         {
             internal const bool MultiTenant = false;

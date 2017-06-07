@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace MasterApi.Core.Account.Enums
 {
-    public enum UserAccountAuthStatus
+    public enum UserAccountMessages
     {
         [Description("You'll soon receive a SMS with instructions to verify your phone number and activate your account")]
         SuccessOnCreatingSms,

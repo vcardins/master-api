@@ -20,6 +20,8 @@ using MasterApi.Core.Auth.Models;
 using MasterApi.Core.Auth.Enums;
 using MasterApi.Core.Data.Infrastructure;
 using MasterApi.Web.Extensions;
+using System.Linq;
+using MasterApi.Core.Account.Enums;
 
 namespace MasterApi.Web.Identity
 {
@@ -186,6 +188,7 @@ namespace MasterApi.Web.Identity
                 _options.SigningCredentials);
 
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(securityToken);
+            var role = claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value ?? UserAccessLevel.User.ToString();
 
             return new AuthResponse
             {
@@ -196,7 +199,8 @@ namespace MasterApi.Web.Identity
                 TokenType = AuthenticationScheme,
                 Username = identity.Name,
                 RefreshToken = refreshTokenId,
-                AsClientId = clientId
+                AsClientId = clientId,
+                Role = role
             };            
         }
 

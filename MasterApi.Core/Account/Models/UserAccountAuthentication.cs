@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using MasterApi.Core.Account.Enums;
-using MasterApi.Core.ViewModels;
+using MasterApi.Core.ViewModels.UserProfile;
 
 namespace MasterApi.Core.Account.Models
 {
@@ -14,7 +14,7 @@ namespace MasterApi.Core.Account.Models
         public string Email { get; set; }
         public UserProfileOutput Profile { get; set; }
         public List<Claim> Claims { get; set; }
-        public UserAccountAuthStatus? Status { get; set; }
+        public UserAccountMessages? Status { get; set; }
         public UserAccountAuthentication()
         {
             Claims = new List<Claim>();

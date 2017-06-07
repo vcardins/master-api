@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MasterApi.Web.Identity
 {
@@ -14,8 +15,11 @@ namespace MasterApi.Web.Identity
         [JsonProperty("expires_in")]
         public int ExpiresIn { get; set; }
 
-        [JsonProperty("userName")]
+        [JsonProperty("username")]
         public string Username { get; set; }
+
+        [JsonProperty("role")]
+        public string Role { get; set; }
 
         [JsonProperty(".issued")]
         public DateTime Issued { get; set; }
@@ -28,7 +32,6 @@ namespace MasterApi.Web.Identity
 
         [JsonProperty("as:client_id")]
         public string AsClientId { get; set; }
-
 
     }
 }
