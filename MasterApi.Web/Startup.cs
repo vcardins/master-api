@@ -107,32 +107,65 @@ namespace MasterApi
 
             services.AddScoped<ValidateMimeMultipartContentFilter>();
 
-            services.AddMvc(options => {
-                //http://www.dotnetcurry.com/aspnet/1314/aspnet-core-globalization-localization
-                //options.Conventions.Insert(0, new ApiPrefixConvention());
-                options.Conventions.Add(new HybridModelBinderApplicationModelConvention());
-                options.Conventions.Add(new NameSpaceVersionRoutingConvention());
-                // Make authentication compulsory across the board (i.e. shut
-                // down EVERYTHING unless explicitly opened up).
-                var policy = new AuthorizationPolicyBuilder()
-                    .RequireAuthenticatedUser()
-                    .RequireClaim(ClaimTypes.Name)
-                    .RequireClaim(ClaimTypes.NameIdentifier)
-                    .Build();
+            // Add functionality to inject IOptions<T>
+            services.AddOptions();
 
-                options.Filters.Add(new AuthorizeFilter(policy));
-            }
-                )
-                .AddJsonOptions(opts => {
+            // Add our Config object so it can be injected
+            var appSettingsSection = Configuration.GetSection(SettingsSectionKey);
+            services.Configure<AppSettings>(appSettingsSection);
+            services.Configure<AppSettings>(settings =>
+            {
+                if (HttpContextAccessor.HttpContext == null) return;
+                var request = HttpContextAccessor.HttpContext.Request;
+                settings.Urls.Api = $"{request.Scheme}://{request.Host.ToUriComponent()}";
+            });
+
+            appSettingsSection.Bind(_appSettings);
+
+            // *If* you need access to generic IConfiguration this is **required**
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddSingleton(Configuration);
+
+            ConfigAuth(services);
+
+            // Enable Cors
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                );
+            });
+
+            services.AddMvc(options => 
+                {
+                    //http://www.dotnetcurry.com/aspnet/1314/aspnet-core-globalization-localization
+                    options.Conventions.Add(new HybridModelBinderApplicationModelConvention());
+                    options.Conventions.Add(new NameSpaceVersionRoutingConvention());
+                    // Make authentication compulsory across the board (i.e. shut
+                    // down EVERYTHING unless explicitly opened up).
+                    var policy = new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .RequireClaim(ClaimTypes.Name)
+                        .RequireClaim(ClaimTypes.NameIdentifier)
+                        .Build();
+
+                    options.Filters.Add(new AuthorizeFilter(policy));
+                }
+            ).AddJsonOptions(opts => 
+                {
                     // Force Camel Case to JSON
                     opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 }
-                )
-                .AddViewLocalization()
-                .AddDataAnnotationsLocalization();
+            )
+            .AddViewLocalization()
+            .AddDataAnnotationsLocalization();
 
             //https://www.billbogaiv.com/posts/hybrid-model-binding-in-aspnet-core-10-rc2
-            services.Configure<MvcOptions>(x =>
+            services.Configure<MvcOptions>(options =>
             {
                 /**
                  * This is needed since the provider uses the existing `BodyModelProvider`.
@@ -140,7 +173,8 @@ namespace MasterApi
                  */
                 var readerFactory = services.BuildServiceProvider().GetRequiredService<IHttpRequestStreamReaderFactory>();
 
-                x.ModelBinderProviders.Insert(0, new DefaultHybridModelBinderProvider(x.InputFormatters, readerFactory));
+                options.ModelBinderProviders.Insert(0, new DefaultHybridModelBinderProvider(options.InputFormatters, readerFactory));
+                // options.Filters.Add(new CorsAuthorizationFilterFactory("CorsPolicy"));
             });
 
             services.AddSwaggerGen(c =>
@@ -165,31 +199,8 @@ namespace MasterApi
                     options.SupportedUICultures = supportedCultures;
                 }
             );
-
-            // Add functionality to inject IOptions<T>
-            services.AddOptions();
-
-            // Add our Config object so it can be injected
-            var appSettingsSection = Configuration.GetSection(SettingsSectionKey);
-            services.Configure<AppSettings>(appSettingsSection);
-            services.Configure<AppSettings>(settings =>
-            {
-                if (HttpContextAccessor.HttpContext == null) return;
-                var request = HttpContextAccessor.HttpContext.Request;
-                settings.Urls.Api = $"{request.Scheme}://{request.Host.ToUriComponent()}";
-            });
-
-            appSettingsSection.Bind(_appSettings);
-
-            // *If* you need access to generic IConfiguration this is **required**
-            services.AddSingleton<IConfiguration>(Configuration);
-            services.AddSingleton(Configuration);
-
-            // Enable Cors
-            services.AddCors();
-
-            ConfigAuth(services);
-
+   
+            // SignalR
             var authorizer = new HubAuthorizeAttribute(_tokenOptions);
             var module = new AuthorizeModule(authorizer, authorizer);
 
@@ -229,6 +240,7 @@ namespace MasterApi
             services.AddScoped(typeof(IUserAccountService), typeof(UserAccountService));
             services.AddScoped(typeof(INotificationService), typeof(NotificationService));
             services.AddScoped(typeof(IGeoService), typeof(GeoService));
+            services.AddScoped(typeof(IUserProfileService), typeof(UserProfileService));
 
             //Infrastructure
             services.AddSingleton(typeof(ICrypto), typeof(DefaultCrypto));
@@ -268,6 +280,8 @@ namespace MasterApi
             _authService = serviceProvider.GetService<IAuthService>();
             _crypto = serviceProvider.GetService<ICrypto>();
 
+            app.UseCors("CorsPolicy");
+
             app.UseTokenProvider(_tokenOptions, _signingKey);
 
             var localizationOptions = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
@@ -294,15 +308,7 @@ namespace MasterApi
 
             app.UseCustomHeadersMiddleware(policyCollection);
 
-            //RecurringJob.AddOrUpdate(() => Console.WriteLine("Minutely Job"), Cron.Minutely);
-
-            // Add MVC to the request pipeline.
-            app.UseCors(builder =>
-                    builder
-                    .AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod()
-                );
+            //RecurringJob.AddOrUpdate(() => Console.WriteLine("Minutely Job"), Cron.Minutely);           
 
             app.UseWebSockets();
 
@@ -310,6 +316,7 @@ namespace MasterApi
 
             app.UseMiddleware(typeof(ErrorHandlingMiddleware));
 
+            // Add MVC to the request pipeline.
             app.UseMvc(routes =>
             {
                 var cultureConstraint = new

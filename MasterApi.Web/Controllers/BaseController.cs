@@ -13,13 +13,20 @@ using MasterApi.Core.Enums;
 using MasterApi.Core.Events;
 using MasterApi.Core.Extensions;
 using MasterApi.Web.Extensions;
+using Microsoft.AspNetCore.SignalR.Hubs;
+using MasterApi.Web.SignalR.Hubs;
 
 namespace MasterApi.Web.Controllers
 {
+    public abstract class BaseController : BaseController<NotificationHub>
+    {
+        protected BaseController(IUserInfo userInfo) : base(userInfo) { }
+    }
+
     /// <summary>
     /// 
     /// </summary>
-    public abstract class BaseController : Controller 
+    public abstract class BaseController<THub> : Controller where THub : IHub
     {
         protected readonly IUserInfo UserInfo;
 
@@ -76,8 +83,7 @@ namespace MasterApi.Web.Controllers
             });
         }
 
-        [Route("lang")]
-        [HttpPost]
+        [HttpPost("lang")]
         public IActionResult SetLanguage(string culture, string returnUrl)
         {
             Response.Cookies.Append(
@@ -129,7 +135,6 @@ namespace MasterApi.Web.Controllers
             return BadRequest(AppConstants.InformationMessages.InvalidRequestParameters);
         }
      
-
         /// <summary>
         /// Nots the found.
         /// </summary>

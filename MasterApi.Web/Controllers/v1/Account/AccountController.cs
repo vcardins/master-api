@@ -17,7 +17,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         private readonly IDataProtector _protector;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserController" /> class.
+        /// Initializes a new instance of the <see cref="NotificationController" /> class.
         /// </summary>
         /// <param name="userInfo">The user information.</param>
         /// <param name="userAccountService">The user account service.</param>

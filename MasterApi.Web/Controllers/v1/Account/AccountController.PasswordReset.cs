@@ -79,7 +79,7 @@ namespace MasterApi.Web.Controllers.v1.Account
             var account = await _userAccountService.ChangePasswordFromResetKeyAsync(model.Key, model.Password);
 
             Task<ClaimsIdentity> claimsIdentity;
-            UserAccountAuthStatus failure;
+            UserAccountMessages failure;
 
             if (await _userAccountService.AuthenticateAsync(account.Username, model.Password, out claimsIdentity,
                 out failure)) {

@@ -21,7 +21,7 @@ namespace MasterApi.Services.Account
         private static ICrypto _crypto;
         private static AppSettings _settings;
         private readonly ILogger<UserAccountService> _logger;
-        private UserAccountAuthStatus? _accountStatus;
+        private UserAccountMessages? _accountStatus;
 
         private readonly Lazy<AggregateValidator<UserAccount>> _usernameValidator;
         private readonly Lazy<AggregateValidator<UserAccount>> _emailValidator;

@@ -5,9 +5,9 @@ using MasterApi.Core.EventHandling;
 using MasterApi.Core.Events;
 using MasterApi.Core.Models;
 using MasterApi.Core.Services;
-using MasterApi.Core.ViewModels;
 using MasterApi.Core.Config;
 using Microsoft.Extensions.Options;
+using MasterApi.Core.ViewModels.UserProfile;
 
 namespace MasterApi.Services.Messaging.RealTime
 {

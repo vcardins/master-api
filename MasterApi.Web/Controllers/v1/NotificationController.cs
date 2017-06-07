@@ -7,27 +7,27 @@ using MasterApi.Core.Attributes;
 using MasterApi.Core.Data.UnitOfWork;
 using MasterApi.Core.Enums;
 using MasterApi.Core.Models;
-using MasterApi.Web.ViewModels;
+using MasterApi.Core.ViewModels;
 
 namespace MasterApi.Web.Controllers.v1
 {
-    [Module(Name = ModelType.User)]
+    [Module(Name = ModelType.Notification)]
     [Route("api/{version}/[controller]")]
-    public class UserController : CrudApiController<UserProfile, UserViewModel, UserViewModel>
+    public class NotificationController : CrudApiController<Notification, NotificationOutput, NotificationOutput>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserController" /> class.
+        /// Initializes a new instance of the <see cref="NotificationController" /> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
         /// <param name="userInfo">The user information.</param>
-        public UserController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) 
+        public NotificationController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) 
             : base(unitOfWork, userInfo)
         {
         }
 
-        protected override Expression<Func<UserProfile, bool>> GetFilter(object id = null)
+        protected override Expression<Func<Notification, bool>> GetFilter(object id = null)
         {
-            Expression<Func<UserProfile, bool>> predicate = n => n.UserId == UserInfo.UserId;
+            Expression<Func<Notification, bool>> predicate = n => n.UserId == UserInfo.UserId;
             if (id!=null)
             {
                 predicate = n => n.UserId == (int)id;
@@ -35,9 +35,9 @@ namespace MasterApi.Web.Controllers.v1
             return predicate;
         }
 
-        protected override Func<IQueryable<UserProfile>, IOrderedQueryable<UserProfile>> GetOrderBy()
+        protected override Func<IQueryable<Notification>, IOrderedQueryable<Notification>> GetOrderBy()
         {
-            return q => q.OrderByDescending(x => x.Created).ThenBy(x => x.FirstName);
+            return q => q.OrderByDescending(x => x.Created).ThenBy(x => x.Type);
         }
     }
 

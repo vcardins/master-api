@@ -100,7 +100,7 @@ namespace MasterApi.Services.Account
             if (string.IsNullOrWhiteSpace(password))
             {
                 _logger.LogError(GetLogMessage("called for account: failed -- no password"));
-                _accountStatus = UserAccountAuthStatus.MissingPassword;
+                _accountStatus = UserAccountMessages.MissingPassword;
                 return false;
             }
 
@@ -114,7 +114,7 @@ namespace MasterApi.Services.Account
             {
                 _logger.LogError(GetLogMessage("called for account: failed -- account in lockout due to failed login attempts"));
                 AddEvent(new TooManyRecentPasswordFailuresEvent { Account = account });
-                _accountStatus = UserAccountAuthStatus.FailedLoginAttemptsExceeded;
+                _accountStatus = UserAccountMessages.FailedLoginAttemptsExceeded;
                 return false;
             }
 
@@ -127,7 +127,7 @@ namespace MasterApi.Services.Account
             else
             {
                 _logger.LogError(GetLogMessage("failed -- invalid password"));
-                _accountStatus = UserAccountAuthStatus.InvalidCredentials;
+                _accountStatus = UserAccountMessages.InvalidCredentials;
                 RecordInvalidLoginAttempt(account);
                 AddEvent(new InvalidPasswordEvent { Account = account });
             }
@@ -210,7 +210,7 @@ namespace MasterApi.Services.Account
             var isVerified = VerifyPassword(account, password);
             if (!isVerified)
             {
-                _accountStatus = UserAccountAuthStatus.InvalidCredentials;
+                _accountStatus = UserAccountMessages.InvalidCredentials;
                 return false;
             }
 
@@ -220,7 +220,7 @@ namespace MasterApi.Services.Account
                 {
                     _logger.LogError(GetLogMessage("failed -- account not allowed to login"));
                     AddEvent(new AccountLockedEvent { Account = account });
-                    _accountStatus = UserAccountAuthStatus.LoginNotAllowed;
+                    _accountStatus = UserAccountMessages.LoginNotAllowed;
                     return false;
                 }
 
@@ -228,7 +228,7 @@ namespace MasterApi.Services.Account
                 {
                     _logger.LogError(GetLogMessage("failed -- account closed"));
                     AddEvent(new InvalidAccountEvent { Account = account });
-                    _accountStatus = UserAccountAuthStatus.AccountClosed;
+                    _accountStatus = UserAccountMessages.AccountClosed;
                     return false;
                 }
 
@@ -236,7 +236,7 @@ namespace MasterApi.Services.Account
                 {
                     _logger.LogError(GetLogMessage("failed -- account not verified"));
                     AddEvent(new AccountNotVerifiedEvent { Account = account });
-                    _accountStatus = UserAccountAuthStatus.AccountNotVerified;
+                    _accountStatus = UserAccountMessages.AccountNotVerified;
                     return false;
                 }
 
@@ -266,21 +266,19 @@ namespace MasterApi.Services.Account
             if (string.IsNullOrWhiteSpace(password))
             {
                 _logger.LogError(GetLogMessage("failed -- empty password"));
-                _accountStatus = UserAccountAuthStatus.MissingPassword;
+                _accountStatus = UserAccountMessages.MissingPassword;
                 return false;
             }
             account = GetByUsername(username);
             if (account != null) return Authenticate(account, password);
-            _accountStatus = UserAccountAuthStatus.InvalidCredentials;
+            _accountStatus = UserAccountMessages.InvalidCredentials;
             return false;
         }
 
         public Task<bool> AuthenticateAsync(string username, string password, MobileInfo mobileInfo, out UserAccountAuthentication accountAuthentication)
         {
-            UserAccount account;
-            var isAuthenticated = Authenticate(username, password, out account);
             accountAuthentication = new UserAccountAuthentication { Status = _accountStatus };
-            if (!isAuthenticated)
+            if (!Authenticate(username, password, out UserAccount account))
             {
                 return Task.FromResult(false);
             }
@@ -294,15 +292,15 @@ namespace MasterApi.Services.Account
                 return Task.FromResult(true);
             }
 
-            isAuthenticated = RegisterMobile(account.UserId, account.Username, mobileInfo);
+            var isAuthenticated = RegisterMobile(account.UserId, account.Username, mobileInfo);
 
             return Task.FromResult(isAuthenticated);
         }
 
-        public Task<bool> AuthenticateAsync(string username, string password, out Task<ClaimsIdentity> claimsIdentity, out UserAccountAuthStatus failure)
+        public Task<bool> AuthenticateAsync(string username, string password, out Task<ClaimsIdentity> claimsIdentity, out UserAccountMessages failure)
         {
             claimsIdentity = null;
-            failure = UserAccountAuthStatus.None;
+            failure = UserAccountMessages.None;
 
             var isAuthenticated = Authenticate(username, password, out UserAccount account);
             if (!isAuthenticated)
@@ -434,13 +432,13 @@ namespace MasterApi.Services.Account
         {
             if (currentMobile.Os == MobileOS.iOS && string.IsNullOrEmpty(currentMobile.Token))
             {
-                _accountStatus = UserAccountAuthStatus.MissingDeviceToken;
+                _accountStatus = UserAccountMessages.MissingDeviceToken;
                 return false;
             }
 
             if (currentMobile.Os == MobileOS.Android && string.IsNullOrEmpty(currentMobile.InstallationId))
             {
-                _accountStatus = UserAccountAuthStatus.MissingInstallationId;
+                _accountStatus = UserAccountMessages.MissingInstallationId;
                 return false;
             }
 

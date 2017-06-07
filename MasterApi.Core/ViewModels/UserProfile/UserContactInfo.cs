@@ -1,4 +1,4 @@
-﻿namespace MasterApi.Core.ViewModels
+﻿namespace MasterApi.Core.ViewModels.UserProfile
 {
     public class UserContactInfo
     {

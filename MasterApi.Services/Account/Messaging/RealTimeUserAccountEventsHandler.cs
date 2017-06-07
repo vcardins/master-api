@@ -1,10 +1,10 @@
 ﻿using System;
 using MasterApi.Core.Account.Events;
 using MasterApi.Core.EventHandling;
-using MasterApi.Core.ViewModels;
 using MasterApi.Services.Messaging.RealTime;
 using Omu.ValueInjecter;
 using MasterApi.Core.Enums;
+using MasterApi.Core.ViewModels.UserProfile;
 
 namespace MasterApi.Services.Account.Messaging
 {

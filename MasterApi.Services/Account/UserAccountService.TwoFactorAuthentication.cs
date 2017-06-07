@@ -167,7 +167,6 @@ namespace MasterApi.Services.Account
             return true;
         }
 
-
         protected virtual void CreateTwoFactorAuthToken(UserAccount account)
         {
             if (account == null) throw new ArgumentNullException(nameof(account));

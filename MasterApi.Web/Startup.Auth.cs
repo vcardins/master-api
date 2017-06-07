@@ -62,7 +62,7 @@ namespace MasterApi
             var request = HttpContextAccessor.HttpContext.Request;
             var form = request.Form;
 
-            if (await _userService.AuthenticateAsync(username, password, out Task<ClaimsIdentity> claimsIdentity, out UserAccountAuthStatus failure))
+            if (await _userService.AuthenticateAsync(username, password, out Task<ClaimsIdentity> claimsIdentity, out UserAccountMessages failure))
             {
                 return await claimsIdentity;
             }

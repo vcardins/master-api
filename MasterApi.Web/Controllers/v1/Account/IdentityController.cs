@@ -7,7 +7,7 @@ namespace MasterApi.Web.Controllers.v1.Account
     public class IdentityController : BaseController
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UserController" /> class.
+        /// Initializes a new instance of the <see cref="NotificationController" /> class.
         /// </summary>
         /// <param name="userInfo">The user information.</param>
         public IdentityController(IUserInfo userInfo) : base(userInfo) {}
