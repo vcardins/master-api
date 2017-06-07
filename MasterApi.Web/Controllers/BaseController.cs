@@ -15,12 +15,14 @@ using MasterApi.Core.Extensions;
 using MasterApi.Web.Extensions;
 using Microsoft.AspNetCore.SignalR.Hubs;
 using MasterApi.Web.SignalR.Hubs;
+using Microsoft.AspNetCore.SignalR.Infrastructure;
+using Microsoft.AspNetCore.SignalR;
 
 namespace MasterApi.Web.Controllers
 {
     public abstract class BaseController : BaseController<NotificationHub>
     {
-        protected BaseController(IUserInfo userInfo) : base(userInfo) { }
+        protected BaseController(IUserInfo userInfo, IConnectionManager connectionManager = null) : base(userInfo, connectionManager) { }
     }
 
     /// <summary>
@@ -29,12 +31,30 @@ namespace MasterApi.Web.Controllers
     public abstract class BaseController<THub> : Controller where THub : IHub
     {
         protected readonly IUserInfo UserInfo;
+        private IConnectionManager _connectionManager { get; set; }
 
-        protected BaseController(IUserInfo userInfo)
+        /// <summary>
+        /// 
+        /// </summary>
+        // protected IHubContext _hub;
+        private readonly Lazy<IHubContext> _hub;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected IHubContext Hub;
+
+        protected BaseController(IUserInfo userInfo, IConnectionManager connectionManager)
         {
             UserInfo = userInfo;
+            if (connectionManager != null) { 
+                _connectionManager = connectionManager;
+                _hub = new Lazy<IHubContext>(() => _connectionManager.GetHubContext<THub>());
+                Hub = _hub.Value;
+            }
         }
-        
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -44,6 +64,21 @@ namespace MasterApi.Web.Controllers
 
         private ModelType? _module;
 
+        /// <summary>
+        /// Gets a value indicating whether [send live update].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [send live update]; otherwise, <c>false</c>.
+        /// </value>
+        protected bool SendLiveUpdate
+        {
+            get
+            {
+                if (_module.HasValue) return false;
+                return GetType().GetAttributeValue((ModuleAttribute dna) => dna.LiveUpdate);
+            }
+        }
+       
         /// <summary>
         /// Gets the module.
         /// </summary>
@@ -177,19 +212,18 @@ namespace MasterApi.Web.Controllers
             return new BadRequestWithMessageResult(msg);
         }
 
-        private static void TriggerLiveUpdate(ModelType group, ModelAction action,
-            ICollection recipients, object result, int? userId)
+        private void TriggerLiveUpdate(ModelType group, ModelAction action, IList<string> recipients, object result, int? userId)
         {
             var evt = new DomainEvent(group, action, result) { UserId = userId };
             if (recipients.Count.Equals(0))
             {
                 Console.WriteLine(evt);
-                //Hub.Clients.All.handleEvent(evt);
+                Hub.Clients.All.handleEvent(evt);
             }
             else
             {
                 Console.WriteLine(evt);
-                //Hub.Clients.Groups(recipients.ToArray()).handleEvent(evt);
+                Hub.Clients.Groups(recipients).handleEvent(evt);
             }
         }
 
@@ -200,7 +234,9 @@ namespace MasterApi.Web.Controllers
 
         protected void HandleChange(object sender, NotificationEvent e)
         {
-            LiveUpdate(ModelType.Notification, ModelAction.Create, new List<string> { e.Username }, e.Event, e.UserId);
+            if (Hub != null) { 
+                LiveUpdate(ModelType.Notification, ModelAction.Create, new List<string> { e.Username }, e.Event, e.UserId);
+            }
         }
     }
 }

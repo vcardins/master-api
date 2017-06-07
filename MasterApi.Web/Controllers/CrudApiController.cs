@@ -19,6 +19,7 @@ using MasterApi.Core.Enums;
 using MasterApi.Core.Extensions;
 using MasterApi.Web.Filters;
 using MasterApi.Core.Account.Enums;
+using Microsoft.AspNetCore.SignalR.Infrastructure;
 
 namespace MasterApi.Web.Controllers
 {
@@ -26,14 +27,14 @@ namespace MasterApi.Web.Controllers
     public abstract class CrudApiController<TDomainModel> : CrudApiController<TDomainModel, TDomainModel, TDomainModel>
         where TDomainModel : class, IObjectState, new()
     {
-        protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) : base(unitOfWork, userInfo) { }
+        protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) : base(unitOfWork, userInfo, null) { }
     }
 
     public abstract class CrudApiController<TDomainModel, TOutputViewModel> : CrudApiController<TDomainModel, TOutputViewModel, TOutputViewModel>
         where TDomainModel : class, IObjectState, new()
         where TOutputViewModel : class, new()
     {
-        protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) : base(unitOfWork, userInfo) { }
+        protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) : base(unitOfWork, userInfo, null) { }
     }
 
     public abstract class CrudApiController<TDomainModel, TOutputViewModel, TInputViewModel> : CrudApiController<TDomainModel, TOutputViewModel, TInputViewModel, TInputViewModel>
@@ -41,7 +42,7 @@ namespace MasterApi.Web.Controllers
         where TOutputViewModel : class, new()
         where TInputViewModel : class, new()
     {
-        protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) : base(unitOfWork, userInfo) { }
+        protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo, IConnectionManager connectionManager = null) : base(unitOfWork, userInfo, connectionManager) { }
     }
 
     /// <summary>
@@ -64,7 +65,7 @@ namespace MasterApi.Web.Controllers
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
         /// <param name="userInfo">The user information.</param>
-        protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) : base(userInfo)
+        protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo, IConnectionManager connectionManager) : base(userInfo, connectionManager)
          {
             Uow = unitOfWork;
             Repository = unitOfWork.RepositoryAsync<TDomainModel>();
