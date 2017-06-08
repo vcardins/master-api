@@ -35,15 +35,18 @@ namespace MasterApi.Data.Seeders
 
             _seederPath = string.Format("{0}.Seeders.csv", _assembly.GetName().Name);
 
-            //SeedAudiences();
-            //SeedCountries();
-            //SeedProvinceStates();
-            //SeedLanguages();
-            //SeedAccounts();
+            _context.Database.EnsureCreated();
 
-            //if (_hasUpdates) { 
-            //    _context.SaveChanges();
-            //}
+            SeedAudiences();
+            SeedCountries();
+            SeedProvinceStates();
+            SeedLanguages();
+            SeedAccounts();
+
+            if (_hasUpdates)
+            {
+                _context.SaveChanges();
+            }
         }
 
         private static string GetResourceFilename(string resouce)

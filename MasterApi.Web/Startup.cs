@@ -213,6 +213,7 @@ namespace MasterApi
             });
 
             services.AddCustomHeaders();
+            var connection = Configuration.GetConnectionString("DbConnection");// _appSettings.DbConnection.ConnectionString
             services.AddDbContext<AppDbContext>(options =>
             {
                 switch (_appSettings.DbConnection.InMemoryProvider)
@@ -221,7 +222,7 @@ namespace MasterApi
                         options.UseInMemoryDatabase();
                         break;
                     default:
-                        options.UseSqlServer(_appSettings.DbConnection.ConnectionString, b => b.MigrationsAssembly("MasterApi.Data"));
+                        options.UseSqlServer(connection, b => b.MigrationsAssembly("MasterApi.Data"));
                         break;
                 }
             });
