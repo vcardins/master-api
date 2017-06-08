@@ -12,6 +12,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include=".config\rsaparams.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MasterApi.Core\MasterApi.Core.csproj" />
     <ProjectReference Include="..\MasterApi.Data\MasterApi.Data.csproj" />
     <ProjectReference Include="..\MasterApi.Infrastructure\MasterApi.Infrastructure.csproj" />
