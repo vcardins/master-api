@@ -12,6 +12,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include=".config\rsaparams.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MasterApi.Core\MasterApi.Core.csproj" />
     <ProjectReference Include="..\MasterApi.Data\MasterApi.Data.csproj" />
     <ProjectReference Include="..\MasterApi.Infrastructure\MasterApi.Infrastructure.csproj" />
