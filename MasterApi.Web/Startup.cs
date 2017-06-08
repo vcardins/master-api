@@ -53,6 +53,7 @@ using Microsoft.Extensions.Configuration.UserSecrets;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 //http://stackoverflow.com/questions/40704760/invalidoperationexception-could-not-find-usersecretsidattribute-on-assembly
 [assembly: UserSecretsId("aspnet-TestApp-ce345b64-19cf-4972-b34f-d16f2e7976ed")]
@@ -70,9 +71,19 @@ namespace MasterApi
         private IAuthService _authService;
         private ICrypto _crypto;
 
+        /// <summary>
+        /// Gets or sets the configuration.
+        /// </summary>
+        /// <value>
+        /// The configuration.
+        /// </value>
         public IConfigurationRoot Configuration { get; set; }
         private IHttpContextAccessor HttpContextAccessor { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Startup"/> class.
+        /// </summary>
+        /// <param name="env">The env.</param>
         public Startup(IHostingEnvironment env)
         {
             //_applicationPath = env.WebRootPath;
@@ -96,8 +107,11 @@ namespace MasterApi
             Configuration = builder.Build();
         }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+        /// </summary>
+        /// <param name="services">The services.</param>
         public void ConfigureServices(IServiceCollection services)
         {
             // Add MVC services to the services container.
@@ -382,6 +396,7 @@ namespace MasterApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", _appSettings.Information.Name);
                 c.DocExpansion("full");
                 c.ShowRequestHeaders();
+                c.SupportedSubmitMethods(new[] { "get", "post", "delete", "put", "patch" });
                 c.InjectOnCompleteJavaScript("/swagger-ui/on-complete.js");
                 c.InjectOnFailureJavaScript("/swagger-ui/on-failure.js");
             });

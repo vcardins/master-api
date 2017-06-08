@@ -11,7 +11,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Changes the username request.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The SecretQuestionInput model.</param>
         /// <returns></returns>
         [HttpPost("ChangeUsername")]
         [ModelStateValidator]

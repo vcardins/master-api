@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MasterApi.Core.Account.ViewModels;
 using MasterApi.Web.Filters;
 using MasterApi.Web.ViewModels;
+using System.Net;
 
 namespace MasterApi.Web.Controllers.v1.Account
 {
@@ -10,13 +11,13 @@ namespace MasterApi.Web.Controllers.v1.Account
     {
 
         /// <summary>
-        /// Hanfles email changing request.
+        /// Handles user email changing request.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The ChangeEmailRequestInput model.</param>
         /// <returns></returns>
         [HttpPost("ChangeEmail")]
         [ModelStateValidator]
-        [ProducesResponseType(typeof(ActionResponse), 200)]
+        [ProducesResponseType(typeof(ActionResponse), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> ChangeEmailRequestAsync(ChangeEmailRequestInput model)
         {
             await _userAccountService.ChangeEmailRequestAsync(UserInfo.UserId, model.NewEmail);

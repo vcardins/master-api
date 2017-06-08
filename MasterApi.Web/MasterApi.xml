@@ -166,23 +166,23 @@
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ChangeEmailRequestAsync(MasterApi.Core.Account.ViewModels.ChangeEmailRequestInput)">
             <summary>
-            Hanfles email changing request.
+            Handles user email changing request.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The ChangeEmailRequestInput model.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ChangeMobilePhoneRequestAsync(MasterApi.Core.Account.ViewModels.ChangeMobileRequestInput)">
             <summary>
             Changes the mobile phone request.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The ChangeMobileRequestInput model.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ChangePasswordRequestAsync(MasterApi.Core.Account.ViewModels.ChangePasswordInput)">
             <summary>
             Changes the password request asynchronous.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The ChangePasswordInput model.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.GetSecretQuestionsAsync">
@@ -195,7 +195,7 @@
             <summary>
             Adds the account secret questions.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The SecretQuestionInput model.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.RemoveSecretQuestionAsync(System.Guid)">
@@ -209,14 +209,14 @@
             <summary>
             Changes the username request.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The SecretQuestionInput model.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.CloseAccountAsync(System.Guid)">
             <summary>
             Closes the user account.
             </summary>
-            <param name="guid">The unique identifier.</param>
+            <param name="guid">The user account unique identifier.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.#ctor(MasterApi.Core.Account.Services.IUserInfo,MasterApi.Core.Account.Services.IUserAccountService,RazorLight.IRazorLightEngine,Microsoft.Extensions.Options.IOptions{MasterApi.Core.Config.AppSettings},System.IServiceProvider,Microsoft.AspNetCore.DataProtection.IDataProtectionProvider)">
@@ -230,60 +230,67 @@
             <param name="serviceProvider">The service provider.</param>
             <param name="provider">The provider.</param>
         </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ConfigureMultiFactorAuthAsync(MasterApi.Core.Account.Enums.TwoFactorAuthMode)">
+            <summary>
+            Configures the multi factor authentication.
+            </summary>
+            <param name="mode">The TwoFactorAuthMode mode.</param>
+            <returns></returns>
+        </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ResetPasswordRequestAsync(MasterApi.Core.Account.ViewModels.PasswordResetInput)">
             <summary>
             Resets the user account password.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The PasswordResetInput model.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ResetPasswordWithQuestionsAsync(MasterApi.Core.Account.ViewModels.PasswordResetWithSecretInputModel)">
             <summary>
             Resets the user account password with questions.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The PasswordResetWithSecretInputModel model.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ConfirmResetPasswordAsync(MasterApi.Core.Account.ViewModels.ChangePasswordFromResetKeyInput)">
             <summary>
             Confirms user account reset password.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The ChangePasswordFromResetKeyInput model.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.RegisterAsync(MasterApi.Core.Account.ViewModels.RegisterInput)">
             <summary>
             Registers user account.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The user registration model.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.VerifyAsync(System.String)">
             <summary>
             Verifies user account.
             </summary>
-            <param name="key">The key.</param>
+            <param name="key">The user account verification key.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.RequestAccountVerificationAsync(System.String)">
             <summary>
             Requests the account verification.
             </summary>
-            <param name="email">The email.</param>
+            <param name="email">The user email to account be verified against.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.CancelAccountVerificationAsync(System.String)">
             <summary>
             Cancels the account verification.
             </summary>
-            <param name="key">The key.</param>
+            <param name="key">The user verification key.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ReopenAccountRequestAsync(MasterApi.Core.Account.ViewModels.LoginInput)">
             <summary>
             Fires user account reopening request.
             </summary>
-            <param name="model">The model.</param>
+            <param name="model">The LoginInput model.</param>
             <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "T:MasterApi.Web.Controllers.v1.Admin.AudienceController" -->
@@ -347,7 +354,7 @@
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.GeoController.GetCountries(System.Int32,System.Int32)">
             <summary>
-            Gets the countries.
+            Gets all countries.
             </summary>
             <param name="page">Index of the page.</param>
             <param name="size">Size of the page.</param>
@@ -355,7 +362,7 @@
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.GeoController.GetLanguages(System.Int32,System.Int32)">
             <summary>
-            Gets the countries.
+            Gets all languages.
             </summary>
             <param name="page">Index of the page.</param>
             <param name="size">Size of the page.</param>
@@ -363,7 +370,7 @@
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.GeoController.GetEnabledCountries(System.Int32,System.Int32)">
             <summary>
-            Gets the countries.
+            Gets all enabled countries.
             </summary>
             <param name="page">Index of the page.</param>
             <param name="size">Size of the page.</param>
@@ -371,7 +378,7 @@
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.GeoController.GetProvinceStates(System.Int32,System.Int32,System.String)">
             <summary>
-            Gets the countries.
+            Gets all countries' states.
             </summary>
             <param name="page">Index of the page.</param>
             <param name="size">Size of the page.</param>
@@ -380,21 +387,21 @@
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.GeoController.PatchEnable(System.String)">
             <summary>
-            Patches the specified identifier.
+            Enables a contry
             </summary>
             <param name="iso2">The iso2.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.GeoController.PatchDisable(System.String)">
             <summary>
-            Patches the specified identifier.
+            Disabled a country
             </summary>
             <param name="iso2">The iso2.</param>
             <returns></returns>        
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.GeoController.PatchCountyLanguage(System.String,System.String,System.Boolean)">
             <summary>
-            Patches the specified identifier.
+            Sets languages spoke by a country
             </summary>
             <param name="iso2">The iso2.</param>
             <param name="languageCode">The language code.</param>
@@ -593,6 +600,27 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="T:MasterApi.Web.Identity.AuthError">
+            <summary>
+            Authentication error response object
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Identity.AuthError.Description">
+            <summary>
+            Gets or sets the error description.
+            </summary>
+            <value>
+            The error description.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Identity.AuthError.Error">
+            <summary>
+            Gets or sets the error.
+            </summary>
+            <value>
+            The error.
+            </value>
         </member>
         <member name="M:MasterApi.Web.Identity.RSAKeyUtils.GetKeyParameters(System.String)">
             <summary>

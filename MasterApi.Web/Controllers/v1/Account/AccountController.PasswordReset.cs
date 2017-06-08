@@ -20,7 +20,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Resets the user account password.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The PasswordResetInput model.</param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("ResetPassword")]
@@ -60,7 +60,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Resets the user account password with questions.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The PasswordResetWithSecretInputModel model.</param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("ResetPasswordWithQuestions")]
@@ -84,7 +84,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Confirms user account reset password.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The ChangePasswordFromResetKeyInput model.</param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("ConfirmResetPassword")]
@@ -104,7 +104,7 @@ namespace MasterApi.Web.Controllers.v1.Account
             var error = new AuthError
             {
                 Error = "invalid_grant",
-                ErrorDescription = failure.GetDescription()
+                Description = failure.GetDescription()
             };
 
             return BadRequest(error);

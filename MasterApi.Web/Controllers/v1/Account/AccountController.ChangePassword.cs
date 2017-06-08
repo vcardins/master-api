@@ -10,7 +10,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Changes the password request asynchronous.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The ChangePasswordInput model.</param>
         /// <returns></returns>
         [HttpPost("ChangePassword")]
         [ModelStateValidator]

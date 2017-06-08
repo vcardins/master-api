@@ -4,6 +4,7 @@ using MasterApi.Core.Account.ViewModels;
 using MasterApi.Web.Filters;
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace MasterApi.Web.Controllers.v1.Account
 {
@@ -15,7 +16,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// </summary>
         /// <returns></returns>        
         [HttpGet("SecretQuestion")]
-        [ProducesResponseType(typeof(List<PasswordResetSecretOutput>), 200)]
+        [ProducesResponseType(typeof(List<PasswordResetSecretOutput>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetSecretQuestionsAsync()
         {
             var secretQuestions = await _userAccountService.GetSecretQuestionsAsync(UserInfo.UserId);
@@ -25,7 +26,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Adds the account secret questions.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The SecretQuestionInput model.</param>
         /// <returns></returns>
         [HttpPost("SecretQuestion")]
         [ProducesResponseType(200)]

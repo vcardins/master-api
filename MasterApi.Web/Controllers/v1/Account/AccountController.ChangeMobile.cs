@@ -10,7 +10,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Changes the mobile phone request.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The ChangeMobileRequestInput model.</param>
         /// <returns></returns>
         [HttpPost("ChangeMobile")]
         [ModelStateValidator]

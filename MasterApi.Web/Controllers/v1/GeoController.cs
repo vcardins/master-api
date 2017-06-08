@@ -14,6 +14,7 @@ using MasterApi.Core.Common;
 using MasterApi.Core.ViewModels;
 using Microsoft.Extensions.Caching.Memory;
 using MasterApi.Core.Account.Enums;
+using System.Net;
 
 namespace MasterApi.Web.Controllers.v1
 {
@@ -53,7 +54,7 @@ namespace MasterApi.Web.Controllers.v1
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet("countries")]
-        [ProducesResponseType(typeof(CountryOutput), 200)]
+        [ProducesResponseType(typeof(CountryOutput), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetCountries([FromUri] int page = 0, int size = 0)
         {
             PackedList<CountryOutput> result;
@@ -82,7 +83,7 @@ namespace MasterApi.Web.Controllers.v1
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet("languages")]
-        [ProducesResponseType(typeof(LanguageOutput), 200)]  
+        [ProducesResponseType(typeof(LanguageOutput), (int)HttpStatusCode.OK)]  
         public async Task<IActionResult> GetLanguages([FromUri] int page = 0, int size = 0)
         {
             var result = await _geoService.GetLanguages(page, size);
@@ -99,7 +100,7 @@ namespace MasterApi.Web.Controllers.v1
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet("countries/enabled")]
-        [ProducesResponseType(typeof(CountryEnabledOutput), 200)]
+        [ProducesResponseType(typeof(CountryEnabledOutput), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetEnabledCountries([FromUri] int page = 0, int size = 0)
         {
             var result = await _geoService.GetEnabledCountries(page, size);
@@ -116,7 +117,7 @@ namespace MasterApi.Web.Controllers.v1
         /// <returns></returns>
         [AllowAnonymous]
         [HttpGet("states")]        
-        [ProducesResponseType(typeof(ProvinceStateOutput), 200)]
+        [ProducesResponseType(typeof(ProvinceStateOutput), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetProvinceStates([FromUri] int page = 0, int size = 0, string iso2 = null)
         {
             var result = await _geoService.GetStates(page, size, iso2);
@@ -131,7 +132,7 @@ namespace MasterApi.Web.Controllers.v1
         /// <param name="iso2">The iso2.</param>
         /// <returns></returns>
         [HttpPatch("country/{iso2}/enable")]
-        [ProducesResponseType(typeof(IActionResult), 200)]
+        [ProducesResponseType(typeof(IActionResult), (int)HttpStatusCode.OK)]
         [ClaimsAuthorize(ClaimTypes.Role, UserAccessLevel.Admin)]
         public async Task<IActionResult> PatchEnable(string iso2)
         {

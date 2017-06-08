@@ -13,7 +13,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Fires user account reopening request.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The LoginInput model.</param>
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("reopen")]

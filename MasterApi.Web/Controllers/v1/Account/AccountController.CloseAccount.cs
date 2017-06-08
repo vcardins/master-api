@@ -10,7 +10,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Closes the user account.
         /// </summary>
-        /// <param name="guid">The unique identifier.</param>
+        /// <param name="guid">The user account unique identifier.</param>
         /// <returns></returns>
         [HttpPost("close/{guid}")]
         public async Task<HttpResponse> CloseAccountAsync(Guid guid)

@@ -13,7 +13,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Registers user account.
         /// </summary>
-        /// <param name="model">The model.</param>
+        /// <param name="model">The user registration model.</param>
         /// <returns></returns>
         [HttpPost("register")]
         [AllowAnonymous]
@@ -27,7 +27,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Verifies user account.
         /// </summary>
-        /// <param name="key">The key.</param>
+        /// <param name="key">The user account verification key.</param>
         /// <returns></returns>
         [HttpGet("verify/{key}", Name = "VerifyAccount")]
         [AllowAnonymous]
@@ -40,7 +40,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Requests the account verification.
         /// </summary>
-        /// <param name="email">The email.</param>
+        /// <param name="email">The user email to account be verified against.</param>
         /// <returns></returns>
         [HttpPost("verify", Name = "RequestAccountVerification")]
         [AllowAnonymous]
@@ -54,7 +54,7 @@ namespace MasterApi.Web.Controllers.v1.Account
         /// <summary>
         /// Cancels the account verification.
         /// </summary>
-        /// <param name="key">The key.</param>
+        /// <param name="key">The user verification key.</param>
         /// <returns></returns>
         [HttpGet("verify/cancel/{key}", Name = "CancelAccountVerification")]
         [AllowAnonymous]

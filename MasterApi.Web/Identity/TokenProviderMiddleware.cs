@@ -276,7 +276,7 @@ namespace MasterApi.Web.Identity
                 await _httpResponse.ExecuteResultAsync(new { ErrorDescription = message }, statusCode);
             } else
             {
-                await _httpResponse.ExecuteResultAsync(new AuthError { Error = type, ErrorDescription = message }, statusCode);
+                await _httpResponse.ExecuteResultAsync(new AuthError { Error = type, Description = message }, statusCode);
             }
         }
        
