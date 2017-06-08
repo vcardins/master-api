@@ -9,7 +9,7 @@ namespace MasterApi.Core.Config
         public string Version { get; set; }
         public int MaxItemsPerList { get; set; }
         public string SecretKey { get; set; }
-        public DbConnection DbConnection { get; set; }
+        public bool InMemoryProvider { get; set; }
         public AppInformation Information { get; set; }
         public AppBaseUrls Urls { get; set; }
         public AuthSettings Auth { get; set; }

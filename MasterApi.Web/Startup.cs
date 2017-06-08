@@ -213,10 +213,12 @@ namespace MasterApi
             });
 
             services.AddCustomHeaders();
-            var connection = Configuration.GetConnectionString("DbConnection");// _appSettings.DbConnection.ConnectionString
+
+            var connection = Configuration.GetConnectionString("DbConnection");
+
             services.AddDbContext<AppDbContext>(options =>
             {
-                switch (_appSettings.DbConnection.InMemoryProvider)
+                switch (_appSettings.InMemoryProvider)
                 {
                     case true:
                         options.UseInMemoryDatabase();
@@ -227,7 +229,7 @@ namespace MasterApi
                 }
             });
 
-            services.AddHangfire(x => x.UseSqlServerStorage(_appSettings.DbConnection.ConnectionString));
+            services.AddHangfire(x => x.UseSqlServerStorage(connection));
 
             // Repositories
             services.AddScoped(typeof(IDataContextAsync), typeof(AppDbContext));
