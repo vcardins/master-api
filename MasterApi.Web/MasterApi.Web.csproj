@@ -20,7 +20,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="MasterApi.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include=".config\rsaparams.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterApi.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
