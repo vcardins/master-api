@@ -51,6 +51,8 @@ using System.Linq;
 using MasterApi.Core.Extensions;
 using Microsoft.Extensions.Configuration.UserSecrets;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.IO;
 
 //http://stackoverflow.com/questions/40704760/invalidoperationexception-could-not-find-usersecretsidattribute-on-assembly
 [assembly: UserSecretsId("aspnet-TestApp-ce345b64-19cf-4972-b34f-d16f2e7976ed")]
@@ -179,7 +181,25 @@ namespace MasterApi
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = _appSettings.ApplicationName, Version = _appSettings.Version });
+                c.SwaggerDoc("v1", new Info {
+                    Title = _appSettings.Information.Name,
+                    Version = _appSettings.Information.Version,
+                    Description = _appSettings.Information.Description,
+                    TermsOfService = _appSettings.Information.TermsOfService,
+                    Contact = new Contact {
+                        Name = _appSettings.Information.ContactName,
+                        Email = _appSettings.Information.ContactEmail
+                    },
+                    License = new License {
+                        Name = _appSettings.Information.LicenseName,
+                        Url = _appSettings.Information.LicenseUrl
+                    }
+                });
+
+                //Set the comments path for the swagger json and ui.
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "MasterApi.xml");
+                c.IncludeXmlComments(xmlPath);
             });
 
             // Injection
@@ -353,21 +373,17 @@ namespace MasterApi
 
             // https://github.com/domaindrivendev/Swashbuckle.AspNetCore
             // Middleware to expose the generated Swagger as JSON endpoint(s)
-            app.UseSwagger(c =>
-            {
-                c.RouteTemplate = "api-docs/{version}/swagger.json";
-            });
-
+            app.UseSwagger();
+            
             // Middleware to expose interactive documentation
             app.UseSwaggerUI(c =>
             {
-                c.RoutePrefix = "api-docs";
+                c.ShowJsonEditor();
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", _appSettings.Information.Name);
                 c.DocExpansion("full");
                 c.ShowRequestHeaders();
                 c.InjectOnCompleteJavaScript("/swagger-ui/on-complete.js");
                 c.InjectOnFailureJavaScript("/swagger-ui/on-failure.js");
-                c.ShowJsonEditor();
-                c.SwaggerEndpoint("/api-docs/{version}/swagger.json", _appSettings.ApplicationName);
             });
 
             app.Use(next => context =>

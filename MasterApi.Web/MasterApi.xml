@@ -1,0 +1,825 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MasterApi.Web</name>
+    </assembly>
+    <members>
+        <member name="T:MasterApi.Web.Controllers.BaseController`1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MasterApi.Web.Controllers.BaseController`1._hub">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:MasterApi.Web.Controllers.BaseController`1.Hub">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Controllers.BaseController`1.Controller">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Controllers.BaseController`1.SendLiveUpdate">
+            <summary>
+            Gets a value indicating whether [send live update].
+            </summary>
+            <value>
+              <c>true</c> if [send live update]; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Controllers.BaseController`1.Module">
+            <summary>
+            Gets the module.
+            </summary>
+            <value>
+            The module.
+            </value>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.BaseController`1.Ok(MasterApi.Core.Enums.ModelAction,MasterApi.Core.Enums.EventStatus,System.Object,System.String)">
+            <summary>
+            Oks the specified event action.
+            </summary>
+            <param name="eventAction">The event action.</param>
+            <param name="eventStatus">The event status.</param>
+            <param name="data">The data.</param>
+            <param name="msg">The MSG.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.BaseController`1.InvalidModel">
+            <summary>
+            Nots the found.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.BaseController`1.NotFound(System.String)">
+            <summary>
+            Nots the found.
+            </summary>
+            <param name="message">The message.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.BaseController`1.Forbidden(System.String)">
+            <summary>
+            Forbiddens the specified message.
+            </summary>
+            <param name="message">The message.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.BaseController`1.NotFound(System.Int32)">
+            <summary>
+            Nots the found.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.BaseController`1.BadRequest(System.String)">
+            <summary>
+            Bads the request.
+            </summary>
+            <param name="message">The message.</param>
+            <returns></returns>
+        </member>
+        <member name="T:MasterApi.Web.Controllers.CrudApiController`4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo,Microsoft.AspNetCore.SignalR.Infrastructure.IConnectionManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.CrudApiController`4"/> class.
+            </summary>
+            <param name="unitOfWork">The unit of work.</param>
+            <param name="userInfo">The user information.</param>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.GetFilter(System.Object)">
+            <summary>
+            Gets the filter.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.GetOrderBy">
+            <summary>
+            Orders the by.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.Get(System.Int32,System.Int32)">
+            <summary>
+            Gets the medias.
+            </summary> [FromUri] 
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.GetById(System.Int32)">
+            <summary>
+            Gets the by identifier.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.Post(`2)">
+            <summary>
+            Posts the specified model.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.Put(System.Int32,`3)">
+            <summary>
+            Puts the specified model.
+            </summary>
+            <param name="id">The T identifier.</param>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.Patch(System.Int32,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Puts the specified model.
+            </summary>
+            <param name="id">The T identifier.</param>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.DeleteSingle(System.Int32)">
+            <summary>
+            Deletes a T by its specified identifier.
+            </summary>
+            <param name="id">The T identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.DeleteMany(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Deletes a T by its specified identifier.
+            </summary>
+            <param name="ids">The ids.</param>
+            <returns></returns>
+        </member>
+        <member name="T:MasterApi.Web.Controllers.v1.Account.AccountController">
+            <summary>
+            Handle User Account requests
+            </summary>
+            <seealso cref="T:MasterApi.Web.Controllers.BaseController" />
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ChangeEmailRequestAsync(MasterApi.Core.Account.ViewModels.ChangeEmailRequestInput)">
+            <summary>
+            Hanfles email changing request.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ChangeMobilePhoneRequestAsync(MasterApi.Core.Account.ViewModels.ChangeMobileRequestInput)">
+            <summary>
+            Changes the mobile phone request.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ChangePasswordRequestAsync(MasterApi.Core.Account.ViewModels.ChangePasswordInput)">
+            <summary>
+            Changes the password request asynchronous.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.GetSecretQuestionsAsync">
+            <summary>
+            Gets the account secret questions.
+            </summary>
+            <returns></returns>        
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.AddSecretQuestionAsync(MasterApi.Core.Account.ViewModels.SecretQuestionInput)">
+            <summary>
+            Adds the account secret questions.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.RemoveSecretQuestionAsync(System.Guid)">
+            <summary>
+            Removes account secret questions.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ChangeUsernameRequestAsync(MasterApi.Core.Account.ViewModels.ChangeUsernameRequestInput)">
+            <summary>
+            Changes the username request.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.CloseAccountAsync(System.Guid)">
+            <summary>
+            Closes the user account.
+            </summary>
+            <param name="guid">The unique identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.#ctor(MasterApi.Core.Account.Services.IUserInfo,MasterApi.Core.Account.Services.IUserAccountService,RazorLight.IRazorLightEngine,Microsoft.Extensions.Options.IOptions{MasterApi.Core.Config.AppSettings},System.IServiceProvider,Microsoft.AspNetCore.DataProtection.IDataProtectionProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.Account.AccountController"/> class.
+            </summary>
+            <param name="userInfo">The user information.</param>
+            <param name="userAccountService">The user account service.</param>
+            <param name="razorEngine">The razor engine.</param>
+            <param name="settings">The settings.</param>
+            <param name="serviceProvider">The service provider.</param>
+            <param name="provider">The provider.</param>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ResetPasswordRequestAsync(MasterApi.Core.Account.ViewModels.PasswordResetInput)">
+            <summary>
+            Resets the user account password.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ResetPasswordWithQuestionsAsync(MasterApi.Core.Account.ViewModels.PasswordResetWithSecretInputModel)">
+            <summary>
+            Resets the user account password with questions.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ConfirmResetPasswordAsync(MasterApi.Core.Account.ViewModels.ChangePasswordFromResetKeyInput)">
+            <summary>
+            Confirms user account reset password.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.RegisterAsync(MasterApi.Core.Account.ViewModels.RegisterInput)">
+            <summary>
+            Registers user account.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.VerifyAsync(System.String)">
+            <summary>
+            Verifies user account.
+            </summary>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.RequestAccountVerificationAsync(System.String)">
+            <summary>
+            Requests the account verification.
+            </summary>
+            <param name="email">The email.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.CancelAccountVerificationAsync(System.String)">
+            <summary>
+            Cancels the account verification.
+            </summary>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Account.AccountController.ReopenAccountRequestAsync(MasterApi.Core.Account.ViewModels.LoginInput)">
+            <summary>
+            Fires user account reopening request.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:MasterApi.Web.Controllers.v1.Admin.AudienceController" -->
+        <member name="M:MasterApi.Web.Controllers.v1.Admin.AudienceController.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.Admin.AudienceController" /> class.
+            </summary>
+            <param name="unitOfWork">The unit of work.</param>
+            <param name="userInfo">The user information.</param>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Admin.AudienceController.GetFilter(System.Object)">
+            <summary>
+            Returns the notification list filtering criteria.
+            </summary>
+            <param name="id">The audience identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.Admin.AudienceController.GetOrderBy">
+            <summary>
+            Returns the notification list ordering criteria.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MasterApi.Web.Controllers.v1.EmailController">
+            <summary>
+            Email controller for testing emails sending
+            </summary>
+            <seealso cref="T:MasterApi.Web.Controllers.BaseController" />
+        </member>
+        <member name="F:MasterApi.Web.Controllers.v1.EmailController._razorEngine">
+            <summary>
+            The _razor engine
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.EmailController.#ctor(MasterApi.Core.Account.Services.IUserInfo,MasterApi.Core.Messaging.Email.IEmailSender,Microsoft.Extensions.Options.IOptions{MasterApi.Core.Config.AppSettings},RazorLight.IRazorLightEngine)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.EmailController" /> class.
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.EmailController.SendEmailAsync(System.String,System.String)">
+            <summary>
+            Sends the email.
+            </summary>
+            <param name="subject">The subject.</param>
+            <param name="to">To.</param>
+            <returns></returns>
+        </member>
+        <member name="T:MasterApi.Web.Controllers.v1.GeoController">
+            <summary>
+            Handles geography related requests
+            </summary>
+            <seealso cref="T:MasterApi.Web.Controllers.BaseController" />
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.GeoController.#ctor(MasterApi.Core.Account.Services.IUserInfo,MasterApi.Core.Services.IGeoService,Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.GeoController" /> class.
+            </summary>
+            <param name="userInfo">The user information.</param>
+            <param name="geoService">The country service.</param>
+            <param name="cache">The memory cache.</param>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.GeoController.GetCountries(System.Int32,System.Int32)">
+            <summary>
+            Gets the countries.
+            </summary>
+            <param name="page">Index of the page.</param>
+            <param name="size">Size of the page.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.GeoController.GetLanguages(System.Int32,System.Int32)">
+            <summary>
+            Gets the countries.
+            </summary>
+            <param name="page">Index of the page.</param>
+            <param name="size">Size of the page.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.GeoController.GetEnabledCountries(System.Int32,System.Int32)">
+            <summary>
+            Gets the countries.
+            </summary>
+            <param name="page">Index of the page.</param>
+            <param name="size">Size of the page.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.GeoController.GetProvinceStates(System.Int32,System.Int32,System.String)">
+            <summary>
+            Gets the countries.
+            </summary>
+            <param name="page">Index of the page.</param>
+            <param name="size">Size of the page.</param>
+            <param name="iso2">The iso2.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.GeoController.PatchEnable(System.String)">
+            <summary>
+            Patches the specified identifier.
+            </summary>
+            <param name="iso2">The iso2.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.GeoController.PatchDisable(System.String)">
+            <summary>
+            Patches the specified identifier.
+            </summary>
+            <param name="iso2">The iso2.</param>
+            <returns></returns>        
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.GeoController.PatchCountyLanguage(System.String,System.String,System.Boolean)">
+            <summary>
+            Patches the specified identifier.
+            </summary>
+            <param name="iso2">The iso2.</param>
+            <param name="languageCode">The language code.</param>
+            <param name="main">if set to <c>true</c> [main].</param>
+            <returns></returns>        
+        </member>
+        <member name="T:MasterApi.Web.Controllers.v1.NotificationController">
+            <summary>
+            Handles Notifications requests
+            </summary>
+            <seealso cref="!:Controllers.CrudApiController&lt;Notification, Core.ViewModels.NotificationOutput, Core.ViewModels.NotificationOutput&gt;" />
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.NotificationController.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.NotificationController" /> class.
+            </summary>
+            <param name="unitOfWork">The unit of work.</param>
+            <param name="userInfo">The user information.</param>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.NotificationController.GetFilter(System.Object)">
+            <summary>
+            Returns the notification list filtering criteria.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.NotificationController.GetOrderBy">
+            <summary>
+            Returns the notification list ordering criteria.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MasterApi.Web.Controllers.v1.SmsController">
+            <summary>
+            SMS Testing controller
+            </summary>
+            <seealso cref="T:MasterApi.Web.Controllers.BaseController" />
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.SmsController.#ctor(MasterApi.Core.Account.Services.IUserInfo,MasterApi.Core.Messaging.Sms.ISmsSender,Microsoft.Extensions.Localization.IStringLocalizer{MasterApi.Web.Resources.SharedResource},Microsoft.Extensions.Localization.IStringLocalizer{MasterApi.Web.Controllers.v1.SmsController})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.SmsController" /> class.
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.SmsController.SendSmsAsync(MasterApi.Core.Messaging.Sms.SmsMessage)">
+            <summary>
+            Sends SMS.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="T:MasterApi.Web.Controllers.v1.ProfileController">
+            <summary>
+            User profile controller
+            </summary>
+            <seealso cref="T:MasterApi.Web.Controllers.BaseController" />
+            <summary>
+            Handle user profile requests
+            </summary>
+            <seealso cref="T:MasterApi.Web.Controllers.BaseController" />
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.ProfileController.UpdateAvatarAsync">
+            <summary>
+            Updates the user avatar.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.ProfileController.#ctor(MasterApi.Core.Account.Services.IUserInfo,Microsoft.Extensions.Options.IOptions{MasterApi.Core.Config.AppSettings},System.IServiceProvider,MasterApi.Core.Services.IUserProfileService,Microsoft.Extensions.Caching.Memory.IMemoryCache)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.ProfileController" /> class.
+            </summary>
+            <param name="userInfo">The user information.</param>
+            <param name="userProfileService">The country service.</param>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.ProfileController.GetProfileAsync">
+            <summary>
+            Gets the user profile.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.ProfileController.UpdateProfileAsync(MasterApi.Core.ViewModels.UserProfile.UserProfileInput)">
+            <summary>
+            Updates the user profile.
+            </summary>
+            <param name="model">The model.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Extensions.BadRequestWithMessageResult.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:MasterApi.Web.Extensions.CustomAttributeExtension">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Extensions.CustomAttributeExtension.TryGetAttribute``1(System.Reflection.MemberInfo,``0@)">
+            <summary>
+            Tries the get attribute.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="memberInfo">The member information.</param>
+            <param name="customAttribute">The custom attribute.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Extensions.ForbiddenWithMessageResult.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:MasterApi.Web.Extensions.Extensions.AddPagination(Microsoft.AspNetCore.Http.HttpResponse,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Extension method to add pagination info to Response headers
+            </summary>
+            <param name="response"></param>
+            <param name="currentPage"></param>
+            <param name="itemsPerPage"></param>
+            <param name="totalItems"></param>
+            <param name="totalPages"></param>
+        </member>
+        <member name="T:MasterApi.Web.Extensions.NotFoundWithMessageResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Extensions.NotFoundWithMessageResult.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:MasterApi.Web.Extensions.OutputWithMessageResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Extensions.OutputWithMessageResult.#ctor(System.String,System.Net.HttpStatusCode)">
+            <summary>
+            
+            </summary>
+            <param name="message"></param>
+            <param name="httpStatusCode"></param>
+        </member>
+        <member name="T:MasterApi.Web.Filters.ClaimsAuthorizeAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Filters.ClaimsAuthorizeAttribute.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Filters.ClaimsAuthorizeAttribute"/> class.
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Filters.ClaimsAuthorizeAttribute.#ctor(System.String,System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Filters.ClaimsAuthorizeAttribute"/> class.
+            </summary>
+            <param name="action">The action.</param>
+            <param name="resources">The resources.</param>
+        </member>
+        <member name="M:MasterApi.Web.Filters.ClaimsAuthorizeAttribute.#ctor(System.String,MasterApi.Core.Account.Enums.UserAccessLevel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Filters.ClaimsAuthorizeAttribute" /> class.
+            </summary>
+            <param name="action">The action.</param>
+            <param name="role">The role.</param>
+        </member>
+        <member name="P:MasterApi.Web.Filters.ErrorHandlingMiddleware.Mappings">
+            <summary>
+            Gets the mappings.
+            </summary>
+            <value>
+            The mappings.
+            </value>
+        </member>
+        <member name="T:MasterApi.Web.Filters.LanguageActionFilter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Filters.ModelStateHelper.Errors(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)">
+            <summary>
+            
+            </summary>
+            <param name="modelState"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MasterApi.Web.Filters.ModelStateValidatorAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:MasterApi.Web.Filters.NameSpaceVersionRoutingConvention">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Identity.RSAKeyUtils.GetKeyParameters(System.String)">
+            <summary>
+            This expects a file in the format: 
+            {
+             "Modulus": "z7eXmrs9z3Xm7VXwYIdziDYzXGfi3XQiozIRa58m3ApeLVDcsDeq6Iv8C5zJ2DHydDyc0x6o5dtTRIb23r5/ZRj4I/UwbgrwMk5iHA0bVsXVPBDSWsrVcPDGafr6YbUNQnNWIF8xOqgpeTwxrqGiCJMUjuKyUx01PBzpBxjpnQ++Ryz6Y7MLqKHxBkDiOw5wk9cxO8/IMspSNJJosOtRXFTR74+bj+pvNBa8IJ+5Jf/UfJEEjk+qC+pohCAryRk0ziXcPdxXEv5KGT4zf3LdtHy1YwsaGLnTb62vgbdqqCJaVyHWOoXsDTQBLjxNl9o9CzP6CrfBGK6JV8pA/xfQlw==",
+             "Exponent": "AQAB",
+             "P": "+VsETS2exORYlg2CxaRMzyG60dTfHSuv0CsfmO3PFv8mcYxglGa6bUV5VGtB6Pd1HdtV/iau1WR/hYXQphCP99Pu803NZvFvVi34alTFbh0LMfZ+2iQ9toGzVfO8Qdbj7go4TWoHNzCpG4UCx/9wicVIWJsNzkppSEcXYigADMM=",
+             "Q": "1UCJ2WAHasiCdwJtV2Ep0VCK3Z4rVFLWg3q1v5OoOU1CkX5/QAcrr6bX6zOdHR1bDCPsH1n1E9cCMvwakgi9M4Ch0dYF5CxDKtlx+IGsZJL0gB6HhcEsHat+yXUtOAlS4YB82G1hZqiDw+Q0O8LGyu/gLDPB+bn0HmbkUC2kP50=",
+             "DP": "CBqvLxr2eAu73VSfFXFblbfQ7JTwk3AiDK/6HOxNuL+eLj6TvP8BvB9v7BB4WewBAHFqgBIdyI21n09UErGjHDjlIT88F8ZtCe4AjuQmboe/H2aVhN18q/vXKkn7qmAjlE78uXdiuKZ6OIzAJGPm8nNZAJg5gKTmexTka6pFJiU=",
+             "DQ": "ND6zhwX3yzmEfROjJh0v2ZAZ9WGiy+3fkCaoEF9kf2VmQa70DgOzuDzv+TeT7mYawEasuqGXYVzztPn+qHhrogqJmpcMqnINopnTSka6rYkzTZAtM5+35yz0yvZiNbBTFdwcuglSK4xte7iU828stNs/2JR1mXDtVeVvWhVUgCE=",
+             "InverseQ": "Heo0BHv685rvWreFcI5MXSy3AN0Zs0YbwAYtZZd1K/OzFdYVdOnqw+Dg3wGU9yFD7h4icJFwZUBGOZ0ww/gZX/5ZgJK35/YY/DeV+qfZmywKauUzC6+DPsrDdW1uf1eAety6/huRZTduBFTwIOlPdZ+PY49j6S38DjPFNImn0cU=",
+             "D": "IvjMI5cGzxkQqkDf2cC0aOiHOTWccqCM/GD/odkH1+A+/u4wWdLliYWYB/R731R5d6yE0t7EnP6SRGVcxx/XnxPXI2ayorRgwHeF+ScTxUZFonlKkVK5IOzI2ysQYMb01o1IoOamCTQq12iVDMvV1g+9VFlCoM+4GMjdSv6cxn6ELabuD4nWt8tCskPjECThO+WdrknbUTppb2rRgMvNKfsPuF0H7+g+WisbzVS+UVRvJe3U5O5X5j7Z82Uq6hw2NCwv2YhQZRo/XisFZI7yZe0OU2JkXyNG3NCk8CgsM9yqX8Sk5esXMZdJzjwXtEpbR7FiKZXiz9LhPSmzxz/VsQ=="
+            }
+            
+            Generate 
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MasterApi.Web.Identity.RSAKeyUtils.RSAParametersWithPrivate">
+            <summary>
+            Util class to allow restoring RSA parameters from JSON as the normal
+            RSA parameters class won't restore private key info.
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Identity.TokenProviderAppBuilderExtensions.UseTokenProvider(Microsoft.AspNetCore.Builder.IApplicationBuilder,MasterApi.Web.Identity.TokenProviderOptions,Microsoft.IdentityModel.Tokens.RsaSecurityKey)">
+            <summary>
+            Uses the simple token provider.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="options">The options.</param>
+            <param name="signingKey">The signing key.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">
+            </exception>
+        </member>
+        <member name="T:MasterApi.Web.Identity.TokenProviderMiddleware">
+            <summary>
+            Token generator middleware component which is added to an HTTP pipeline.
+            This class is not created by application code directly,
+            instead it is added by calling the <see cref="!:TokenProviderAppBuilderExtensions.UseSimpleTokenProvider(IApplicationBuilder,TokenProviderOptions,RsaSecurityKey)"/>
+            extension method.
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.Audience">
+            <summary>
+            "aud" (Audience) Claim
+            </summary>
+            <remarks>The "aud" (audience) claim identifies the recipients that the JWT is
+              intended for.  Each principal intended to process the JWT MUST
+              identify itself with a value in the audience claim.  If the principal
+              processing the claim does not identify itself with a value in the
+              "aud" claim when this claim is present, then the JWT MUST be
+              rejected.  In the general case, the "aud" value is an array of case-
+              sensitive strings, each containing a StringOrURI value.  In the
+              special case when the JWT has one audience, the "aud" value MAY be a
+              single case-sensitive string containing a StringOrURI value.  The
+              interpretation of audience values is generally application specific.
+              Use of this claim is OPTIONAL.</remarks>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.Issuer">
+            <summary>
+            "iss" (Issuer) Claim
+            </summary>
+            <remarks>The "iss" (issuer) claim identifies the principal that issued the
+              JWT.  The processing of this claim is generally application specific.
+              The "iss" value is a case-sensitive string containing a StringOrURI
+              value.  Use of this claim is OPTIONAL.</remarks>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.Subject">
+            <summary>
+            "sub" (Subject) Claim
+            </summary>
+            <remarks> The "sub" (subject) claim identifies the principal that is the
+              subject of the JWT.  The claims in a JWT are normally statements
+              about the subject.  The subject value MUST either be scoped to be
+              locally unique in the context of the issuer or be globally unique.
+              The processing of this claim is generally application specific.  The
+              "sub" value is a case-sensitive string containing a StringOrURI
+              value.  Use of this claim is OPTIONAL.</remarks>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.NotBefore">
+            <summary>
+            "nbf" (Not Before) Claim (default is UTC NOW)
+            </summary>
+            <remarks>The "nbf" (not before) claim identifies the time before which the JWT
+              MUST NOT be accepted for processing.  The processing of the "nbf"
+              claim requires that the current date/time MUST be after or equal to
+              the not-before date/time listed in the "nbf" claim.  Implementers MAY
+              provide for some small leeway, usually no more than a few minutes, to
+              account for clock skew.  Its value MUST be a number containing a
+              NumericDate value.  Use of this claim is OPTIONAL.</remarks>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.IssuedAt">
+            <summary>
+            "iat" (Issued At) Claim (default is UTC NOW)
+            </summary>
+            <remarks>The "iat" (issued at) claim identifies the time at which the JWT was
+              issued.  This claim can be used to determine the age of the JWT.  Its
+              value MUST be a number containing a NumericDate value.  Use of this
+              claim is OPTIONAL.</remarks>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.ValidFor">
+            <summary>
+            Set the timespan the token will be valid for (default is 5 min/300 seconds)
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.Expiration">
+            <summary>
+            "exp" (Expiration Time) Claim (returns IssuedAt + ValidFor)
+            </summary>
+            <remarks>The "exp" (expiration time) claim identifies the expiration time on
+              or after which the JWT MUST NOT be accepted for processing.  The
+              processing of the "exp" claim requires that the current date/time
+              MUST be before the expiration date/time listed in the "exp" claim.
+              Implementers MAY provide for some small leeway, usually no more than
+              a few minutes, to account for clock skew.  Its value MUST be a number
+              containing a NumericDate value.  Use of this claim is OPTIONAL.</remarks>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.JtiGenerator">
+            <summary>
+            "jti" (JWT ID) Claim (default ID is a GUID)
+            </summary>
+            <remarks>The "jti" (JWT ID) claim provides a unique identifier for the JWT.
+              The identifier value MUST be assigned in a manner that ensures that
+              there is a negligible probability that the same value will be
+              accidentally assigned to a different data object; if the application
+              uses multiple issuers, collisions MUST be prevented among values
+              produced by different issuers as well.  The "jti" claim can be used
+              to prevent the JWT from being replayed.  The "jti" value is a case-
+              sensitive string.  Use of this claim is OPTIONAL.</remarks>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.SigningCredentials">
+            <summary>
+            The signing key to use when generating tokens.
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Identity.TokenProviderOptions.IdentityResolver">
+            <summary>
+            Resolves a user identity given a username and password.
+            </summary>
+        </member>
+        <member name="T:MasterApi.Web.Resources.SharedResource">
+            <summary>
+            This class is required due to the way the default implementation of localization works.
+            The IStringLocalizerFactory and/or IStringLocalizer class could also be implemented instead of this.
+            https://github.com/aspnet/Localization/issues/150
+            
+            Thanks to Joe Audette for this solution.
+            https://github.com/joeaudette/experiments/tree/master/LocalizationWebSite/Resources
+            
+            Resource files must be named with namespace...
+            </summary>
+        </member>
+        <member name="T:MasterApi.Web.Resources.Resources">
+            <summary>
+               A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Resources.Resources.ResourceManager">
+            <summary>
+               Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Resources.Resources.Culture">
+            <summary>
+               Overrides the current thread's CurrentUICulture property for all
+               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Resources.Resources.Hello">
+            <summary>
+               Looks up a localized string similar to Hi.
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Resources.Resources.Language">
+            <summary>
+               Looks up a localized string similar to English.
+            </summary>
+        </member>
+        <member name="T:MasterApi.Web.Resources.Resources___Copy">
+            <summary>
+               A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Resources.Resources___Copy.ResourceManager">
+            <summary>
+               Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:MasterApi.Web.Resources.Resources___Copy.Culture">
+            <summary>
+               Overrides the current thread's CurrentUICulture property for all
+               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:MasterApi.Web.SignalR.Connections.HubAuthorizeAttribute">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:System.Attribute" />
+            <seealso cref="T:Microsoft.AspNetCore.SignalR.Hubs.IAuthorizeHubConnection" />
+            <seealso cref="T:Microsoft.AspNetCore.SignalR.Hubs.IAuthorizeHubMethodInvocation" />
+        </member>
+        <member name="M:MasterApi.Web.SignalR.Hubs.NotificationHub.OnConnected">
+            <summary>
+            Called when the connection connects to this hub instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task" />
+            </returns>
+        </member>
+        <member name="M:MasterApi.Web.SignalR.Hubs.NotificationHub.OnReconnected">
+            <summary>
+            Called when the connection reconnects to this hub instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task" />
+            </returns>
+        </member>
+        <member name="M:MasterApi.Web.SignalR.Hubs.NotificationHub.Connect(System.Boolean)">
+            <summary>
+            Connects the specified is reconnect.
+            </summary>
+            <param name="isReconnect">if set to <c>true</c> [is reconnect].</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

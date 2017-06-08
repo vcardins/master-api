@@ -66,7 +66,10 @@ namespace MasterApi.Services.Messaging.Email
             try
             {
                 var body = _razorEngine.Parse(template, evt);
-                return new EmailMessage { From = Settings.Information.Email, Body = body };
+                return new EmailMessage {
+                    From = $"{Settings.Information.ContactName} {Settings.Information.ContactEmail}",
+                    Body = body
+                };
             } catch(Exception ex)
             {
                 _logger.LogError(ex.Message);
@@ -83,7 +86,7 @@ namespace MasterApi.Services.Messaging.Email
 
             if (_subjects.TryGetValue(TemplateFolder, out dict))
             {
-                subject = !dict.TryGetValue(ev, out subject) ? "Unknown" : subject.Replace("{{ApplicationName}}", Settings.Information.ApplicationName);
+                subject = !dict.TryGetValue(ev, out subject) ? "Unknown" : subject.Replace("{{ApplicationName}}", Settings.Information.Name);
             }
             return subject;
         }

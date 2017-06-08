@@ -10,35 +10,55 @@ namespace MasterApi.Web.Controllers.v1.Account
 {
     public partial class AccountController
     {
+        /// <summary>
+        /// Registers user account.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost("register")]
         [AllowAnonymous]
         [ModelStateValidator]
-        public async Task<IActionResult> Register(RegisterInput model)
+        public async Task<IActionResult> RegisterAsync(RegisterInput model)
         {
             await _userAccountService.CreateAccountAsync(model);
             return Ok(new { Message = "Registered" });
         }
 
+        /// <summary>
+        /// Verifies user account.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         [HttpGet("verify/{key}", Name = "VerifyAccount")]
         [AllowAnonymous]
-        public async Task<HttpResponse> Verify(string key)
+        public async Task<HttpResponse> VerifyAsync(string key)
         {
             var error = await _userAccountService.VerifyEmailFromKeyAsync(key);
             return RedirectTo("VerifyAccount", error);
         }
 
+        /// <summary>
+        /// Requests the account verification.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
         [HttpPost("verify", Name = "RequestAccountVerification")]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<HttpResponse> RequestAccountVerification(string email)
+        public async Task<HttpResponse> RequestAccountVerificationAsync(string email)
         {
             var error = await _userAccountService.RequestVerificationAsync(email);
             return RedirectTo("RequestAccountVerification", error);
         }
 
+        /// <summary>
+        /// Cancels the account verification.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         [HttpGet("verify/cancel/{key}", Name = "CancelAccountVerification")]
         [AllowAnonymous]
-        public async Task<HttpResponse> CancelAccountVerification(string key)
+        public async Task<HttpResponse> CancelAccountVerificationAsync(string key)
         {
             var error = await _userAccountService.CancelVerificationAsync(key);
             return RedirectTo("CancelAccountVerification", error);

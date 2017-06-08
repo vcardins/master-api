@@ -12,6 +12,10 @@ using MasterApi.Web.Filters;
 
 namespace MasterApi.Web.Controllers.v1
 {
+    /// <summary>
+    /// Email controller for testing emails sending
+    /// </summary>
+    /// <seealso cref="MasterApi.Web.Controllers.BaseController" />
     [Route("api/{version}/[controller]")]
     [AllowAnonymous]
     public class EmailController : BaseController
@@ -34,9 +38,15 @@ namespace MasterApi.Web.Controllers.v1
             _mySettings = settings.Value;
         }
 
+        /// <summary>
+        /// Sends the email.
+        /// </summary>
+        /// <param name="subject">The subject.</param>
+        /// <param name="to">To.</param>
+        /// <returns></returns>
         [HttpPost("")]
         [ModelStateValidator]
-        public async Task<IActionResult> SendEmail([FromBody] string subject, [FromBody] string to)
+        public async Task<IActionResult> SendEmailAsync([FromBody] string subject, [FromBody] string to)
         {
             var obj = new AccountCreated
             {

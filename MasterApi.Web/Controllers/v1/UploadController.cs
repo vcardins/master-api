@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
@@ -17,10 +16,12 @@ using MasterApi.Core.Infrastructure.Storage;
 using MasterApi.Web.Filters;
 using System.Linq;
 
-//https://www.janaks.com.np/file-upload-asp-net-core-web-api/
 namespace MasterApi.Web.Controllers.v1
 {
-    [AllowAnonymous]
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="MasterApi.Web.Controllers.BaseController" />
     [Route("api/{version}/[controller]")]
     public class UploadController : BaseController
     {
@@ -38,9 +39,15 @@ namespace MasterApi.Web.Controllers.v1
                 _settings.BlobStorageProviders.FirstOrDefault(x => x.Provider == _settings.DefaultStorageProvider);
         }
 
+        /// <summary>
+        /// Uploads the asynchronous.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ValidationException">No asp.net core 1.0 support yet</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException"></exception>
         [HttpPost("")]
         [ServiceFilter(typeof(ValidateMimeMultipartContentFilter))]
-        public async Task<IActionResult> Upload() 
+        public async Task<IActionResult> UploadAsync() 
         {
             var httpRequest = HttpContext.Request;
             var files = httpRequest.Form.Files as List<IFormFile>;

@@ -7,8 +7,13 @@ namespace MasterApi.Web.Controllers.v1.Account
 {
     public partial class AccountController
     {
+        /// <summary>
+        /// Closes the user account.
+        /// </summary>
+        /// <param name="guid">The unique identifier.</param>
+        /// <returns></returns>
         [HttpPost("close/{guid}")]
-        public async Task<HttpResponse> CloseAccount(Guid guid)
+        public async Task<HttpResponse> CloseAccountAsync(Guid guid)
         {
             await _userAccountService.DeleteAccountAsync(guid);
             Response.Redirect(_appSettings.Urls.Web);

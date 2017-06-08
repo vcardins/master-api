@@ -17,11 +17,16 @@ namespace MasterApi.Web.Controllers.v1.Account
 {
     public partial class AccountController
     {
+        /// <summary>
+        /// Resets the user account password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("ResetPassword")]
         //[ValidateAntiForgeryToken]
         [ModelStateValidator]
-        public async Task<IActionResult> ResetPassword(PasswordResetInput model)
+        public async Task<IActionResult> ResetPasswordRequestAsync(PasswordResetInput model)
         {
             var account = await _userAccountService.GetByEmailAsync(model.Email, x => x.PasswordResetSecretCollection);
             if (account==null)
@@ -52,11 +57,16 @@ namespace MasterApi.Web.Controllers.v1.Account
             return Ok(vm);
         }
 
+        /// <summary>
+        /// Resets the user account password with questions.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("ResetPasswordWithQuestions")]
         //[ValidateAntiForgeryToken]
         [ModelStateValidator]
-        public async Task<IActionResult> ResetPasswordWithQuestions(PasswordResetWithSecretInputModel model)
+        public async Task<IActionResult> ResetPasswordWithQuestionsAsync(PasswordResetWithSecretInputModel model)
         {
 
             var answers =
@@ -71,10 +81,15 @@ namespace MasterApi.Web.Controllers.v1.Account
             return Ok();
         }
 
+        /// <summary>
+        /// Confirms user account reset password.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("ConfirmResetPassword")]
         [ModelStateValidator]
-        public async Task<IActionResult> ConfirmResetPassword(ChangePasswordFromResetKeyInput model)
+        public async Task<IActionResult> ConfirmResetPasswordAsync(ChangePasswordFromResetKeyInput model)
         {
             var account = await _userAccountService.ChangePasswordFromResetKeyAsync(model.Key, model.Password);
 

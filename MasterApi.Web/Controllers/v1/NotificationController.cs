@@ -11,6 +11,10 @@ using MasterApi.Core.ViewModels;
 
 namespace MasterApi.Web.Controllers.v1
 {
+    /// <summary>
+    /// Handles Notifications requests
+    /// </summary>
+    /// <seealso cref="Controllers.CrudApiController{Notification, Core.ViewModels.NotificationOutput, Core.ViewModels.NotificationOutput}" />
     [Module(Name = ModelType.Notification)]
     [Route("api/{version}/[controller]")]
     public class NotificationController : CrudApiController<Notification, NotificationOutput, NotificationOutput>
@@ -25,6 +29,11 @@ namespace MasterApi.Web.Controllers.v1
         {
         }
 
+        /// <summary>
+        /// Returns the notification list filtering criteria.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         protected override Expression<Func<Notification, bool>> GetFilter(object id = null)
         {
             Expression<Func<Notification, bool>> predicate = n => n.UserId == UserInfo.UserId;
@@ -35,6 +44,10 @@ namespace MasterApi.Web.Controllers.v1
             return predicate;
         }
 
+        /// <summary>
+        /// Returns the notification list ordering criteria.
+        /// </summary>
+        /// <returns></returns>
         protected override Func<IQueryable<Notification>, IOrderedQueryable<Notification>> GetOrderBy()
         {
             return q => q.OrderByDescending(x => x.Created).ThenBy(x => x.Type);

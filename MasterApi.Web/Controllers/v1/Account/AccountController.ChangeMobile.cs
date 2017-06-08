@@ -7,9 +7,14 @@ namespace MasterApi.Web.Controllers.v1.Account
 {
     public partial class AccountController
     {
+        /// <summary>
+        /// Changes the mobile phone request.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost("ChangeMobile")]
         [ModelStateValidator]
-        public async Task<IActionResult> ChangeMobilePhoneRequest(ChangeMobileRequestInput model)
+        public async Task<IActionResult> ChangeMobilePhoneRequestAsync(ChangeMobileRequestInput model)
         {
             await _userAccountService.ChangeMobilePhoneRequestAsync(UserInfo.UserId, model.NewMobilePhone);
             return Ok(new { Message = "Change Request Success" });

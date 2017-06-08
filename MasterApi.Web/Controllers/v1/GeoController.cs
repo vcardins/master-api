@@ -17,6 +17,10 @@ using MasterApi.Core.Account.Enums;
 
 namespace MasterApi.Web.Controllers.v1
 {
+    /// <summary>
+    /// Handles geography related requests
+    /// </summary>
+    /// <seealso cref="MasterApi.Web.Controllers.BaseController" />
     [Route("api/{version}/[controller]")]
     public class GeoController : BaseController
     {
@@ -29,6 +33,7 @@ namespace MasterApi.Web.Controllers.v1
         /// </summary>
         /// <param name="userInfo">The user information.</param>
         /// <param name="geoService">The country service.</param>
+        /// <param name="cache">The memory cache.</param>
         public GeoController(IUserInfo userInfo, IGeoService geoService, IMemoryCache cache) : base(userInfo)
         {
             _geoService = geoService;
@@ -41,7 +46,7 @@ namespace MasterApi.Web.Controllers.v1
         }
 
         /// <summary>
-        /// Gets the countries.
+        /// Gets all countries.
         /// </summary>
         /// <param name="page">Index of the page.</param>
         /// <param name="size">Size of the page.</param>
@@ -70,7 +75,7 @@ namespace MasterApi.Web.Controllers.v1
         }
 
         /// <summary>
-        /// Gets the countries.
+        /// Gets all languages.
         /// </summary>
         /// <param name="page">Index of the page.</param>
         /// <param name="size">Size of the page.</param>
@@ -82,11 +87,12 @@ namespace MasterApi.Web.Controllers.v1
         {
             var result = await _geoService.GetLanguages(page, size);
             AddHeader("X-TOTAL-RECORDS", result.Total);
+
             return Ok(result.Data);
         }
 
         /// <summary>
-        /// Gets the countries.
+        /// Gets all enabled countries.
         /// </summary>
         /// <param name="page">Index of the page.</param>
         /// <param name="size">Size of the page.</param>
@@ -98,10 +104,11 @@ namespace MasterApi.Web.Controllers.v1
         {
             var result = await _geoService.GetEnabledCountries(page, size);
             AddHeader("X-TOTAL-RECORDS", result.Total);
+
             return Ok(result.Data);
         }
         /// <summary>
-        /// Gets the countries.
+        /// Gets all countries' states.
         /// </summary>
         /// <param name="page">Index of the page.</param>
         /// <param name="size">Size of the page.</param>
@@ -114,11 +121,12 @@ namespace MasterApi.Web.Controllers.v1
         {
             var result = await _geoService.GetStates(page, size, iso2);
             AddHeader("X-TOTAL-RECORDS", result.Total);
+
             return Ok(result.Data);
         }
 
         /// <summary>
-        /// Patches the specified identifier.
+        /// Enables a contry
         /// </summary>
         /// <param name="iso2">The iso2.</param>
         /// <returns></returns>
@@ -131,7 +139,7 @@ namespace MasterApi.Web.Controllers.v1
         }
 
         /// <summary>
-        /// Patches the specified identifier.
+        /// Disabled a country
         /// </summary>
         /// <param name="iso2">The iso2.</param>
         /// <returns></returns>        
@@ -144,14 +152,16 @@ namespace MasterApi.Web.Controllers.v1
 
         private async Task<IActionResult> EnableDisableCounty(string iso2, bool enable)
         {
+            Module = ModelType.EnabledCountry;
+
             if (string.IsNullOrEmpty(iso2)) { return BadRequest(); }
             await _geoService.EnableDisableCountry(iso2, UserInfo.UserId, enable);
-            Module = ModelType.EnabledCountry;
+            
             return Ok(ModelAction.Update, EventStatus.Success);
         }
 
         /// <summary>
-        /// Patches the specified identifier.
+        /// Sets languages spoke by a country
         /// </summary>
         /// <param name="iso2">The iso2.</param>
         /// <param name="languageCode">The language code.</param>
@@ -161,6 +171,8 @@ namespace MasterApi.Web.Controllers.v1
         [ClaimsAuthorize(ClaimTypes.Role, UserAccessLevel.Admin)]
         public async Task<IActionResult> PatchCountyLanguage(string iso2, string languageCode, [FromUri] bool main = false)
         {
+            Module = ModelType.CountryLanguage;
+
             if (string.IsNullOrEmpty(iso2) || string.IsNullOrEmpty(languageCode))
             {
                 return BadRequest(AppConstants.InformationMessages.InvalidRequestParameters);
@@ -169,7 +181,7 @@ namespace MasterApi.Web.Controllers.v1
             iso2 = iso2.ToUpper();
             languageCode = languageCode.ToLower();
             await _geoService.SetCountryLanguage(iso2, languageCode, main);
-            Module = ModelType.CountryLanguage;
+            
             return Ok(ModelAction.Update, EventStatus.Success);
         }
     }

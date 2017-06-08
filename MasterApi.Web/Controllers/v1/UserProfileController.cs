@@ -11,6 +11,10 @@ using System.Linq;
 
 namespace MasterApi.Web.Controllers.v1
 {
+    /// <summary>
+    /// Handle user profile requests
+    /// </summary>
+    /// <seealso cref="MasterApi.Web.Controllers.BaseController" />
     [Route("api/{version}/[controller]")]
     public partial class ProfileController : BaseController
     {

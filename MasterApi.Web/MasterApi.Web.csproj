@@ -11,6 +11,14 @@
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>MasterApi.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\v1\UploadController.cs" />
+  </ItemGroup>
+
   <ItemGroup>
     <EmbeddedResource Include=".config\rsaparams.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

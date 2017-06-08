@@ -2,16 +2,16 @@
 {
     public class AppInformation
     {
-        public string AppUrl { get; set; }
-        public string ApplicationName { get; set; }
-        public string Email { get; set; }
-        public string SupportEmail { get; set; }
-        public string EmailSignature { get; set; }
-        public string HomePage { get; set; }
-        public string TokenUrl { get; set; }
-
+        public string Name { get; set; }
+        public string Version { get; set; }
         public string Description { get; set; }
-        public string Copyright { get; set; }
         public string Keywords { get; set; }
+        public string TermsOfService { get; set; }
+        public string Copyright { get; set; }
+        public string HomePage { get; set; }
+        public string ContactName { get; set; }
+        public string ContactEmail { get; set; }
+        public string LicenseName { get; set; }
+        public string LicenseUrl { get; set; }
     }
 }

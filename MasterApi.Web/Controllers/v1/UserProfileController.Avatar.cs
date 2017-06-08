@@ -12,9 +12,17 @@ using System.Threading.Tasks;
 
 namespace MasterApi.Web.Controllers.v1
 {
- 
+
+    /// <summary>
+    /// User profile controller
+    /// </summary>
+    /// <seealso cref="MasterApi.Web.Controllers.BaseController" />
     public partial class ProfileController : BaseController
     {
+        /// <summary>
+        /// Updates the user avatar.
+        /// </summary>
+        /// <returns></returns>
         [HttpPatch("avatar")]
         public async Task<IActionResult> UpdateAvatarAsync()
         {
@@ -38,7 +46,7 @@ namespace MasterApi.Web.Controllers.v1
                    Ok(new { Avatar = avatarUrl, Size = file.Length });
         }
 
-        public async Task<string> UploadFileAsBlob(Stream stream, string filename, string containerName)
+        private async Task<string> UploadFileAsBlob(Stream stream, string filename, string containerName)
         {
             var storageAccount = CloudStorageAccount.Parse(_blobSettings.ApiBaseUrl);
 

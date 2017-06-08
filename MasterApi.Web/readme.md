@@ -56,7 +56,6 @@ http://andrewlock.net/introduction-to-authentication-with-asp-net-core/
 http://stackoverflow.com/questions/38630076/asp-net-core-web-api-exception-handling
 
 https://goblincoding.com/2016/07/03/issuing-and-authenticating-jwt-tokens-in-asp-net-core-webapi-part-i/
-https://goblincoding.com/2016/07/07/issuing-and-authenticating-jwt-tokens-in-asp-net-core-webapi-part-ii/
 
 https://github.com/nbarbettini/SimpleTokenProvider
 
@@ -66,6 +65,8 @@ fqc8/9fMpNos8C8HpLa2b84mdm/m9F7LgFb7aYB9
 Twilio Tutorial
 http://www.intstrings.com/ramivemula/articles/send-sms-in-asp-net-core-1-web-api-application-using-twilio/
 
+Upload
+//https://www.janaks.com.np/file-upload-asp-net-core-web-api/
 
 Model binding
 

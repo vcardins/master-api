@@ -10,6 +10,10 @@ using MasterApi.Web.Resources;
 
 namespace MasterApi.Web.Controllers.v1
 {
+    /// <summary>
+    /// SMS Testing controller
+    /// </summary>
+    /// <seealso cref="MasterApi.Web.Controllers.BaseController" />
     [AllowAnonymous]
     [Route("api/{version}/[controller]")]
     public class SmsController : BaseController
@@ -29,9 +33,14 @@ namespace MasterApi.Web.Controllers.v1
             _ctrlLocalizer = ctrlLocalizer;
         }
 
+        /// <summary>
+        /// Sends SMS.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         [HttpPost("")]
         [ModelStateValidator]
-        public async Task<IActionResult> SendSms(SmsMessage model)
+        public async Task<IActionResult> SendSmsAsync(SmsMessage model)
         {
             model.Message = $"{CultureInfo.CurrentCulture} {_localizer["Language"]} {_ctrlLocalizer["Language"]}";
             var response = await _smsSender.SendSmsAsync(model);
