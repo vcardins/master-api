@@ -221,7 +221,7 @@ namespace MasterApi
                         options.UseInMemoryDatabase();
                         break;
                     default:
-                        options.UseSqlServer(_appSettings.DbConnection.ConnectionString, b => b.MigrationsAssembly("MasterApi"));
+                        options.UseSqlServer(_appSettings.DbConnection.ConnectionString, b => b.MigrationsAssembly("MasterApi.Data"));
                         break;
                 }
             });
