@@ -52,11 +52,11 @@ namespace MasterApi.Web.Extensions
         {
             if (string.IsNullOrEmpty(error))
             {
-                await ExecuteResultAsync(httpResponse, new { Error_Description = description }, statusCode);
+                await ExecuteResultAsync(httpResponse, new { error_description = description }, statusCode);
             }
             else
             {
-                await ExecuteResultAsync(httpResponse, new { Error = error, Error_Description = description }, statusCode);
+                await ExecuteResultAsync(httpResponse, new { error = error, error_description = description }, statusCode);
             }
         }
 
