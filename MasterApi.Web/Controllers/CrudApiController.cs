@@ -24,24 +24,58 @@ using Microsoft.AspNetCore.SignalR.Infrastructure;
 namespace MasterApi.Web.Controllers
 {
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TDomainModel">The type of the domain model.</typeparam>
+    /// <seealso cref="MasterApi.Web.Controllers.CrudApiController{TDomainModel, TDomainModel, TDomainModel}" />
     public abstract class CrudApiController<TDomainModel> : CrudApiController<TDomainModel, TDomainModel, TDomainModel>
         where TDomainModel : class, IObjectState, new()
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrudApiController{TDomainModel}"/> class.
+        /// </summary>
+        /// <param name="unitOfWork">The unit of work.</param>
+        /// <param name="userInfo">The user information.</param>
         protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) : base(unitOfWork, userInfo, null) { }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TDomainModel">The type of the domain model.</typeparam>
+    /// <typeparam name="TOutputViewModel">The type of the output view model.</typeparam>
+    /// <seealso cref="MasterApi.Web.Controllers.CrudApiController{TDomainModel, TDomainModel, TDomainModel}" />
     public abstract class CrudApiController<TDomainModel, TOutputViewModel> : CrudApiController<TDomainModel, TOutputViewModel, TOutputViewModel>
         where TDomainModel : class, IObjectState, new()
         where TOutputViewModel : class, new()
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrudApiController{TDomainModel, TOutputViewModel}"/> class.
+        /// </summary>
+        /// <param name="unitOfWork">The unit of work.</param>
+        /// <param name="userInfo">The user information.</param>
         protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) : base(unitOfWork, userInfo, null) { }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TDomainModel">The type of the domain model.</typeparam>
+    /// <typeparam name="TOutputViewModel">The type of the output view model.</typeparam>
+    /// <typeparam name="TInputViewModel">The type of the input view model.</typeparam>
+    /// <seealso cref="MasterApi.Web.Controllers.CrudApiController{TDomainModel, TDomainModel, TDomainModel}" />
     public abstract class CrudApiController<TDomainModel, TOutputViewModel, TInputViewModel> : CrudApiController<TDomainModel, TOutputViewModel, TInputViewModel, TInputViewModel>
         where TDomainModel : class, IObjectState, new()
         where TOutputViewModel : class, new()
         where TInputViewModel : class, new()
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrudApiController{TDomainModel, TOutputViewModel, TInputViewModel}"/> class.
+        /// </summary>
+        /// <param name="unitOfWork">The unit of work.</param>
+        /// <param name="userInfo">The user information.</param>
+        /// <param name="connectionManager">The connection manager.</param>
         protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo, IConnectionManager connectionManager = null) : base(unitOfWork, userInfo, connectionManager) { }
     }
 
@@ -55,16 +89,29 @@ namespace MasterApi.Web.Controllers
         where TUpdateViewModel : class, new()
     {
 
+        /// <summary>
+        /// Unit of Work
+        /// </summary>
         protected readonly IUnitOfWorkAsync Uow;
+        /// <summary>
+        /// Domain repository
+        /// </summary>
         protected readonly IRepositoryAsync<TDomainModel> Repository;
-        protected Dictionary<ModelAction, UserAccessLevel> ActionPolicies = new Dictionary<ModelAction, UserAccessLevel>();
+        /// <summary>
+        /// Action policies
+        /// </summary>
+        protected Dictionary<ModelAction, UserAccessLevel[]> ActionPolicies = new Dictionary<ModelAction, UserAccessLevel[]>();
+        /// <summary>
+        /// The collection export mode
+        /// </summary>
         protected bool CollectionExportMode = true;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CrudApiController{TDomainModel, TOutputViewModel, TInputViewModel, TUpdateViewModel}"/> class.
+        /// Initializes a new instance of the <see cref="CrudApiController{TDomainModel, TOutputViewModel, TInputViewModel, TUpdateViewModel}" /> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
         /// <param name="userInfo">The user information.</param>
+        /// <param name="connectionManager">The connection manager.</param>
         protected CrudApiController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo, IConnectionManager connectionManager) : base(userInfo, connectionManager)
          {
             Uow = unitOfWork;
@@ -100,6 +147,12 @@ namespace MasterApi.Web.Controllers
             return Ok(result.Data);
         }
 
+        /// <summary>
+        /// Gets the paged results.
+        /// </summary>
+        /// <param name="page">The page.</param>
+        /// <param name="size">The size.</param>
+        /// <returns></returns>
         protected virtual async Task<PackedList<TOutputViewModel>> GetPaged(int page = 0, int size = 0)
         {
             var query = Repository.Query(GetFilter()).OrderBy(GetOrderBy());
@@ -166,9 +219,9 @@ namespace MasterApi.Web.Controllers
         public virtual async Task<IActionResult> Post(TInputViewModel model)
         {
 
-            if (ActionPolicies.TryGetValue(ModelAction.Create, out UserAccessLevel accessLevel))
+            if (ActionPolicies.TryGetValue(ModelAction.Create, out UserAccessLevel[] accessLevels))
             {
-                UserInfo.ValidateClaim(ClaimTypes.Role, new[] { accessLevel.ToString() });
+                UserInfo.ValidateClaim(ClaimTypes.Role, accessLevels.Select(l => l.ToString()).ToArray());
             }
 
             var entity = new TDomainModel();
@@ -198,9 +251,9 @@ namespace MasterApi.Web.Controllers
         [ModelStateValidator]
         public virtual async Task<IActionResult> Put(int id, TUpdateViewModel model)
         {
-            if (ActionPolicies.TryGetValue(ModelAction.Update, out UserAccessLevel accessLevel))
+            if (ActionPolicies.TryGetValue(ModelAction.Update, out UserAccessLevel[] accessLevels))
             {
-                UserInfo.HasClaimValue(ClaimTypes.Role, accessLevel.ToString());
+                UserInfo.ValidateClaim(ClaimTypes.Role, accessLevels.Select(l => l.ToString()).ToArray());
             }
 
             if (id <= 0) { return BadRequest(AppConstants.InformationMessages.InvalidRequestParameters); }
@@ -229,9 +282,9 @@ namespace MasterApi.Web.Controllers
         [ActionName("Patch")]
         public virtual async Task<IActionResult> Patch(int id, IDictionary<string, object> model)
         {
-            if (ActionPolicies.TryGetValue(ModelAction.Update, out UserAccessLevel accessLevel))
+            if (ActionPolicies.TryGetValue(ModelAction.Update, out UserAccessLevel[] accessLevels))
             {
-                UserInfo.ValidateClaim(ClaimTypes.Role, new[] { accessLevel.ToString() });
+                UserInfo.ValidateClaim(ClaimTypes.Role, accessLevels.Select(l => l.ToString()).ToArray());
             }
 
             if (id <= 0 || !model.Keys.Any())
@@ -268,9 +321,9 @@ namespace MasterApi.Web.Controllers
         [ActionName("DeleteSingle")]
         public virtual async Task<IActionResult> DeleteSingle(int id)
         {
-            if (ActionPolicies.TryGetValue(ModelAction.Delete, out UserAccessLevel accessLevel))
+            if (ActionPolicies.TryGetValue(ModelAction.Delete, out UserAccessLevel[] accessLevels))
             {
-                UserInfo.ValidateClaim(ClaimTypes.Role, new[] { accessLevel.ToString() });
+                UserInfo.ValidateClaim(ClaimTypes.Role, accessLevels.Select(l => l.ToString()).ToArray());
             }
 
             var success = await Repository.DeleteAsync(GetFilter(id), true);
@@ -294,9 +347,9 @@ namespace MasterApi.Web.Controllers
                 return InvalidModel();
             }
 
-            if (ActionPolicies.TryGetValue(ModelAction.Delete, out UserAccessLevel accessLevel))
+            if (ActionPolicies.TryGetValue(ModelAction.Delete, out UserAccessLevel[] accessLevels))
             {
-                UserInfo.ValidateClaim(ClaimTypes.Role, new[] { accessLevel.ToString() });
+                UserInfo.ValidateClaim(ClaimTypes.Role, accessLevels.Select(l => l.ToString()).ToArray());
             }
 
             await Repository.DeleteManyAsync(ids);

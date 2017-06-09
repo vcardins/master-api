@@ -48,6 +48,13 @@ namespace MasterApi.Web.Identity
 
         private const string AuthenticationScheme = JwtBearerDefaults.AuthenticationScheme;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TokenProviderMiddleware"/> class.
+        /// </summary>
+        /// <param name="next">The next.</param>
+        /// <param name="options">The options.</param>
+        /// <param name="loggerFactory">The logger factory.</param>
+        /// <param name="serviceProvider">The service provider.</param>
         public TokenProviderMiddleware(
             RequestDelegate next,
             IOptions<TokenProviderOptions> options,
@@ -64,6 +71,11 @@ namespace MasterApi.Web.Identity
             _crypto = serviceProvider.GetService(typeof(ICrypto)) as ICrypto;         
         }
 
+        /// <summary>
+        /// Invokes the specified context.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
         public Task Invoke(HttpContext context)
         {
             _context = context;

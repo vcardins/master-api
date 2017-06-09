@@ -83,17 +83,84 @@
             <param name="message">The message.</param>
             <returns></returns>
         </member>
+        <member name="T:MasterApi.Web.Controllers.CrudApiController`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="TDomainModel">The type of the domain model.</typeparam>
+            <seealso cref="T:MasterApi.Web.Controllers.CrudApiController`3" />
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`1.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.CrudApiController`1"/> class.
+            </summary>
+            <param name="unitOfWork">The unit of work.</param>
+            <param name="userInfo">The user information.</param>
+        </member>
+        <member name="T:MasterApi.Web.Controllers.CrudApiController`2">
+            <summary>
+            
+            </summary>
+            <typeparam name="TDomainModel">The type of the domain model.</typeparam>
+            <typeparam name="TOutputViewModel">The type of the output view model.</typeparam>
+            <seealso cref="T:MasterApi.Web.Controllers.CrudApiController`3" />
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`2.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.CrudApiController`2"/> class.
+            </summary>
+            <param name="unitOfWork">The unit of work.</param>
+            <param name="userInfo">The user information.</param>
+        </member>
+        <member name="T:MasterApi.Web.Controllers.CrudApiController`3">
+            <summary>
+            
+            </summary>
+            <typeparam name="TDomainModel">The type of the domain model.</typeparam>
+            <typeparam name="TOutputViewModel">The type of the output view model.</typeparam>
+            <typeparam name="TInputViewModel">The type of the input view model.</typeparam>
+            <seealso cref="T:MasterApi.Web.Controllers.CrudApiController`3" />
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`3.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo,Microsoft.AspNetCore.SignalR.Infrastructure.IConnectionManager)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.CrudApiController`3"/> class.
+            </summary>
+            <param name="unitOfWork">The unit of work.</param>
+            <param name="userInfo">The user information.</param>
+            <param name="connectionManager">The connection manager.</param>
+        </member>
         <member name="T:MasterApi.Web.Controllers.CrudApiController`4">
             <summary>
             
             </summary>
         </member>
+        <member name="F:MasterApi.Web.Controllers.CrudApiController`4.Uow">
+            <summary>
+            Unit of Work
+            </summary>
+        </member>
+        <member name="F:MasterApi.Web.Controllers.CrudApiController`4.Repository">
+            <summary>
+            Domain repository
+            </summary>
+        </member>
+        <member name="F:MasterApi.Web.Controllers.CrudApiController`4.ActionPolicies">
+            <summary>
+            Action policies
+            </summary>
+        </member>
+        <member name="F:MasterApi.Web.Controllers.CrudApiController`4.CollectionExportMode">
+            <summary>
+            The collection export mode
+            </summary>
+        </member>
         <member name="M:MasterApi.Web.Controllers.CrudApiController`4.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo,Microsoft.AspNetCore.SignalR.Infrastructure.IConnectionManager)">
             <summary>
-            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.CrudApiController`4"/> class.
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.CrudApiController`4" /> class.
             </summary>
             <param name="unitOfWork">The unit of work.</param>
             <param name="userInfo">The user information.</param>
+            <param name="connectionManager">The connection manager.</param>
         </member>
         <member name="M:MasterApi.Web.Controllers.CrudApiController`4.GetFilter(System.Object)">
             <summary>
@@ -112,6 +179,14 @@
             <summary>
             Gets the medias.
             </summary> [FromUri] 
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.CrudApiController`4.GetPaged(System.Int32,System.Int32)">
+            <summary>
+            Gets the paged results.
+            </summary>
+            <param name="page">The page.</param>
+            <param name="size">The size.</param>
             <returns></returns>
         </member>
         <member name="M:MasterApi.Web.Controllers.CrudApiController`4.GetById(System.Int32)">
@@ -599,6 +674,11 @@
             <param name="action">The action.</param>
             <param name="role">The role.</param>
         </member>
+        <member name="T:MasterApi.Web.Filters.ErrorHandlingMiddleware">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:MasterApi.Web.Filters.ErrorHandlingMiddleware.Mappings">
             <summary>
             Gets the mappings.
@@ -606,6 +686,20 @@
             <value>
             The mappings.
             </value>
+        </member>
+        <member name="M:MasterApi.Web.Filters.ErrorHandlingMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,MasterApi.Core.Services.IService{MasterApi.Core.Models.ExceptionLog})">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Filters.ErrorHandlingMiddleware"/> class.
+            </summary>
+            <param name="next">The next.</param>
+            <param name="exceptionLogService">The exception log service.</param>
+        </member>
+        <member name="M:MasterApi.Web.Filters.ErrorHandlingMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Invokes the specified context.
+            </summary>
+            <param name="context">The context.</param>
+            <returns></returns>
         </member>
         <member name="T:MasterApi.Web.Filters.LanguageActionFilter">
             <summary>
@@ -791,6 +885,128 @@
             <summary>
             Resolves a user identity given a username and password.
             </summary>
+        </member>
+        <member name="T:MasterApi.Web.Identity.UserIdentityInfo">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:MasterApi.Core.Account.Services.IUserInfo" />
+        </member>
+        <member name="M:MasterApi.Web.Identity.UserIdentityInfo.#ctor(System.Security.Claims.ClaimsPrincipal)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Identity.UserIdentityInfo"/> class.
+            </summary>
+            <param name="claimsPrincipal">The claims principal.</param>
+            <exception cref="T:System.Exception">Invalid Identity</exception>
+        </member>
+        <member name="P:MasterApi.Web.Identity.UserIdentityInfo.IsAuthenticated">
+            <summary>
+            Gets a value indicating whether this instance is authenticated.
+            </summary>
+            <value>
+              <c>true</c> if this instance is authenticated; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Identity.UserIdentityInfo.Roles">
+            <summary>
+            Gets the roles.
+            </summary>
+            <value>
+            The roles.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Identity.UserIdentityInfo.UserId">
+            <summary>
+            Gets the user identifier.
+            </summary>
+            <value>
+            The user identifier.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Identity.UserIdentityInfo.Guid">
+            <summary>
+            Gets the unique identifier.
+            </summary>
+            <value>
+            The unique identifier.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Identity.UserIdentityInfo.AuthenticationInstant">
+            <summary>
+            Gets the authentication instant.
+            </summary>
+            <value>
+            The authentication instant.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Identity.UserIdentityInfo.Username">
+            <summary>
+            Gets the username.
+            </summary>
+            <value>
+            The username.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Identity.UserIdentityInfo.Email">
+            <summary>
+            Gets the email.
+            </summary>
+            <value>
+            The email.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Identity.UserIdentityInfo.Claims">
+            <summary>
+            Gets the claims.
+            </summary>
+            <value>
+            The claims.
+            </value>
+        </member>
+        <member name="P:MasterApi.Web.Identity.UserIdentityInfo.IsAdmin">
+            <summary>
+            Gets a value indicating whether this instance is admin.
+            </summary>
+            <value>
+              <c>true</c> if this instance is admin; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:MasterApi.Web.Identity.UserIdentityInfo.HasClaim(System.String)">
+            <summary>
+            Determines whether the specified type has claim.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>
+              <c>true</c> if the specified type has claim; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:MasterApi.Web.Identity.UserIdentityInfo.HasClaimValue(System.String,System.String)">
+            <summary>
+            Determines whether [has claim value] [the specified type].
+            </summary>
+            <param name="type">The type.</param>
+            <param name="value">The value.</param>
+            <returns>
+              <c>true</c> if [has claim value] [the specified type]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:MasterApi.Web.Identity.UserIdentityInfo.HasClaimValue(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Determines whether [has claim value] [the specified type].
+            </summary>
+            <param name="type">The type.</param>
+            <param name="values">The values.</param>
+            <returns>
+              <c>true</c> if [has claim value] [the specified type]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:MasterApi.Web.Identity.UserIdentityInfo.ValidateClaim(System.String,System.String[])">
+            <summary>
+            Validates the claim.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="resources">The resources.</param>
+            <exception cref="T:MasterApi.Core.Filters.ForbiddenException"></exception>
         </member>
         <member name="T:MasterApi.Web.Resources.SharedResource">
             <summary>

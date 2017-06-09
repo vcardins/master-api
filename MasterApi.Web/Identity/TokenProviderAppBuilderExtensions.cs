@@ -12,6 +12,9 @@ using MasterApi.Web.Extensions;
 
 namespace MasterApi.Web.Identity
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class TokenProviderAppBuilderExtensions
     {
         /// <summary>

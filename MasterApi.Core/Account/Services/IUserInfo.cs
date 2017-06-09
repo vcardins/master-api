@@ -17,6 +17,7 @@ namespace MasterApi.Core.Account.Services
         IEnumerable<UserClaimOutput> Claims { get; }
         bool HasClaim(string type);
         bool HasClaimValue(string type, string value);
+        bool HasClaimValue(string type, List<string> values);
         void ValidateClaim(string type, string[] resources);
     }
 }

@@ -8,6 +8,7 @@ using MasterApi.Core.Data.UnitOfWork;
 using MasterApi.Core.Enums;
 using MasterApi.Core.Models;
 using MasterApi.Core.ViewModels;
+using MasterApi.Core.Account.Enums;
 
 namespace MasterApi.Web.Controllers.v1
 {
@@ -26,6 +27,12 @@ namespace MasterApi.Web.Controllers.v1
         public NotebookController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) 
             : base(unitOfWork, userInfo)
         {
+            var AccessLevels = new[] { UserAccessLevel.User, UserAccessLevel.Admin };
+
+            ActionPolicies.Add(ModelAction.Read, AccessLevels);
+            ActionPolicies.Add(ModelAction.Create, AccessLevels);
+            ActionPolicies.Add(ModelAction.Update, AccessLevels);
+            ActionPolicies.Add(ModelAction.Delete, AccessLevels);
         }
 
         /// <summary>

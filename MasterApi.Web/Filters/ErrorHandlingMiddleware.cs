@@ -15,6 +15,9 @@ using MasterApi.Core.Services;
 
 namespace MasterApi.Web.Filters
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ErrorHandlingMiddleware
     {
         private static IService<ExceptionLog> _exceptionLogService;
@@ -33,6 +36,11 @@ namespace MasterApi.Web.Filters
 
         private readonly RequestDelegate _next;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ErrorHandlingMiddleware"/> class.
+        /// </summary>
+        /// <param name="next">The next.</param>
+        /// <param name="exceptionLogService">The exception log service.</param>
         public ErrorHandlingMiddleware(RequestDelegate next, IService<ExceptionLog> exceptionLogService)
         {
             _next = next;
@@ -55,6 +63,11 @@ namespace MasterApi.Web.Filters
             };
         }
 
+        /// <summary>
+        /// Invokes the specified context.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
         public async Task Invoke(HttpContext context)
         {
             try
@@ -150,7 +163,6 @@ namespace MasterApi.Web.Filters
         }
     }
 }
-
 
 // a real application.
 //app.UseExceptionHandler(appBuilder =>
