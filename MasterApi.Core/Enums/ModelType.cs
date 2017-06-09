@@ -18,6 +18,8 @@ namespace MasterApi.Core.Enums
         CountryLanguage,
         [Description("Country")]
         Country,
+        [Description("Notebook")]
+        Notebook,
         [Description("Notification")]
         Notification,
         [Description("Exception")]

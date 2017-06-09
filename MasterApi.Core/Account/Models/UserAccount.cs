@@ -127,6 +127,7 @@ namespace MasterApi.Core.Account.Models
         public virtual ICollection<ExceptionLog> ExceptionsRaised { get; set; }
         public virtual ICollection<AuditLog> AuditLogs { get; set; }
         public virtual ICollection<Notification> NotificationsSent { get; set; }
+        public virtual ICollection<Note> Notes { get; set; }
 
         public bool IsNew()
         {

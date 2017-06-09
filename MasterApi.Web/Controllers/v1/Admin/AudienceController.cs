@@ -17,7 +17,6 @@ namespace MasterApi.Web.Controllers.v1.Admin
     /// <summary>
     /// Handles audience related requests
     /// </summary>
-    /// <seealso cref="MasterApi.Web.Controllers.BaseController" 
     [Module(Name = ModelType.Audience)]
     [Route("api/{version}/[controller]")]
     [ClaimsAuthorize(ClaimTypes.Role, UserAccessLevel.Admin)]

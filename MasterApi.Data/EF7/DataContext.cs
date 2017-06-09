@@ -186,6 +186,10 @@ namespace MasterApi.Data.EF7
             }
         }
 
+        /// <summary>
+        /// Synchronizes the objects state pre commit asynchronous.
+        /// </summary>
+        /// <returns></returns>
         private async Task SyncObjectsStatePreCommitAsync()
         {
             foreach (var entityEntry in ChangeTracker.Entries())
@@ -195,6 +199,10 @@ namespace MasterApi.Data.EF7
             }
         }
 
+        /// <summary>
+        /// Synchronizes the objects state post commit asynchronous.
+        /// </summary>
+        /// <returns></returns>
         public async Task SyncObjectsStatePostCommitAsync()
         {
             foreach (var entityEntry in ChangeTracker.Entries())

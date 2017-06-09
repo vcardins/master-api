@@ -29,6 +29,7 @@ namespace MasterApi.Data.EF7
             ConfigProvinceState();
 
             ConfigUserProfile();
+            ConfigNotebook();
         }
 
         private static void ConfigClients()
@@ -77,9 +78,9 @@ namespace MasterApi.Data.EF7
                 .HasMaxLength(50);
 
             entity
-            .HasOne(x => x.Audience)
-            .WithMany(x => x.RefreshTokens)
-            .HasForeignKey(x => x.ClientId);
+                .HasOne(x => x.Audience)
+                .WithMany(x => x.RefreshTokens)
+                .HasForeignKey(x => x.ClientId);
         }
 
 
@@ -124,12 +125,6 @@ namespace MasterApi.Data.EF7
                 .Property(s => s.Created)
                 .HasDefaultValueSql("SYSDATETIMEOFFSET()");
 
-            //entity.Property(p => p.ApartmentUnitNumber).HasMaxLength(20);
-            //entity.Property(p => p.StreetNumber).HasMaxLength(20);
-            //entity.Property(p => p.StreetAddress).HasMaxLength(100);
-            //entity.Property(p => p.StreetAddress2).HasMaxLength(100);
-            //entity.Property(p => p.DistrictRegion).HasMaxLength(80);
-
             entity
                 .HasOne(t => t.UserAccount)
                 .WithOne(x => x.Profile)
@@ -161,6 +156,25 @@ namespace MasterApi.Data.EF7
 
             entity
                 .Property<int>("UpdatedById");
+        }
+
+        private static void ConfigNotebook()
+        {
+            var entity = _modelBuilder.Entity<Note>();
+            entity
+               .Property(e => e.Id).ValueGeneratedOnAdd();
+
+            entity.Property(p => p.Title).IsRequired().HasMaxLength(200);
+
+            entity.Property(p => p.Description).HasMaxLength(400);
+
+            entity.Property(p => p.Meta).HasMaxLength(200);
+
+            entity
+               .HasOne(t => t.UserAccount)
+               .WithMany(x => x.Notes)
+               .HasForeignKey(b => b.UserId)
+               .OnDelete(DeleteBehavior.Cascade);
         }
 
         private static void ConfigCountry()
@@ -266,18 +280,19 @@ namespace MasterApi.Data.EF7
         {
             var entity = _modelBuilder.Entity<LanguageCountry>();
 
-            entity.HasKey(a => new { a.LanguageCode, a.Iso2 });
+            entity
+                .HasKey(a => new { a.LanguageCode, a.Iso2 });
 
             entity
-               .Property(p => p.Iso2)
-               .HasColumnType("char(2)")
-               .HasMaxLength(2)
-               .IsRequired();
+                .Property(p => p.Iso2)
+                .HasColumnType("char(2)")
+                .HasMaxLength(2)
+                .IsRequired();
 
             entity
-              .Property(p => p.LanguageCode)
-              .HasMaxLength(20)
-              .IsRequired();
+                .Property(p => p.LanguageCode)
+                .HasMaxLength(20)
+                .IsRequired();
 
             entity.HasOne(a => a.Country)
                 .WithMany(p => p.Languages)

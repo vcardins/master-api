@@ -293,7 +293,11 @@
             <param name="model">The LoginInput model.</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:MasterApi.Web.Controllers.v1.Admin.AudienceController" -->
+        <member name="T:MasterApi.Web.Controllers.v1.Admin.AudienceController">
+            <summary>
+            Handles audience related requests
+            </summary>
+        </member>
         <member name="M:MasterApi.Web.Controllers.v1.Admin.AudienceController.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo)">
             <summary>
             Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.Admin.AudienceController" /> class.
@@ -408,11 +412,35 @@
             <param name="main">if set to <c>true</c> [main].</param>
             <returns></returns>        
         </member>
+        <member name="T:MasterApi.Web.Controllers.v1.NotebookController">
+            <summary>
+            Handles Notebooks requests
+            </summary>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.NotebookController.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.NotebookController" /> class.
+            </summary>
+            <param name="unitOfWork">The unit of work.</param>
+            <param name="userInfo">The user information.</param>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.NotebookController.GetFilter(System.Object)">
+            <summary>
+            Returns the notification list filtering criteria.
+            </summary>
+            <param name="id">The identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:MasterApi.Web.Controllers.v1.NotebookController.GetOrderBy">
+            <summary>
+            Returns the notification list ordering criteria.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:MasterApi.Web.Controllers.v1.NotificationController">
             <summary>
             Handles Notifications requests
             </summary>
-            <seealso cref="!:Controllers.CrudApiController&lt;Notification, Core.ViewModels.NotificationOutput, Core.ViewModels.NotificationOutput&gt;" />
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.NotificationController.#ctor(MasterApi.Core.Data.UnitOfWork.IUnitOfWorkAsync,MasterApi.Core.Account.Services.IUserInfo)">
             <summary>
@@ -848,6 +876,27 @@
             </summary>
             <param name="isReconnect">if set to <c>true</c> [is reconnect].</param>
             <returns></returns>
+        </member>
+        <member name="P:MasterApi.Startup.Configuration">
+            <summary>
+            Gets or sets the configuration.
+            </summary>
+            <value>
+            The configuration.
+            </value>
+        </member>
+        <member name="M:MasterApi.Startup.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Startup"/> class.
+            </summary>
+            <param name="env">The env.</param>
+        </member>
+        <member name="M:MasterApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+            </summary>
+            <param name="services">The services.</param>
         </member>
     </members>
 </doc>

@@ -13,13 +13,6 @@ namespace MasterApi.Core.Models
         public virtual string DisplayName { get; set; }
         public string Avatar { get; set; }
 
-        //public string ApartmentUnitNumber { get; set; }
-        //public string StreetNumber { get; set; }
-        //public string StreetAddress { get; set; }
-        //public string StreetAddress2 { get; set; }
-        //public string City { get; set; }
-        //public string DistrictRegion { get; set; }
-
         public string City { get; set; }
         public string Iso2 { get; set; }
         public string ProvinceState { get; set; }

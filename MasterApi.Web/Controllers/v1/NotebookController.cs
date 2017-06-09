@@ -12,18 +12,18 @@ using MasterApi.Core.ViewModels;
 namespace MasterApi.Web.Controllers.v1
 {
     /// <summary>
-    /// Handles Notifications requests
+    /// Handles Notebooks requests
     /// </summary>
-    [Module(Name = ModelType.Notification)]
+    [Module(Name = ModelType.Notebook)]
     [Route("api/{version}/[controller]")]
-    public class NotificationController : CrudApiController<Notification, NotificationOutput, NotificationOutput>
+    public class NotebookController : CrudApiController<Note, NoteOutput, NoteOutput>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="NotificationController" /> class.
+        /// Initializes a new instance of the <see cref="NotebookController" /> class.
         /// </summary>
         /// <param name="unitOfWork">The unit of work.</param>
         /// <param name="userInfo">The user information.</param>
-        public NotificationController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) 
+        public NotebookController(IUnitOfWorkAsync unitOfWork, IUserInfo userInfo) 
             : base(unitOfWork, userInfo)
         {
         }
@@ -33,12 +33,12 @@ namespace MasterApi.Web.Controllers.v1
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        protected override Expression<Func<Notification, bool>> GetFilter(object id = null)
+        protected override Expression<Func<Note, bool>> GetFilter(object id = null)
         {
-            Expression<Func<Notification, bool>> predicate = n => n.UserId == UserInfo.UserId;
+            Expression<Func<Note, bool>> predicate = n => n.UserId == UserInfo.UserId;
             if (id!=null)
             {
-                predicate = n => n.UserId == (int)id;
+                predicate = n => n.Id == (int)id;
             }
             return predicate;
         }
@@ -47,9 +47,9 @@ namespace MasterApi.Web.Controllers.v1
         /// Returns the notification list ordering criteria.
         /// </summary>
         /// <returns></returns>
-        protected override Func<IQueryable<Notification>, IOrderedQueryable<Notification>> GetOrderBy()
+        protected override Func<IQueryable<Note>, IOrderedQueryable<Note>> GetOrderBy()
         {
-            return q => q.OrderByDescending(x => x.Created).ThenBy(x => x.Type);
+            return q => q.OrderBy(x => x.SortOrder).ThenByDescending(x => x.Created);
         }
     }
 
