@@ -769,6 +769,11 @@
             RSA parameters class won't restore private key info.
             </summary>
         </member>
+        <member name="T:MasterApi.Web.Identity.TokenProviderAppBuilderExtensions">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:MasterApi.Web.Identity.TokenProviderAppBuilderExtensions.UseTokenProvider(Microsoft.AspNetCore.Builder.IApplicationBuilder,MasterApi.Web.Identity.TokenProviderOptions,Microsoft.IdentityModel.Tokens.RsaSecurityKey)">
             <summary>
             Uses the simple token provider.
@@ -787,6 +792,22 @@
             instead it is added by calling the <see cref="!:TokenProviderAppBuilderExtensions.UseSimpleTokenProvider(IApplicationBuilder,TokenProviderOptions,RsaSecurityKey)"/>
             extension method.
             </summary>
+        </member>
+        <member name="M:MasterApi.Web.Identity.TokenProviderMiddleware.#ctor(Microsoft.AspNetCore.Http.RequestDelegate,Microsoft.Extensions.Options.IOptions{MasterApi.Web.Identity.TokenProviderOptions},Microsoft.Extensions.Logging.ILoggerFactory,System.IServiceProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Identity.TokenProviderMiddleware"/> class.
+            </summary>
+            <param name="next">The next.</param>
+            <param name="options">The options.</param>
+            <param name="loggerFactory">The logger factory.</param>
+            <param name="serviceProvider">The service provider.</param>
+        </member>
+        <member name="M:MasterApi.Web.Identity.TokenProviderMiddleware.Invoke(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            Invokes the specified context.
+            </summary>
+            <param name="context">The context.</param>
+            <returns></returns>
         </member>
         <member name="P:MasterApi.Web.Identity.TokenProviderOptions.Audience">
             <summary>
@@ -1113,6 +1134,16 @@
             For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
             </summary>
             <param name="services">The services.</param>
+        </member>
+        <member name="M:MasterApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.AspNetCore.Antiforgery.IAntiforgery,Microsoft.Extensions.Logging.ILoggerFactory,System.IServiceProvider)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">The application.</param>
+            <param name="env">The env.</param>
+            <param name="antiforgery">The antiforgery.</param>
+            <param name="loggerFactory">The logger factory.</param>
+            <param name="serviceProvider">The service provider.</param>
         </member>
     </members>
 </doc>

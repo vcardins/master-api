@@ -15,6 +15,8 @@ using MasterApi.Core.Infrastructure.Crypto;
 using MasterApi.Core.Models;
 using MasterApi.Data.EF7;
 using MasterApi.Core.Account.Enums;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace MasterApi.Data.Seeders
 {
@@ -27,7 +29,7 @@ namespace MasterApi.Data.Seeders
         private static Assembly _assembly;
         private static bool _hasUpdates;
 
-        public static void Initialize(IServiceProvider serviceProvider)
+        public static async Task Initialize(IServiceProvider serviceProvider)
         {
             _context = (AppDbContext)serviceProvider.GetService(typeof(AppDbContext));
             _crypto = (ICrypto)serviceProvider.GetService(typeof(ICrypto));
@@ -35,7 +37,8 @@ namespace MasterApi.Data.Seeders
 
             _seederPath = string.Format("{0}.Seeders.csv", _assembly.GetName().Name);
 
-            _context.Database.EnsureCreated();
+            await _context.Database.EnsureCreatedAsync();
+            await _context.Database.MigrateAsync();
 
             SeedAudiences();
             SeedCountries();
@@ -45,7 +48,7 @@ namespace MasterApi.Data.Seeders
 
             if (_hasUpdates)
             {
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
         }
 

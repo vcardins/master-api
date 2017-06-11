@@ -54,6 +54,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Threading.Tasks;
 
 //http://stackoverflow.com/questions/40704760/invalidoperationexception-could-not-find-usersecretsidattribute-on-assembly
 [assembly: UserSecretsId("aspnet-TestApp-ce345b64-19cf-4972-b34f-d16f2e7976ed")]
@@ -306,8 +307,15 @@ namespace MasterApi
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">The application.</param>
+        /// <param name="env">The env.</param>
+        /// <param name="antiforgery">The antiforgery.</param>
+        /// <param name="loggerFactory">The logger factory.</param>
+        /// <param name="serviceProvider">The service provider.</param>
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env,
                               IAntiforgery antiforgery, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
         {
 
@@ -388,7 +396,7 @@ namespace MasterApi
             // https://github.com/domaindrivendev/Swashbuckle.AspNetCore
             // Middleware to expose the generated Swagger as JSON endpoint(s)
             app.UseSwagger();
-            
+
             // Middleware to expose interactive documentation
             app.UseSwaggerUI(c =>
             {
@@ -417,7 +425,7 @@ namespace MasterApi
             loggerFactory.AddConsole(Configuration.GetSection(LoggingSectionKey));
             loggerFactory.AddDebug();
 
-            AppDbInitializer.Initialize(app.ApplicationServices);
+            await AppDbInitializer.Initialize(app.ApplicationServices);
         }
     }
 }
