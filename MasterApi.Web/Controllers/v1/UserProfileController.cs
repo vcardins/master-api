@@ -26,8 +26,12 @@ namespace MasterApi.Web.Controllers.v1
         /// Initializes a new instance of the <see cref="ProfileController" /> class.
         /// </summary>
         /// <param name="userInfo">The user information.</param>
+        /// <param name="settings">The settings.</param>
+        /// <param name="serviceProvider">The service provider.</param>
         /// <param name="userProfileService">The country service.</param>
-        public ProfileController(IUserInfo userInfo, IOptions<AppSettings> settings, IServiceProvider serviceProvider, IUserProfileService userProfileService, IMemoryCache cache) : base(userInfo)
+        /// <param name="cache">The cache.</param>
+        public ProfileController(IUserInfo userInfo, IOptions<AppSettings> settings, IServiceProvider serviceProvider, IUserProfileService userProfileService, IMemoryCache cache) 
+            : base(userInfo)
         {
             _userProfileService = userProfileService;
             _cache = cache;

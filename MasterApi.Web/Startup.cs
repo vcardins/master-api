@@ -55,6 +55,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using System.IO;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Threading.Tasks;
+using MasterApi.Services.DomainServices;
 
 //http://stackoverflow.com/questions/40704760/invalidoperationexception-could-not-find-usersecretsidattribute-on-assembly
 [assembly: UserSecretsId("aspnet-TestApp-ce345b64-19cf-4972-b34f-d16f2e7976ed")]
@@ -279,6 +280,7 @@ namespace MasterApi
             services.AddScoped(typeof(INotificationService), typeof(NotificationService));
             services.AddScoped(typeof(IGeoService), typeof(GeoService));
             services.AddScoped(typeof(IUserProfileService), typeof(UserProfileService));
+            services.AddScoped(typeof(ILookupService), typeof(LookupService));
 
             //Infrastructure
             services.AddSingleton(typeof(ICrypto), typeof(DefaultCrypto));

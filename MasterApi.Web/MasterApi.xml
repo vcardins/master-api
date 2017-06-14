@@ -576,7 +576,10 @@
             Initializes a new instance of the <see cref="T:MasterApi.Web.Controllers.v1.ProfileController" /> class.
             </summary>
             <param name="userInfo">The user information.</param>
+            <param name="settings">The settings.</param>
+            <param name="serviceProvider">The service provider.</param>
             <param name="userProfileService">The country service.</param>
+            <param name="cache">The cache.</param>
         </member>
         <member name="M:MasterApi.Web.Controllers.v1.ProfileController.GetProfileAsync">
             <summary>
@@ -1112,6 +1115,24 @@
             Connects the specified is reconnect.
             </summary>
             <param name="isReconnect">if set to <c>true</c> [is reconnect].</param>
+            <returns></returns>
+        </member>
+        <member name="T:MasterApi.Api.Endpoints.V1.LookupController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MasterApi.Api.Endpoints.V1.LookupController.#ctor(MasterApi.Core.Account.Services.IUserInfo,MasterApi.Core.Services.ILookupService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Api.Endpoints.V1.LookupController" /> class.
+            </summary>
+            <param name="userinfo">The userinfo.</param>
+            <param name="lookupService">The lookup service.</param>
+        </member>
+        <member name="M:MasterApi.Api.Endpoints.V1.LookupController.GetLookups">
+            <summary>
+            Gets the lookups.
+            </summary>
             <returns></returns>
         </member>
         <member name="P:MasterApi.Startup.Configuration">

@@ -21,6 +21,7 @@ namespace MasterApi.Core.Infrastructure.Caching
         Subscriber,
         Newsletter,
         Lookups,
-        CurrentUser
+        CurrentUser,
+        DateFormats
     }
 }
