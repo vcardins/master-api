@@ -41,9 +41,9 @@ namespace MasterApi.Data.Seeders
 		public async Task SeedAsync()
         {
 			await _context.Database.EnsureCreatedAsync();
-			await _context.Database.MigrateAsync();
+			// await _context.Database.MigrateAsync();
 
-            SeedAudiences();
+			SeedAudiences();
             SeedCountries();
             SeedProvinceStates();
             SeedLanguages();
@@ -102,7 +102,6 @@ namespace MasterApi.Data.Seeders
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
                     var csvReader = new CsvReader(reader);
-                    csvReader.Configuration.WillThrowOnMissingField = false;
                     csvReader.Configuration.Delimiter = "|";
                     var records = csvReader.GetRecords<ProvinceState>().ToArray();
                     records.ForEach(r =>
@@ -127,7 +126,6 @@ namespace MasterApi.Data.Seeders
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
                     var csvReader = new CsvReader(reader);
-                    csvReader.Configuration.WillThrowOnMissingField = false;
                     csvReader.Configuration.Delimiter = "|";
                     var records = csvReader.GetRecords<Country>().ToArray();
                     records.ForEach(r =>
@@ -152,7 +150,7 @@ namespace MasterApi.Data.Seeders
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
                     var csvReader = new CsvReader(reader);
-                    csvReader.Configuration.WillThrowOnMissingField = false;
+                    
                     csvReader.Configuration.Delimiter = "|";
                     var records = csvReader.GetRecords<Language>().ToArray();
                     records.ForEach(r =>
