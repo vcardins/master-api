@@ -15,7 +15,6 @@ using MasterApi.Core.Infrastructure.Crypto;
 using MasterApi.Core.Models;
 using MasterApi.Data.EF7;
 using MasterApi.Core.Account.Enums;
-using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
 namespace MasterApi.Data.Seeders
@@ -91,6 +90,16 @@ namespace MasterApi.Data.Seeders
             _hasUpdates = true;
         }
 
+		private static CsvReader GetReader(StreamReader reader)
+		{
+			var csvReader = new CsvReader(reader);
+			csvReader.Configuration.Delimiter = "|";
+			csvReader.Configuration.HeaderValidated = null;
+			csvReader.Configuration.MissingFieldFound = null;
+
+			return csvReader;
+		}
+
         private static void SeedProvinceStates()
         {
             if (_context.ProvinceStates.Any()) return;
@@ -101,8 +110,7 @@ namespace MasterApi.Data.Seeders
                 if (stream == null) return;
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
-                    var csvReader = new CsvReader(reader);
-                    csvReader.Configuration.Delimiter = "|";
+                    var csvReader = GetReader(reader);
                     var records = csvReader.GetRecords<ProvinceState>().ToArray();
                     records.ForEach(r =>
                     {
@@ -125,9 +133,8 @@ namespace MasterApi.Data.Seeders
                 if (stream == null) return;
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
-                    var csvReader = new CsvReader(reader);
-                    csvReader.Configuration.Delimiter = "|";
-                    var records = csvReader.GetRecords<Country>().ToArray();
+					var csvReader = GetReader(reader);
+					var records = csvReader.GetRecords<Country>().ToArray();
                     records.ForEach(r =>
                     {
                         r.ObjectState = ObjectState.Added;
@@ -149,10 +156,8 @@ namespace MasterApi.Data.Seeders
                 if (stream == null) return;
                 using (var reader = new StreamReader(stream, Encoding.UTF8))
                 {
-                    var csvReader = new CsvReader(reader);
-                    
-                    csvReader.Configuration.Delimiter = "|";
-                    var records = csvReader.GetRecords<Language>().ToArray();
+					var csvReader = GetReader(reader);
+					var records = csvReader.GetRecords<Language>().ToArray();
                     records.ForEach(r =>
                     {
                         r.ObjectState = ObjectState.Added;
@@ -234,6 +239,5 @@ namespace MasterApi.Data.Seeders
             );
             _hasUpdates = true;
         }
-	
 	}
 }

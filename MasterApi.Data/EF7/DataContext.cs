@@ -117,7 +117,7 @@ namespace MasterApi.Data.EF7
         /// <seealso cref="DbContext.SaveChangesAsync" />
         public async Task<int> SaveChangesAsync()
         {
-            return await SaveChangesAsync(CancellationToken.None);
+			return await SaveChangesAsync(CancellationToken.None);
         }
 
         public Task ExecuteSqlAsync(string query, CancellationToken token, object[] parameters)
@@ -191,7 +191,7 @@ namespace MasterApi.Data.EF7
             foreach (var entityEntry in ChangeTracker.Entries())
             {
                 entityEntry.State = StateHelper.ConvertState(((IObjectState) entityEntry.Entity).ObjectState);
-                await AuditAsync(entityEntry);
+                // await AuditAsync(entityEntry);
             }
         }
 
@@ -204,7 +204,7 @@ namespace MasterApi.Data.EF7
             foreach (var entityEntry in ChangeTracker.Entries())
             {
                 ((IObjectState)entityEntry.Entity).ObjectState = StateHelper.ConvertState(entityEntry.State);
-                await AuditAsync(entityEntry);
+                // await AuditAsync(entityEntry);
             }
         }
 
