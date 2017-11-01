@@ -7,7 +7,7 @@ namespace MasterApi.Core.Config
     {
         public AppInformation Information { get; set; }
         public string SecretKey { get; set; }
-        public bool InMemoryProvider { get; set; }
+        public DbSettings DbSettings { get; set; }
         public AppBaseUrls Urls { get; set; }
         public AuthSettings Auth { get; set; }
         public TwilioSettings Twilio { get; set; }

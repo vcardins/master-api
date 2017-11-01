@@ -747,6 +747,19 @@
             The error.
             </value>
         </member>
+        <member name="T:MasterApi.Web.Identity.CustomJwtDataFormat">
+            <summary>
+            
+            </summary>
+            <seealso cref="!:Microsoft.AspNetCore.Authentication.ISecureDataFormat&lt;Microsoft.AspNetCore.Authentication.AuthenticationTicket&gt;" />
+        </member>
+        <member name="M:MasterApi.Web.Identity.CustomJwtDataFormat.#ctor(System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
+            <summary>
+            Initializes a new instance of the <see cref="T:MasterApi.Web.Identity.CustomJwtDataFormat"/> class.
+            </summary>
+            <param name="algorithm">The algorithm.</param>
+            <param name="validationParameters">The validation parameters.</param>
+        </member>
         <member name="M:MasterApi.Web.Identity.RSAKeyUtils.GetKeyParameters(System.String)">
             <summary>
             This expects a file in the format: 
@@ -1135,6 +1148,24 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:MasterApi.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:MasterApi.Program.Main(System.String[])">
+            <summary>
+            Mains the specified arguments.
+            </summary>
+            <param name="args">The arguments.</param>
+        </member>
+        <member name="M:MasterApi.Program.BuildWebHost(System.String[])">
+            <summary>
+            Builds the web host.
+            </summary>
+            <param name="args">The arguments.</param>
+            <returns></returns>
+        </member>
         <member name="P:MasterApi.Startup.Configuration">
             <summary>
             Gets or sets the configuration.
@@ -1143,11 +1174,19 @@
             The configuration.
             </value>
         </member>
-        <member name="M:MasterApi.Startup.#ctor(Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+        <member name="P:MasterApi.Startup.AppSettings">
+            <summary>
+            Gets or sets the configuration.
+            </summary>
+            <value>
+            The Application settings.
+            </value>
+        </member>
+        <member name="M:MasterApi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Initializes a new instance of the <see cref="T:MasterApi.Startup"/> class.
             </summary>
-            <param name="env">The env.</param>
+            <param name="configuration">The configuration.</param>
         </member>
         <member name="M:MasterApi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
@@ -1156,7 +1195,7 @@
             </summary>
             <param name="services">The services.</param>
         </member>
-        <member name="M:MasterApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.AspNetCore.Antiforgery.IAntiforgery,Microsoft.Extensions.Logging.ILoggerFactory,System.IServiceProvider)">
+        <member name="M:MasterApi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment,Microsoft.AspNetCore.Antiforgery.IAntiforgery,Microsoft.Extensions.Logging.ILoggerFactory,System.IServiceProvider,MasterApi.Data.Seeders.DataSeeder)">
             <summary>
             This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             </summary>
@@ -1165,6 +1204,7 @@
             <param name="antiforgery">The antiforgery.</param>
             <param name="loggerFactory">The logger factory.</param>
             <param name="serviceProvider">The service provider.</param>
+            <param name="seeder">The database seeder.</param>
         </member>
     </members>
 </doc>

@@ -62,13 +62,13 @@ namespace MasterApi.Web.Identity
                 // used, some leeway here could be useful.
                 ClockSkew = TimeSpan.FromMinutes(0)
             };
-
+            /*
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
                 AuthenticationScheme = CookieAuthenticationDefaults.AuthenticationScheme,
-                CookieName = "access_token",
+                CookieDomain = "access_token",
                 SlidingExpiration = true,
                 TicketDataFormat = new CustomJwtDataFormat(SecurityAlgorithms.HmacSha256, tokenValidationParameters),
                 Events = new CookieAuthenticationEvents
@@ -130,7 +130,7 @@ namespace MasterApi.Web.Identity
                     },
                 }
             });
-
+            */
             return app.UseMiddleware<TokenProviderMiddleware>(Options.Create(options));
         }
     }

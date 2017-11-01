@@ -35,7 +35,7 @@ namespace MasterApi.Web.Controllers.v1
 
             var file = files[0];
             var stream = file.OpenReadStream();
-            var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+            var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim().ToString();
 
             var avatarUrl = await UploadFileAsBlob(stream, filename, "myuploads");
 

@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using MasterApi.Core.Account.Enums;
 using MasterApi.Web.Identity;
+using System.Text;
 
 namespace MasterApi
 {
@@ -32,8 +33,8 @@ namespace MasterApi
 
             _tokenOptions = new TokenProviderOptions
             {
-                Audience = _appSettings.Auth.TokenAudience,
-                Issuer = _appSettings.Auth.TokenIssuer,
+                Audience = AppSettings.Auth.TokenAudience,
+                Issuer = AppSettings.Auth.TokenIssuer,
                 SigningCredentials = new SigningCredentials(_signingKey, SecurityAlgorithms.RsaSha256Signature),
                 IdentityResolver = GetIdentity
             };
@@ -41,13 +42,29 @@ namespace MasterApi
             // Save the token options into an instance so they're accessible to the 
             services.AddSingleton(typeof(TokenProviderOptions), _tokenOptions);
 
-            services.AddAuthentication(options =>
-            {
-                options.SignInScheme = JwtBearerDefaults.AuthenticationScheme;
-            });
+			// Enable Dual Authentication 
+			services.AddAuthentication()
+			  .AddCookie(cfg => cfg.SlidingExpiration = true)
+			  .AddJwtBearer(cfg =>
+			  {
+				  cfg.RequireHttpsMetadata = false;
+				  cfg.SaveToken = true;
+				  cfg.TokenValidationParameters = new TokenValidationParameters()
+				  {
+					  ValidIssuer = AppSettings.Auth.TokenIssuer,
+					  ValidAudience = AppSettings.Auth.TokenAudience,
+					  IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
+				  };
 
-            // Enable the use of an [Authorize("Bearer")] attribute on methods and classes to protect.
-            services.AddAuthorization(options =>
+			  });
+
+			//services.AddAuthentication(options =>
+			//{
+			//    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
+			//});
+
+			// Enable the use of an [Authorize("Bearer")] attribute on methods and classes to protect.
+			services.AddAuthorization(options =>
             {
                 options.AddPolicy(AuthSchema, policy =>
                 {

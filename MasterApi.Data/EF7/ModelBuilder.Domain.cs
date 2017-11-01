@@ -114,7 +114,7 @@ namespace MasterApi.Data.EF7
                 .HasMaxLength(2);
 
             entity.Property(p => p.ProvinceState)
-                .HasColumnType("char(3)")
+                .HasColumnType("varchar(3)")
                 .HasMaxLength(3);
 
             entity
@@ -319,7 +319,7 @@ namespace MasterApi.Data.EF7
 
             entity.Property(p => p.Code)
                 .IsRequired()
-                .HasColumnType("char(3)")
+                .HasColumnType("varchar(3)")
                 .HasMaxLength(3);
 
             entity

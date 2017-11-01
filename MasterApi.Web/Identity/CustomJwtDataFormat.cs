@@ -3,16 +3,24 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.IdentityModel.Tokens;
 
 namespace MasterApi.Web.Identity
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Authentication.ISecureDataFormat{Microsoft.AspNetCore.Authentication.AuthenticationTicket}" />
     public class CustomJwtDataFormat : ISecureDataFormat<AuthenticationTicket>
     {
         private readonly string _algorithm;
         private readonly TokenValidationParameters _validationParameters;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CustomJwtDataFormat"/> class.
+        /// </summary>
+        /// <param name="algorithm">The algorithm.</param>
+        /// <param name="validationParameters">The validation parameters.</param>
         public CustomJwtDataFormat(string algorithm, TokenValidationParameters validationParameters)
         {
             _algorithm = algorithm;

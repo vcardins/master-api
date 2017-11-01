@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace MasterApi.Data.Seeders
 {
-    public class AppDbInitializer
+    public class DataSeeder
     {
         private static AppDbContext _context;
         private static ICrypto _crypto;
@@ -29,16 +29,19 @@ namespace MasterApi.Data.Seeders
         private static Assembly _assembly;
         private static bool _hasUpdates;
 
-        public static async Task Initialize(IServiceProvider serviceProvider)
+		public DataSeeder(AppDbContext context, ICrypto crypto)
+		{
+			_context = context;
+			_crypto = crypto;
+
+			_assembly = typeof(DataSeeder).GetTypeInfo().Assembly;
+			_seederPath = string.Format("{0}.Seeders.csv", _assembly.GetName().Name);
+		}
+
+		public async Task SeedAsync()
         {
-            _context = (AppDbContext)serviceProvider.GetService(typeof(AppDbContext));
-            _crypto = (ICrypto)serviceProvider.GetService(typeof(ICrypto));
-            _assembly = typeof(AppDbInitializer).GetTypeInfo().Assembly;
-
-            _seederPath = string.Format("{0}.Seeders.csv", _assembly.GetName().Name);
-
-            await _context.Database.EnsureCreatedAsync();
-            await _context.Database.MigrateAsync();
+			await _context.Database.EnsureCreatedAsync();
+			await _context.Database.MigrateAsync();
 
             SeedAudiences();
             SeedCountries();
@@ -233,5 +236,6 @@ namespace MasterApi.Data.Seeders
             );
             _hasUpdates = true;
         }
-    }
+	
+	}
 }

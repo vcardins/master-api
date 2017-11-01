@@ -64,10 +64,6 @@ namespace MasterApi
     public partial class Startup
     {
         private const string AuthSchema = JwtBearerDefaults.AuthenticationScheme;
-        private readonly AppSettings _appSettings;
-        private static string _contentRootPath = string.Empty;
-        private const string SettingsSectionKey = "AppSettings";
-        private const string LoggingSectionKey = "Logging";
 
         private IUserAccountService _userService;
         private IAuthService _authService;
@@ -79,35 +75,27 @@ namespace MasterApi
         /// <value>
         /// The configuration.
         /// </value>
-        public IConfigurationRoot Configuration { get; set; }
-        private IHttpContextAccessor HttpContextAccessor { get; set; }
+        public IConfiguration Configuration { get; set; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Startup"/> class.
-        /// </summary>
-        /// <param name="env">The env.</param>
-        public Startup(IHostingEnvironment env)
-        {
-            //_applicationPath = env.WebRootPath;
-            _contentRootPath = env.ContentRootPath;
-            _appSettings = new AppSettings();
+		/// <summary>
+		/// Gets or sets the configuration.
+		/// </summary>
+		/// <value>
+		/// The Application settings.
+		/// </value>
+		public AppSettings AppSettings { get; set; }
 
-            // Setup configuration sources.
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(_contentRootPath)
-                .AddJsonFile("appsettings.json", false, true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true, true);
+		private IHttpContextAccessor HttpContextAccessor { get; set; }
 
-            if (env.IsDevelopment())
-            {
-                // This reads the configuration keys from the secret store.
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets<Startup>();
-            }
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
-        }
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Startup"/> class.
+		/// </summary>
+		/// <param name="configuration">The configuration.</param>
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+			AppSettings = new AppSettings();
+		}
 
         /// <summary>
         /// This method gets called by the runtime. Use this method to add services to the container.
@@ -129,7 +117,7 @@ namespace MasterApi
             services.AddOptions();
 
             // Add our Config object so it can be injected
-            var appSettingsSection = Configuration.GetSection(SettingsSectionKey);
+            var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
             services.Configure<AppSettings>(settings =>
             {
@@ -138,10 +126,9 @@ namespace MasterApi
                 settings.Urls.Api = $"{request.Scheme}://{request.Host.ToUriComponent()}";
             });
 
-            appSettingsSection.Bind(_appSettings);
+            appSettingsSection.Bind(AppSettings);
 
             // *If* you need access to generic IConfiguration this is **required**
-            services.AddSingleton<IConfiguration>(Configuration);
             services.AddSingleton(Configuration);
 
             ConfigAuth(services);
@@ -198,17 +185,17 @@ namespace MasterApi
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info {
-                    Title = _appSettings.Information.Name,
-                    Version = _appSettings.Information.Version,
-                    Description = _appSettings.Information.Description,
-                    TermsOfService = _appSettings.Information.TermsOfService,
+                    Title = AppSettings.Information.Name,
+                    Version = AppSettings.Information.Version,
+                    Description = AppSettings.Information.Description,
+                    TermsOfService = AppSettings.Information.TermsOfService,
                     Contact = new Contact {
-                        Name = _appSettings.Information.ContactName,
-                        Email = _appSettings.Information.ContactEmail
+                        Name = AppSettings.Information.ContactName,
+                        Email = AppSettings.Information.ContactEmail
                     },
                     License = new License {
-                        Name = _appSettings.Information.LicenseName,
-                        Url = _appSettings.Information.LicenseUrl
+                        Name = AppSettings.Information.LicenseName,
+                        Url = AppSettings.Information.LicenseUrl
                     }
                 });
 
@@ -250,30 +237,34 @@ namespace MasterApi
 
             services.AddCustomHeaders();
 
-            var connection = Configuration.GetConnectionString("DbConnection");
+            var connString = Configuration.GetConnectionString("DbConnection");
 
-            services.AddDbContext<AppDbContext>(options =>
+			//services.AddDbContext<DualAuthContext>(options =>
+			//	options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+			services.AddDbContext<AppDbContext>(options =>
             {
-                switch (_appSettings.InMemoryProvider)
+                switch (AppSettings.DbSettings.InMemoryProvider)
                 {
                     case true:
-                        options.UseInMemoryDatabase();
+                        options.UseInMemoryDatabase(connString);
                         break;
                     default:
-                        options.UseSqlServer(connection, b => b.MigrationsAssembly("MasterApi.Data"));
+                        options.UseSqlServer(connString, b => b.MigrationsAssembly("MasterApi.Data"));
                         break;
                 }
             });
 
-            services.AddHangfire(x => x.UseSqlServerStorage(connection));
+            services.AddHangfire(x => x.UseSqlServerStorage(connString));
 
             // Repositories
             services.AddScoped(typeof(IDataContextAsync), typeof(AppDbContext));
             services.AddScoped(typeof(IUnitOfWorkAsync), typeof(UnitOfWork));
             services.AddScoped(typeof(IRepositoryAsync<>), typeof(Repository<>));
+			services.AddTransient<DataSeeder>();
 
-            //Services
-            services.AddScoped(typeof(IService<>), typeof(Service<>));
+			//Services
+			services.AddScoped(typeof(IService<>), typeof(Service<>));
 
             services.AddScoped(typeof(IAuthService), typeof(AuthService));
             services.AddScoped(typeof(IUserAccountService), typeof(UserAccountService));
@@ -287,7 +278,7 @@ namespace MasterApi
             services.AddSingleton(typeof(ISmsSender), typeof(SmsSender));
             services.AddSingleton(typeof(IEmailSender), typeof(EmailSender));
 
-            services.AddSingleton(typeof(IRazorLightEngine), s => EngineFactory.CreatePhysical($"{_contentRootPath}\\Views"));
+			services.AddSingleton(typeof(IRazorLightEngine), s => EngineFactory.CreatePhysical($"{Directory.GetCurrentDirectory()}\\Views"));
 
             var asm = Assembly.GetEntryAssembly();
             var subjectFiles = asm.GetManifestResourceNames().Where(x => x.Contains("subjects.json"));
@@ -305,20 +296,20 @@ namespace MasterApi
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             //Identity
-            services.AddScoped(typeof(IUserInfo), s => new UserIdentityInfo(s.GetService<IHttpContextAccessor>().HttpContext.User));
+            services.AddScoped(typeof(IUserInfo), s => new UserIdentityInfo(s.GetService<IHttpContextAccessor>().HttpContext.User));			
+		}
 
-        }
-
-        /// <summary>
-        /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        /// </summary>
-        /// <param name="app">The application.</param>
-        /// <param name="env">The env.</param>
-        /// <param name="antiforgery">The antiforgery.</param>
-        /// <param name="loggerFactory">The logger factory.</param>
-        /// <param name="serviceProvider">The service provider.</param>
-        public async void Configure(IApplicationBuilder app, IHostingEnvironment env,
-                              IAntiforgery antiforgery, ILoggerFactory loggerFactory, IServiceProvider serviceProvider)
+		/// <summary>
+		/// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		/// </summary>
+		/// <param name="app">The application.</param>
+		/// <param name="env">The env.</param>
+		/// <param name="antiforgery">The antiforgery.</param>
+		/// <param name="loggerFactory">The logger factory.</param>
+		/// <param name="serviceProvider">The service provider.</param>
+		/// <param name="seeder">The database seeder.</param>
+		public void Configure(IApplicationBuilder app, IHostingEnvironment env, IAntiforgery antiforgery, 
+				ILoggerFactory loggerFactory, IServiceProvider serviceProvider, DataSeeder seeder)
         {
 
             HttpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
@@ -341,7 +332,6 @@ namespace MasterApi
             app.UseStaticFiles();
 
             //app.UseHangfireDashboard();
-
             //app.UseHangfireServer();
 
             //const int maxAge = 60*60*24*365;
@@ -403,7 +393,7 @@ namespace MasterApi
             app.UseSwaggerUI(c =>
             {
                 c.ShowJsonEditor();
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", _appSettings.Information.Name);
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", AppSettings.Information.Name);
                 c.DocExpansion("full");
                 c.ShowRequestHeaders();
                 c.SupportedSubmitMethods(new[] { "get", "post", "delete", "put", "patch" });
@@ -422,12 +412,9 @@ namespace MasterApi
                 var tokens = antiforgery.GetAndStoreTokens(context);
                 context.Response.Cookies.Append("XSRF-TOKEN", tokens.RequestToken, new CookieOptions { HttpOnly = false });
                 return next(context);
-            });
+            });			
 
-            loggerFactory.AddConsole(Configuration.GetSection(LoggingSectionKey));
-            loggerFactory.AddDebug();
-
-            await AppDbInitializer.Initialize(app.ApplicationServices);
+			seeder.SeedAsync().Wait();
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using MasterApi.Core.Data.DataContext;
 using System.Threading;
@@ -22,15 +21,12 @@ namespace MasterApi.Data.EF7
 
         private readonly bool _databaseInitialized;
         private readonly object _lock = new object();
-        //private static IUserInfo _userInfo; , IUserInfo userInfo
 
         #endregion Private Fields
 
-        protected DataContext(DbContextOptions options) : base(options)
+        protected DataContext(DbContextOptions<TContext> options) : base(options)
         {
-            //_userInfo = userInfo;
-            
-            if (_databaseInitialized)
+			if (_databaseInitialized)
             {
                 return;
             }
@@ -44,12 +40,12 @@ namespace MasterApi.Data.EF7
 
         public Guid InstanceId { get; }
 
-        //public IDbTransaction BeginTransaction(DbIsolationLevel isolationLevel)
-        //{
-        //    return (IDbTransaction) Database.BeginTransaction();
-        //}
+		public IDbTransaction BeginTransaction(DbIsolationLevel isolationLevel)
+		{
+			return (IDbTransaction)Database.BeginTransaction();
+		}
 
-        public int? GetKey<TEntity>(TEntity entity)
+		public int? GetKey<TEntity>(TEntity entity)
         {
             var entityType = Model.FindEntityType(entity.GetType());
             if (entityType == null) return default(int?);
@@ -172,7 +168,7 @@ namespace MasterApi.Data.EF7
             foreach (var entityEntry in entries)
             {
                 entityEntry.State = StateHelper.ConvertState(((IObjectState)entityEntry.Entity).ObjectState);
-                //Audit(entityEntry);
+                Audit(entityEntry);
             }
         }
 
@@ -182,7 +178,7 @@ namespace MasterApi.Data.EF7
             foreach (var entityEntry in entries)
             {
                 ((IObjectState)entityEntry.Entity).ObjectState = StateHelper.ConvertState(entityEntry.State);
-                //Audit(entityEntry);
+                Audit(entityEntry);
             }
         }
 
@@ -195,7 +191,7 @@ namespace MasterApi.Data.EF7
             foreach (var entityEntry in ChangeTracker.Entries())
             {
                 entityEntry.State = StateHelper.ConvertState(((IObjectState) entityEntry.Entity).ObjectState);
-                //await AuditAsync(entityEntry);
+                await AuditAsync(entityEntry);
             }
         }
 
@@ -208,7 +204,7 @@ namespace MasterApi.Data.EF7
             foreach (var entityEntry in ChangeTracker.Entries())
             {
                 ((IObjectState)entityEntry.Entity).ObjectState = StateHelper.ConvertState(entityEntry.State);
-                //await AuditAsync(entityEntry);
+                await AuditAsync(entityEntry);
             }
         }
 

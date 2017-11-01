@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using MasterApi.Core.Models;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -33,7 +32,9 @@ namespace MasterApi.Data.EF7
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+			base.OnModelCreating(modelBuilder);
+
+			foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
@@ -50,7 +51,6 @@ namespace MasterApi.Data.EF7
 
             modelBuilder.ConfigureIdentityModels();
             modelBuilder.ConfigureDomainModels();
-
-        }       
+		}       
     }
 }
