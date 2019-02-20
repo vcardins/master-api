@@ -56,6 +56,7 @@ using System.IO;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Threading.Tasks;
 using MasterApi.Services.DomainServices;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 //http://stackoverflow.com/questions/40704760/invalidoperationexception-could-not-find-usersecretsidattribute-on-assembly
 [assembly: UserSecretsId("aspnet-TestApp-ce345b64-19cf-4972-b34f-d16f2e7976ed")]
@@ -235,7 +236,7 @@ namespace MasterApi
                 options.Hubs.PipelineModules.Add(module);
             });
 
-            services.AddCustomHeaders();
+            //services.AddCustomHeaders();
 
             var connString = Configuration.GetConnectionString("DbConnection");
 
@@ -343,7 +344,7 @@ namespace MasterApi
                 .RemoveServerHeader();
             //.AddCustomHeader("X-TOTAL-RECORDS", "Header value");
 
-            app.UseCustomHeadersMiddleware(policyCollection);
+            //app.UseCustomHeadersMiddleware(policyCollection);
 
             //RecurringJob.AddOrUpdate(() => Console.WriteLine("Minutely Job"), Cron.Minutely);           
 
@@ -390,16 +391,16 @@ namespace MasterApi
             app.UseSwagger();
 
             // Middleware to expose interactive documentation
-            app.UseSwaggerUI(c =>
-            {
-                c.ShowJsonEditor();
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", AppSettings.Information.Name);
-                c.DocExpansion("full");
-                c.ShowRequestHeaders();
-                c.SupportedSubmitMethods(new[] { "get", "post", "delete", "put", "patch" });
-                c.InjectOnCompleteJavaScript("/swagger-ui/on-complete.js");
-                c.InjectOnFailureJavaScript("/swagger-ui/on-failure.js");
-            });
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.ShowJsonEditor();
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", AppSettings.Information.Name);
+            //    c.DocExpansion("full");
+            //    c.ShowRequestHeaders();
+            //    c.SupportedSubmitMethods(new[] { "get", "post", "delete", "put", "patch" });
+            //    c.InjectOnCompleteJavaScript("/swagger-ui/on-complete.js");
+            //    c.InjectOnFailureJavaScript("/swagger-ui/on-failure.js");
+            //});
 
             app.Use(next => context =>
             {

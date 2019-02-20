@@ -5,7 +5,7 @@
 <h2 style="margin:0 0 20px 0;font-size:14px">Hello @Model.Account.Profile.FirstName @Model.Account.Profile.LastName !</h2>
 <div>
     <p>
-        Thank you for verifing your email with @Model.AppInfo.ApplicationName.
+        Thank you for verifing your email with @Model.AppInfo.Name.
     </p>
     <p style="text-align:center">
         <a style="display:inline-block;line-height:1em;padding:10px 18px;background:-webkit-linear-gradient(top,#4387fd,#4683ea);color:#fff;border-radius:3px;vertical-align:baseline;text-decoration:none" href="@string.Format("{0}{1}",Model.Urls.Web, Model.Urls.LoginPage)" target="_blank">
@@ -15,7 +15,7 @@
     <p style="margin-top:20px">
         Best regards,
         <br />
-        @Model.AppInfo.ApplicationName Team
+        @Model.AppInfo.Name Team
     </p>
 </div>
 
@@ -23,10 +23,10 @@
 {
     <div>
         <p>
-            <a href="@Model.AppInfo.AppUrl" target="_blank">@Model.AppInfo.ApplicationName</a>
+            <a href="@Model.AppInfo.HomePage" target="_blank">@Model.AppInfo.Name</a>
         </p>
         <p>
-            @Model.AppInfo.Copyright - @Model.AppInfo.EmailSignature
+            @Model.AppInfo.Copyright - @Model.AppInfo.LicenseName
         </p>
     </div>
 }

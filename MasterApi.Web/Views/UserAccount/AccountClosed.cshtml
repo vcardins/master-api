@@ -5,13 +5,13 @@
 <h2 style="margin:0 0 20px 0;font-size:14px">Hello @Model.Account.Profile.FirstName @Model.Account.Profile.LastName !</h2>
 <div>
     <p>
-        We are sorry for see you leaving @Model.AppInfo.ApplicationName, hope you come back one day :)<br />
+        We are sorry for see you leaving @Model.AppInfo.Name, hope you come back one day :)<br />
         This email is to confirm that your account has been closed.
     </p>
     <p style="margin-top:20px">
         Best regards,
         <br />
-        @Model.AppInfo.ApplicationName Team
+        @Model.AppInfo.Name Team
     </p>
 </div>
 
@@ -19,10 +19,10 @@
 {
     <div>
         <p>
-            <a href="@Model.AppInfo.AppUrl" target="_blank">@Model.AppInfo.ApplicationName</a>
+            <a href="@Model.AppInfo.HomePage" target="_blank">@Model.AppInfo.Name</a>
         </p>
         <p>
-            @Model.AppInfo.Copyright - @Model.AppInfo.EmailSignature
+            @Model.AppInfo.Copyright - @Model.AppInfo.LicenseName
         </p>
     </div>
 }
