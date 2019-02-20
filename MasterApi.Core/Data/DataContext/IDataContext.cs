@@ -3,7 +3,7 @@ using MasterApi.Core.Data.Infrastructure;
 
 namespace MasterApi.Core.Data.DataContext
 {
-    public interface IDataContext : IDisposable
+    public interface IDataContext
     {
         //IDbTransaction BeginTransaction(DbIsolationLevel isolationLevel);
         int? GetKey<TEntity>(TEntity entity);

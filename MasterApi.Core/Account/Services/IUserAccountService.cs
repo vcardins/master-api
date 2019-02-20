@@ -141,9 +141,9 @@ namespace MasterApi.Core.Account.Services
         bool Authenticate(string username, string password);
         bool Authenticate(string username, string password, out UserAccount account);
         Task<bool> AuthenticateAsync(string username, string password, MobileInfo mobileInfo, out UserAccountAuthentication account);
-        Task<bool> AuthenticateAsync(string username, string password, out Task<ClaimsIdentity> claimsIdentity, out UserAccountMessages failure);
 
-        bool AuthenticateWithEmail(string email, string password);
+		Task<ClaimsIdentity> AuthenticateAsync(string username, string password);
+		bool AuthenticateWithEmail(string email, string password);
         bool AuthenticateWithEmail(string email, string password, out UserAccount account);
         Task<bool> AuthenticateWithEmailAsync(string email, string password, MobileInfo mobileInfo, out UserAccountAuthentication account);
 

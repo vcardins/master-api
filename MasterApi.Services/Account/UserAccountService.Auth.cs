@@ -12,6 +12,7 @@ using MasterApi.Core.Account.Models;
 using MasterApi.Core.Account.Events;
 using MasterApi.Core.Account;
 using Microsoft.Extensions.Logging;
+using MasterApi.Core.Extensions;
 
 namespace MasterApi.Services.Account
 {
@@ -253,7 +254,55 @@ namespace MasterApi.Services.Account
 
         }
 
-        public bool Authenticate(string username, string password)
+		private async Task<bool> AuthenticateAsync(UserAccount account, string password)
+		{
+			_logger.LogTrace(GetLogMessage($"for account: {account.UserId}"));
+			var isVerified = VerifyPassword(account, password);
+			if (!isVerified)
+			{
+				_accountStatus = UserAccountMessages.InvalidCredentials;
+				return false;
+			}
+
+			try
+			{
+				if (!account.IsLoginAllowed)
+				{
+					_logger.LogError(GetLogMessage("failed -- account not allowed to login"));
+					AddEvent(new AccountLockedEvent { Account = account });
+					_accountStatus = UserAccountMessages.LoginNotAllowed;
+					return false;
+				}
+
+				if (account.IsAccountClosed)
+				{
+					_logger.LogError(GetLogMessage("failed -- account closed"));
+					AddEvent(new InvalidAccountEvent { Account = account });
+					_accountStatus = UserAccountMessages.AccountClosed;
+					return false;
+				}
+
+				if (_settings.Auth.RequireAccountVerification && !account.IsAccountVerified)
+				{
+					_logger.LogError(GetLogMessage("failed -- account not verified"));
+					AddEvent(new AccountNotVerifiedEvent { Account = account });
+					_accountStatus = UserAccountMessages.AccountNotVerified;
+					return false;
+				}
+
+				_logger.LogInformation(GetLogMessage("authentication success"));
+				account.LastLogin = UtcNow;
+				AddEvent(new SuccessfulPasswordLoginEvent { Account = account });
+
+				return true;
+			}
+			finally
+			{
+				await UpdateAsync(account, true);
+			}
+		}
+
+		public bool Authenticate(string username, string password)
         {
             UserAccount account;
             return Authenticate(username, password, out account);
@@ -297,17 +346,27 @@ namespace MasterApi.Services.Account
             return Task.FromResult(isAuthenticated);
         }
 
-        public Task<bool> AuthenticateAsync(string username, string password, out Task<ClaimsIdentity> claimsIdentity, out UserAccountMessages failure)
+        public async Task<ClaimsIdentity> AuthenticateAsync(string username, string password)
         {
-            claimsIdentity = null;
-            failure = UserAccountMessages.None;
+			if (string.IsNullOrWhiteSpace(username)) return null;
+			if (string.IsNullOrWhiteSpace(password))
+			{
+				_logger.LogError(GetLogMessage("failed -- empty password"));
+				throw new ValidationException(UserAccountMessages.MissingPassword.GetDescription());
+			}
 
-            var isAuthenticated = Authenticate(username, password, out UserAccount account);
-            if (!isAuthenticated)
+			var account = await GetByUsernameAsync(username);
+			if (account == null)
+			{
+				_logger.LogError(GetLogMessage("Account doesn't exist"));
+				throw new ValidationException(UserAccountMessages.InvalidCredentials.GetDescription());
+			}
+
+			var isAuthenticated = await AuthenticateAsync(account, password);
+			if (!isAuthenticated)
             {
-                if (_accountStatus != null) failure = _accountStatus.Value;
-                return Task.FromResult(false);
-            }
+				throw new ValidationException(UserAccountMessages.InvalidCredentials.GetDescription());
+			}
 
             var claims = new List<Claim>
             {
@@ -329,9 +388,7 @@ namespace MasterApi.Services.Account
                 claims.Add(new Claim(ClaimTypes.Role, UserAccessLevel.User.ToString()));
             }
 
-            claimsIdentity = Task.FromResult(new ClaimsIdentity(claims, "Bearer"));
-
-            return Task.FromResult(true);
+            return await Task.FromResult(new ClaimsIdentity(claims, "Bearer"));
         }
 
         public bool AuthenticateWithEmail(string email, string password)
@@ -521,7 +578,7 @@ namespace MasterApi.Services.Account
                 includes.Add(extraInclude);
             }
 
-            var account = await Repository.FirstOrDefaultAsync(query, includes);
+			var account = await Repository.FirstOrDefaultAsync(query, includes);
 
             if (account == null)
             {

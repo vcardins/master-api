@@ -1,13 +1,13 @@
-﻿using System;
+﻿using MasterApi.Core.Data.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using MasterApi.Core.Data.Infrastructure;
 
 namespace MasterApi.Core.Data.Repositories
 {
-    public interface IRepository<TEntity> where TEntity : class, IObjectState
+	public interface IRepository<TEntity> where TEntity : class, IObjectState
     {
         long Count(Expression<Func<TEntity, bool>> query = null);
         long TotalCount();

@@ -19,7 +19,7 @@ using MasterApi.Core.Filters;
 
 namespace MasterApi.Data.EF7
 {
-    public class Repository<TEntity> : IRepositoryAsync<TEntity> where TEntity : class, IObjectState
+    public class RepositoryAsync<TEntity> : IRepositoryAsync<TEntity> where TEntity : class, IObjectState
     {
         #region Private Fields
 
@@ -36,7 +36,7 @@ namespace MasterApi.Data.EF7
 
         #endregion Private Fields
 
-        public Repository(IDataContextAsync context, IUnitOfWorkAsync unitOfWork)
+        public RepositoryAsync(IDataContextAsync context, IUnitOfWorkAsync unitOfWork)
         {
             _context = context;
             _unitOfWork = unitOfWork;
@@ -322,7 +322,7 @@ namespace MasterApi.Data.EF7
             return _dbSet;
         }
 
-        public IRepository<T> GetRepository<T>() where T : class, IObjectState
+		public IRepository<T> GetRepository<T>() where T : class, IObjectState
         {
             return _unitOfWork.Repository<T>();
         }
@@ -346,21 +346,17 @@ namespace MasterApi.Data.EF7
         public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> filter, List<Expression<Func<TEntity, object>>> includes)
         {
             var query = _dbSet.Where(filter);
-            foreach (var includeProperty in includes)
-            {
-                query = query.Include(includeProperty);
-            }
-            return await query.FirstOrDefaultAsync();
+			includes.ForEach((include) => query.Include(include));
+            
+			return await query.FirstOrDefaultAsync();
         }
 
         public async Task<TEntity> FirstOrDefaultAsync<TResult>(Expression<Func<TEntity, bool>> filter, List<Expression<Func<TEntity, object>>> includes)
         {
             var query = _dbSet.Where(filter);
-            foreach (var includeProperty in includes)
-            {
-                query = query.Include(includeProperty);
-            }
-            return await query.FirstOrDefaultAsync();
+			includes.ForEach((include) => query.Include(include));
+
+			return await query.FirstOrDefaultAsync();
         }
 
         internal IQueryable<TEntity> Select(
@@ -475,5 +471,5 @@ namespace MasterApi.Data.EF7
             }
         }
 
-    }
+	}
 }

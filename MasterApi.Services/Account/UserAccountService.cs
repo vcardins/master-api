@@ -11,6 +11,8 @@ using MasterApi.Core.Config;
 using Microsoft.Extensions.Options;
 using MasterApi.Core.Account.Validation;
 using MasterApi.Services.Account.Messaging;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace MasterApi.Services.Account
 {
@@ -133,6 +135,5 @@ namespace MasterApi.Services.Account
             _logger.LogError(error);
             throw new ValidationException(result.ErrorMessage);
         }
-
-    }
+	}
 }

@@ -260,18 +260,18 @@ namespace MasterApi
             // Repositories
             services.AddScoped(typeof(IDataContextAsync), typeof(AppDbContext));
             services.AddScoped(typeof(IUnitOfWorkAsync), typeof(UnitOfWork));
-            services.AddScoped(typeof(IRepositoryAsync<>), typeof(Repository<>));
+            services.AddScoped(typeof(IRepositoryAsync<>), typeof(RepositoryAsync<>));
 			services.AddTransient<DataSeeder>();
 
 			//Services
-			services.AddScoped(typeof(IService<>), typeof(Service<>));
+			services.AddTransient(typeof(IService<>), typeof(Service<>));
 
-            services.AddScoped(typeof(IAuthService), typeof(AuthService));
-            services.AddScoped(typeof(IUserAccountService), typeof(UserAccountService));
-            services.AddScoped(typeof(INotificationService), typeof(NotificationService));
-            services.AddScoped(typeof(IGeoService), typeof(GeoService));
-            services.AddScoped(typeof(IUserProfileService), typeof(UserProfileService));
-            services.AddScoped(typeof(ILookupService), typeof(LookupService));
+            services.AddTransient(typeof(IAuthService), typeof(AuthService));
+            services.AddTransient(typeof(IUserAccountService), typeof(UserAccountService));
+            services.AddTransient(typeof(INotificationService), typeof(NotificationService));
+            services.AddTransient(typeof(IGeoService), typeof(GeoService));
+            services.AddTransient(typeof(IUserProfileService), typeof(UserProfileService));
+            services.AddTransient(typeof(ILookupService), typeof(LookupService));
 
             //Infrastructure
             services.AddSingleton(typeof(ICrypto), typeof(DefaultCrypto));
@@ -414,7 +414,7 @@ namespace MasterApi
                 return next(context);
             });			
 
-			seeder.SeedAsync().Wait();
+			// seeder.SeedAsync().Wait();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace MasterApi.Data.EF7
         #region Private Fields
         private readonly Expression<Func<TEntity, bool>> _expression;
         private readonly List<Expression<Func<TEntity, object>>> _includes;
-        private readonly Repository<TEntity> _repository;
+        private readonly RepositoryAsync<TEntity> _repository;
         private Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> _orderBy;
         private int _pageSize = int.MaxValue;
         private int? _page;
@@ -26,18 +26,18 @@ namespace MasterApi.Data.EF7
         #endregion Private Fields
 
         #region Constructors
-        public QueryFluent(Repository<TEntity> repository)
+        public QueryFluent(RepositoryAsync<TEntity> repository)
         {
             _repository = repository;
             _includes = new List<Expression<Func<TEntity, object>>>();
         }
 
-        public QueryFluent(Repository<TEntity> repository, IQueryObject<TEntity> queryObject) : this(repository)
+        public QueryFluent(RepositoryAsync<TEntity> repository, IQueryObject<TEntity> queryObject) : this(repository)
         {
             _expression = queryObject.Query();
         }
 
-        public QueryFluent(Repository<TEntity> repository, Expression<Func<TEntity, bool>> expression)
+        public QueryFluent(RepositoryAsync<TEntity> repository, Expression<Func<TEntity, bool>> expression)
             : this(repository)
         {
             _expression = expression;
@@ -59,7 +59,16 @@ namespace MasterApi.Data.EF7
             return this;
         }
 
-        public IQueryFluent<TEntity> Size(int pageSize)
+		public IQueryFluent<TEntity> Include(List<Expression<Func<TEntity, object>>> expressions)
+		{
+			if (expressions != null)
+			{
+				expressions.ForEach((expression) => _includes.Add(expression));
+			}
+			return this;
+		}
+
+		public IQueryFluent<TEntity> Size(int pageSize)
         {
             _pageSize = pageSize;
             return this;

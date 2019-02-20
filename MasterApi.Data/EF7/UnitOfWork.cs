@@ -21,7 +21,6 @@ namespace MasterApi.Data.EF7
         private readonly IDataContextAsync _dataContext;       
         private readonly IDbContextTransaction _transaction;
         private Dictionary<string, dynamic> _repositories;
-        private bool _disposed;
         
         #endregion Private Fields
 
@@ -37,43 +36,9 @@ namespace MasterApi.Data.EF7
         //A public event for listeners to subscribe to
         public event EventHandler OnSaveChanges;
 
-        public void Dispose()
-        {
-            Dispose(true);
-        }
+		#endregion Constuctor/Dispose
 
-        public virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-                return;
-
-            if (disposing)
-            {
-                // free other managed objects that implement
-                // IDisposable only
-                //try
-                //{
-                //    if (_objectContext != null && _objectContext.Connection.State == ConnectionState.Open)
-                //    {
-                //        _objectContext.Connection.Close();
-                //    }
-                //}
-                //catch (ObjectDisposedException)
-                //{
-                //    // do nothing, the objectContext has already been disposed
-                //}
-
-                _dataContext?.Dispose();
-            }
-
-            // release any unmanaged objects
-            // set the object references to null
-            _disposed = true;
-        }
-
-        #endregion Constuctor/Dispose
-      
-        public int SaveChanges()
+		public int SaveChanges()
         {
             // Could also be before try if you know the exception occurs in SaveChanges
             var changes = _dataContext.SaveChanges();
@@ -121,7 +86,7 @@ namespace MasterApi.Data.EF7
                 return (IRepositoryAsync<TEntity>)_repositories[type];
             }
 
-            var repositoryType = typeof(Repository<>);
+            var repositoryType = typeof(RepositoryAsync<>);
 
             _repositories.Add(type, Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _dataContext, this));
 

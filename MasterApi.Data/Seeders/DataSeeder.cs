@@ -39,19 +39,21 @@ namespace MasterApi.Data.Seeders
 
 		public async Task SeedAsync()
         {
-			await _context.Database.EnsureCreatedAsync();
-			// await _context.Database.MigrateAsync();
+			if (await _context.Database.EnsureCreatedAsync())
+			{
+				// await _context.Database.MigrateAsync();
 
-			SeedAudiences();
-            SeedCountries();
-            SeedProvinceStates();
-            SeedLanguages();
-            SeedAccounts();
+				SeedAudiences();
+				SeedCountries();
+				SeedProvinceStates();
+				SeedLanguages();
+				SeedAccounts();
 
-            if (_hasUpdates)
-            {
-                await _context.SaveChangesAsync();
-            }
+				if (_hasUpdates)
+				{
+					await _context.SaveChangesAsync();
+				}
+			}			
         }
 
         private static string GetResourceFilename(string resouce)

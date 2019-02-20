@@ -93,21 +93,13 @@ namespace MasterApi.Web.Controllers.v1.Account
         {
             var account = await _userAccountService.ChangePasswordFromResetKeyAsync(model.Key, model.Password);
 
-            Task<ClaimsIdentity> claimsIdentity;
-            UserAccountMessages failure;
-
-            if (await _userAccountService.AuthenticateAsync(account.Username, model.Password, out claimsIdentity,
-                out failure)) {
+			var claimsIdentity = await _userAccountService.AuthenticateAsync(account.Username, model.Password);
+			if (claimsIdentity!=null)
+			{
                 return Ok(new {Message = "Password has been succesfully changed. You can now login"});
             }
 
-            var error = new AuthError
-            {
-                Error = "invalid_grant",
-                Description = failure.GetDescription()
-            };
-
-            return BadRequest(error);
+            return BadRequest(UserAccountMessages.InvalidCredentials.GetDescription());
         }
 
     }

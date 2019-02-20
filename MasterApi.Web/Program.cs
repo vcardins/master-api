@@ -4,6 +4,7 @@ using Microsoft.AspNetCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MasterApi
 {

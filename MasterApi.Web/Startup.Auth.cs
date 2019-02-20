@@ -39,29 +39,35 @@ namespace MasterApi
                 IdentityResolver = GetIdentity
             };
 
-            // Save the token options into an instance so they're accessible to the 
-            services.AddSingleton(typeof(TokenProviderOptions), _tokenOptions);
+			// Save the token options into an instance so they're accessible to the 
+			services.AddSingleton(typeof(TokenProviderOptions), _tokenOptions);
 
 			// Enable Dual Authentication 
-			services.AddAuthentication()
-			  .AddCookie(cfg => cfg.SlidingExpiration = true)
-			  .AddJwtBearer(cfg =>
-			  {
-				  cfg.RequireHttpsMetadata = false;
-				  cfg.SaveToken = true;
-				  cfg.TokenValidationParameters = new TokenValidationParameters()
-				  {
-					  ValidIssuer = AppSettings.Auth.TokenIssuer,
-					  ValidAudience = AppSettings.Auth.TokenAudience,
-					  IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
-				  };
-
-			  });
-
-			//services.AddAuthentication(options =>
-			//{
-			//    options.DefaultSignInScheme = JwtBearerDefaults.AuthenticationScheme;
-			//});
+			services.AddAuthentication(o =>
+			{
+				o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+				o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+			})
+			.AddCookie(cfg => cfg.SlidingExpiration = true)
+			.AddJwtBearer(o =>
+			 {
+				 // my API name as defined in Config.cs - new ApiResource... or in DB ApiResources table
+				 o.Audience = AppSettings.Auth.TokenAudience;
+				 // URL of Auth server(API and Auth are separate projects/applications),
+				 // so for local testing this is http://localhost:5000 if you followed ID4 tutorials
+				 o.Authority = AppSettings.Auth.TokenAudience;
+				 o.RequireHttpsMetadata = false;
+				 o.SaveToken = true;
+				 o.TokenValidationParameters = new TokenValidationParameters
+				 {
+					 ValidateAudience = true,
+					 // Scopes supported by API as defined in Config.cs - new ApiResource... or in DB ApiScopes table
+					 ValidAudience = AppSettings.Auth.TokenAudience,
+					 ValidateIssuer = true,
+					 ValidIssuer = AppSettings.Auth.TokenIssuer,
+				 };
+			 });
+			//  IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
 
 			// Enable the use of an [Authorize("Bearer")] attribute on methods and classes to protect.
 			services.AddAuthorization(options =>
@@ -78,15 +84,9 @@ namespace MasterApi
         {
             var request = HttpContextAccessor.HttpContext.Request;
             var form = request.Form;
+			var claimsIdentity = await _userService.AuthenticateAsync(username, password);
 
-            if (await _userService.AuthenticateAsync(username, password, out Task<ClaimsIdentity> claimsIdentity, out UserAccountMessages failure))
-            {
-                return await claimsIdentity;
-            }
-            
-            // Credentials are invalid, or account doesn't exist
-            return null;
-
+			return claimsIdentity;
         }
     }
 }

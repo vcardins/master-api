@@ -14,7 +14,9 @@ namespace MasterApi.Core.Data.Repositories
             where TResult : class, new();
         IQueryFluent<TEntity> OrderBy(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy);
         IQueryFluent<TEntity> Include(Expression<Func<TEntity, object>> expression);
-        IQueryFluent<TEntity> Size(int pageSize);
+		IQueryFluent<TEntity> Include(List<Expression<Func<TEntity, object>>> expressions);
+
+		IQueryFluent<TEntity> Size(int pageSize);
         IQueryFluent<TEntity> Page(int page);
 
         IEnumerable<TEntity> SelectPage(int page, int pageSize);
